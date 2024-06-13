@@ -1,11 +1,14 @@
-# Lab 03 - Deploy Azure Container Instances
+# Lab 01 - Basic Linux Commands
 
 ## Lab overview
 
-Azure Container Instances enables exposing your container groups directly to the internet with an IP address and a fully qualified domain name (FQDN). When you create a container instance, you can specify a custom DNS name label so your application is reachable. Azure Container Instances offers the fastest and simplest way to run a container in Azure, without having to manage any virtual machines and without having to adopt a higher-level service.
+In this lab we are going to overview basic Linux commands for extract information about the machine we are using, main file system operations, and basics of editing a file.
 
-In this walkthrough, we create, configure, and deploy a Docker container by using Azure Container Instances (ACI) in the Azure Portal. The container is a Welcome to ACI web application that displays a static HTML page.
+All the commands will be run using the command line interface (CLI). The CLI is a powerful tool for running applications, inspecting the system status, and configuring a machine.
 
+First, open a terminal application. Click on the terminal application on the desktop.
+
+----------------------------------------------------
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
