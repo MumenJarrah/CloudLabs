@@ -20,7 +20,7 @@ In this lab, you will complete the following tasks:
 
 ## Architecture diagram
 
-![](../images/az900lab03.PNG) 
+![](../fig1.PNG) 
 
 ### Task 1: Create a container instance
 
@@ -28,7 +28,7 @@ In this task, we will create a new container instance for the web application.
 
 1. On Azure Portal page, in **Search resources, services and docs (G+/)** box at the top of the portal, enter **Container instances (1)**, and then select **Container instances (2)** under services.
 
-   ![](../images/lab3-image1.png)
+ ![](../fig2.PNG) 
    
 1. On **Container instances** blade, click **+ Create**. 
 
