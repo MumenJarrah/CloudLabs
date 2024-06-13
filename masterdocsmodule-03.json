@@ -1,0 +1,17 @@
+﻿[
+  {
+    "Name": "Module 03 - Deploy Azure Container Instances",
+    "Language": "English",
+    "Files": [
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/MumenJarrah/Labs/main/lab1_guide.md",
+        "Order": 1
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-900T0x-MicrosoftAzureFundamentals/prod/Instructions/Labs/03-Deploy%20Azure%20Container%20Instances.md",
+        "Order": 2
+      }
+    ]
+  },
+
+]
