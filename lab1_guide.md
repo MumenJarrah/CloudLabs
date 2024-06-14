@@ -16,12 +16,15 @@ The terminal opens showing the shell prompt as shown below. The shell allows run
 
 To run a command, type a command in the shell and press Enter. For instance, type `date` in the shell and press Enter. This runs the date command and displays the date and time of the machine.
 
+## Run the `date` command
+
 ```bash
 date
 
 Fri Jun 14 20:35:23 UTC 2024
 
-1. Finding help related to a command
+## 1. Finding help related to a command
+
 For any given command, you can use the man command to print the command manual. For instance:
 
 ```bash
