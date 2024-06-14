@@ -15,3 +15,6 @@ The terminal opens showing the shell prompt as shown below. The shell allows run
 ![Terminal](fig2.png)
 
 To run a command, type a command in the shell and press Enter. For instance, type `date` in the shell and press Enter. This runs the date command and displays the date and time of the machine.
+
+```bash
+date
