@@ -20,3 +20,11 @@ To run a command, type a command in the shell and press Enter. For instance, typ
 date
 Fri Jun 14 20:35:23 UTC 2024
 
+1. Finding help related to a command
+For any given command, you can use the man command to print the command manual. For instance:
+
+bash
+man su
+
+bash
+# Paste the output here
