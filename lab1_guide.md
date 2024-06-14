@@ -6,11 +6,11 @@ In this lab, we are going to overview basic Linux commands for extracting inform
 
 All the commands will be run using the command line interface (CLI). The CLI is a powerful tool for running applications, inspecting the system status, and configuring a machine.
 
-First, open a terminal application. Click on the terminal application on the desktop.
+1. Open a terminal application. Click on the terminal application on the desktop.
 
 ![Terminal Application](fig1.png)
 
-The terminal opens showing the shell prompt as shown below. The shell allows running commands and applications.
+2. The terminal opens showing the shell prompt as shown below. The shell allows running commands and applications.
 
 ![Terminal](fig2.png)
 
