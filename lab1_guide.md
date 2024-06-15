@@ -249,6 +249,11 @@ To run commands as a superuser, you need to use one of two commands.
 su
 ```
 
+### Output 
+```plaintext
+Need password
+```
+
 When you are done using the superuser mode, you can type `exit` to exit the superuser and return to your user mode.
 
 ```bash
@@ -261,6 +266,8 @@ exit
 ```bash
 sudo ls
 ```
+
+### Output 
 
 ```plaintext
 Desktop    Downloads  Pictures	Templates  thinclient_drives
@@ -278,7 +285,24 @@ The file `/etc/os-release` contains the operating system information. We can use
 cat /etc/os-release
 ```
 
-This output shows that the machine is running a Ubuntu OS system version 18.04.6????????????????
+### Output 
+
+```plaintext
+NAME="Ubuntu"
+VERSION="20.04.6 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.6 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+```
+
+This output shows that the machine is running a Ubuntu OS system version 20.04.6
 
 #### 3.2 Finding the CPU information
 To find the CPU information, you can use the `lscpu` command.
@@ -287,7 +311,65 @@ To find the CPU information, you can use the `lscpu` command.
 lscpu
 ```
 
-The output of this command shows that this machine has an intel Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz CPU.???????
+### Output 
+
+```plaintext
+Architecture:                       x86_64
+CPU op-mode(s):                     32-bit, 64-bit
+Byte Order:                         Little Endian
+Address sizes:                      46 bits physical, 48 bits virtual
+CPU(s):                             2
+On-line CPU(s) list:                0,1
+Thread(s) per core:                 1
+Core(s) per socket:                 2
+Socket(s):                          1
+NUMA node(s):                       1
+Vendor ID:                          GenuineIntel
+CPU family:                         6
+Model:                              85
+Model name:                         Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60G
+                                    Hz
+Stepping:                           7
+CPU MHz:                            2593.908
+BogoMIPS:                           5187.81
+Hypervisor vendor:                  Microsoft
+Virtualization type:                full
+L1d cache:                          64 KiB
+L1i cache:                          64 KiB
+L2 cache:                           2 MiB
+L3 cache:                           35.8 MiB
+NUMA node0 CPU(s):                  0,1
+Vulnerability Gather data sampling: Unknown: Dependent on hypervisor status
+Vulnerability Itlb multihit:        KVM: Mitigation: VMX unsupported
+Vulnerability L1tf:                 Mitigation; PTE Inversion
+Vulnerability Mds:                  Mitigation; Clear CPU buffers; SMT Host stat
+                                    e unknown
+Vulnerability Meltdown:             Mitigation; PTI
+Vulnerability Mmio stale data:      Vulnerable: Clear CPU buffers attempted, no 
+                                    microcode; SMT Host state unknown
+Vulnerability Retbleed:             Vulnerable
+Vulnerability Spec store bypass:    Vulnerable
+Vulnerability Spectre v1:           Mitigation; usercopy/swapgs barriers and __u
+                                    ser pointer sanitization
+Vulnerability Spectre v2:           Mitigation; Retpolines, STIBP disabled, RSB 
+                                    filling, PBRSB-eIBRS Not affected
+Vulnerability Srbds:                Not affected
+Vulnerability Tsx async abort:      Mitigation; Clear CPU buffers; SMT Host stat
+                                    e unknown
+Flags:                              fpu vme de pse tsc msr pae mce cx8 apic sep 
+                                    mtrr pge mca cmov pat pse36 clflush mmx fxsr
+                                     sse sse2 ss ht syscall nx pdpe1gb rdtscp lm
+                                     constant_tsc rep_good nopl xtopology cpuid 
+                                    pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse
+                                    4_2 movbe popcnt aes xsave avx f16c rdrand h
+                                    ypervisor lahf_lm abm 3dnowprefetch invpcid_
+                                    single pti fsgsbase bmi1 hle avx2 smep bmi2 
+                                    erms invpcid rtm avx512f avx512dq rdseed adx
+                                     smap clflushopt avx512cd avx512bw avx512vl 
+                                    xsaveopt xsavec xsaves md_clear
+```
+
+The output of this command shows that this machine has an intel Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz
 
 #### 3.3 Finding the machine IP address
 To find the machine IP address, we can use the `ip` command with the `addr` option.
@@ -295,8 +377,28 @@ To find the machine IP address, we can use the `ip` command with the `addr` opti
 ```bash
 ip addr
 ```
-The command prints the ip address of every interface in the system. The lo interface is a local interface an always has an ip address of 127.0.0.1. ???????????????
-The command shows that this machine has the ip address of 10.0.2.15 ???????????????
+#### Output
+
+```plaintext
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0d:3a:f4:24:fe brd ff:ff:ff:ff:ff:ff
+    **inet 10.0.0.4**/24 brd 10.0.0.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20d:3aff:fef4:24fe/64 scope link 
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 02:42:71:62:d9:f4 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+```
+The command prints the ip address of every interface in the system. The lo interface is a local interface an always has an ip address of 127.0.0.1.
+The command shows that this machine has the ip address of 10.0.0.4
 
 ### 4. Basic file system commands
 
