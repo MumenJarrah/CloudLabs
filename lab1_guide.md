@@ -21,6 +21,9 @@ To run a command, type a command in the shell and press Enter. For instance, typ
 ```bash
 date
 ```
+
+### Output 
+
 ```plaintext
 Sat Jun 15 00:23:42 UTC 2024
 ```
