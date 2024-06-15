@@ -16,14 +16,14 @@ All the commands will be run using the command line interface (CLI). The CLI is 
 
 To run a command, type a command in the shell and press Enter. For instance, type `date` in the shell and press Enter. This runs the date command and displays the date and time of the machine.
 
-## Run the `date` command
+### Run the `date` command
 
 ```bash
 date
 ```
 
 
-## 1. Finding help related to a command
+### 1. Finding help related to a command
 
 For any given command, you can use the `man` command to print the command manual. For instance:
 
@@ -37,11 +37,11 @@ Press `<Enter>` to scroll one line down.
 Press `<Space>` to scroll one page of text down.
 Press `<q>` to exit the manual.  
 
-## 2. Running commands as a superuser
+### 2. Running commands as a superuser
 
 To run commands as a superuser, you need to use one of two commands.
 
-2.1 Using `su`  
+#### 2.1 Using `su`  
 `su` is a command to substitute user. It changes the user ID. If used without giving a user ID, the command changes to a superuser. After typing su and pressing Enter, the terminal asks for a password. Enter the superuser password. The prompt changes to end with # which indicates that it is running in superuser mode.
 
 ```bash
@@ -54,18 +54,18 @@ When you are done using the superuser mode, you can type `exit` to exit the supe
 exit
 ```
 
-2.2 Using `sudo`
+#### 2.2 Using `sudo`
 `sudo` is used to run a single command in superuser mode. For instance, the following command runs `ls` in superuser mode.
 
 ```bash
 sudo ls
 ```
 
-## 3. Extracting Machine Information
+### 3. Extracting Machine Information
 
 Several common Linux commands help us extract information about the machine.
 
-3.1 Finding the OS version information
+#### 3.1 Finding the OS version information
 The file `/etc/os-release` contains the operating system information. We can use the `cat` command to print the file content as follows:
 
 ```bash
@@ -74,7 +74,7 @@ cat /etc/os-release
 
 This output shows that the machine is running a Ubuntu OS system version 18.04.6????????????????
 
-3.2 Finding the CPU information
+#### 3.2 Finding the CPU information
 To find the CPU information, you can use the `lscpu` command.
 
 ```bash
@@ -83,7 +83,7 @@ lscpu
 
 The output of this command shows that this machine has an intel Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz CPU.???????
 
-3.3 Finding the machine IP address
+#### 3.3 Finding the machine IP address
 To find the machine IP address, we can use the `ip` command with the `addr` option.
 
 ```bash
@@ -92,25 +92,25 @@ ip addr
 The command prints the ip address of every interface in the system. The lo interface is a local interface an always has an ip address of 127.0.0.1. ???????????????
 The command shows that this machine has the ip address of 10.0.2.15 ???????????????
 
-## 4. Basic file system commands
+### 4. Basic file system commands
 
 The Linux files and directories are organized in a directory tree. Each directory can contain files or other directories.
 
-## Finding the current working directory
+#### Finding the current working directory
 To find the current working directory, use the `pwd` command.
 
 ```bash
 pwd
 ```  
 
-## Listing directories and files
+#### Listing directories and files
 The `ls` command lists all directories and files in the current directory.
 
 ```bash
 ls
 ```
 
-## Changing a directory
+#### Changing a directory
 To change a directory, use the `cd` command.
 
 ```bash
@@ -123,7 +123,7 @@ The `cd ~` command returns the prompt to the home directory of the user.
 cd ~
 ```
 
-4.1 Creating a directory
+#### 4.1 Creating a directory
 To create a directory, use the `mkdir` command.
 
 ```bash
@@ -142,7 +142,7 @@ pwd
 
 `cd` will change the working directory to `newDir`. `pwd` should confirm that.
 
-4.2 Creating and reading a file
+#### 4.2 Creating and reading a file
 There are many commands for creating and editing a text file from within the terminal. The easiest one to learn is `nano`.
 
 ```bash
@@ -176,7 +176,7 @@ Or
 cat new_file.txt
 ```
 
-4.3	Managing files
+#### 4.3	Managing files
 
 Use `cp` to copy a file.
 
