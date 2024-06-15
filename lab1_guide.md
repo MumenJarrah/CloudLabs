@@ -21,6 +21,8 @@ To run a command, type a command in the shell and press Enter. For instance, typ
 ```bash
 date
 ```
+# Output 
+Sat Jun 15 00:23:42 UTC 2024
 
 
 ### 1. Finding help related to a command
@@ -184,7 +186,7 @@ Use `cp` to copy a file.
 cp new_file.txt copy_file.txt
 ```
 
-To delete a file use the rm command
+To delete a file use the `rm` command
 
 ```bash
 rm new_file.txt
