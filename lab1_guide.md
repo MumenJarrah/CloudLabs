@@ -72,6 +72,8 @@ The file `/etc/os-release` contains the operating system information. We can use
 cat /etc/os-release
 ```
 
+This output shows that the machine is running a Ubuntu OS system version 18.04.6????????????????
+
 3.2 Finding the CPU information
 To find the CPU information, you can use the `lscpu` command.
 
@@ -79,12 +81,16 @@ To find the CPU information, you can use the `lscpu` command.
 lscpu
 ```
 
+The output of this command shows that this machine has an intel Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz CPU.???????
+
 3.3 Finding the machine IP address
 To find the machine IP address, we can use the `ip` command with the `addr` option.
 
 ```bash
 ip addr
 ```
+The command prints the ip address of every interface in the system. The lo interface is a local interface an always has an ip address of 127.0.0.1. ???????????????
+The command shows that this machine has the ip address of 10.0.2.15 ???????????????
 
 ## 4. Basic file system commands
 
