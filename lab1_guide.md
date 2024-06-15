@@ -262,6 +262,11 @@ exit
 sudo ls
 ```
 
+```plaintext
+Desktop    Downloads  Pictures	Templates  thinclient_drives
+Documents  Music      Public	Videos
+```
+
 ### 3. Extracting Machine Information
 
 Several common Linux commands help us extract information about the machine.
