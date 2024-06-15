@@ -458,7 +458,7 @@ nano new_file.txt
 ```
 
 This command will create a new_file.txt if it does not exist, and will open it for editing if it already exists.
-The nano command opens the file for editing.
+The `nano` command opens the file for editing.
 
 At the bottom of the nano window are the available nano commands. ^ means ctrl.
 So you can write in the file something like “this is a test”
@@ -466,7 +466,7 @@ Then press <ctrl+x> to exit
 When asked, press <y> to save the changes.
 Press <enter> to confirm the file name.
 
-Use ls to confirm that the new file is created.
+Use `ls` to confirm that the new file is created.
 
 ```bash
 ls
