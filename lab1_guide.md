@@ -411,6 +411,12 @@ To find the current working directory, use the `pwd` command.
 pwd
 ```  
 
+### Output 
+
+```plaintext
+/home/seed
+```
+
 #### Listing directories and files
 The `ls` command lists all directories and files in the current directory.
 
@@ -418,11 +424,26 @@ The `ls` command lists all directories and files in the current directory.
 ls
 ```
 
+This is an example of the list of all directories in the home directory:
+
+### Output 
+```plaintext
+Desktop    Downloads  Pictures  Templates  thinclient_drives
+Documents  Music      Public    Videos
+```
+
 #### Changing a directory
-To change a directory, use the `cd` command.
+To change a directory, use the `cd` command followed by the directory name.
 
 ```bash
 cd <directory_name>
+```
+
+### Output 
+
+```plaintext
+Desktop    Downloads  Pictures  Templates  thinclient_drives
+Documents  Music      Public    Videos
 ```
 
 The `cd ~` command returns the prompt to the home directory of the user.
@@ -436,6 +457,14 @@ To create a directory, use the `mkdir` command.
 
 ```bash
 mkdir newDir
+```
+
+You can notice that "newDir" was created 
+### Output 
+
+```plaintext
+Desktop    Downloads  Pictures  Templates  **newDir**
+Documents  Music      Public    Videos     thinclient_drives
 ```
 
 This command creates a new directory named `newDir`.
