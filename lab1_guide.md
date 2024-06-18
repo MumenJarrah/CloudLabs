@@ -260,6 +260,12 @@ When you are done using the superuser mode, you can type `exit` to exit the supe
 exit
 ```
 
+### Output 
+```plaintext
+exit
+seed@labvm-1378410:~$
+```
+
 #### 2.2 Using `sudo`
 `sudo` is used to run a single command in superuser mode. For instance, the following command runs `ls` in superuser mode.
 
