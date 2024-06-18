@@ -439,13 +439,6 @@ To change a directory, use the `cd` command followed by the directory name.
 cd <directory_name>
 ```
 
-### Output 
-
-```plaintext
-Desktop    Downloads  Pictures  Templates  thinclient_drives
-Documents  Music      Public    Videos
-```
-
 The `cd ~` command returns the prompt to the home directory of the user.
 
 ```bash
@@ -463,7 +456,7 @@ You can notice that "newDir" was created
 ### Output 
 
 ```plaintext
-Desktop    Downloads  Pictures  Templates  **newDir**
+Desktop    Downloads  Pictures  Templates  newDir
 Documents  Music      Public    Videos     thinclient_drives
 ```
 
@@ -475,6 +468,12 @@ cd newDir
 
 ```bash
 pwd
+```
+
+### Output 
+
+```plaintext
+/home/seed/newDir
 ```
 
 `cd` will change the working directory to `newDir`. `pwd` should confirm that.
@@ -501,6 +500,13 @@ Use `ls` to confirm that the new file is created.
 
 ```bash
 ls
+```
+
+### Output 
+
+```plaintext
+Desktop    Downloads  Pictures  Templates  newDir        thinclient_drives
+Documents  Music      Public    Videos     new_file.txt
 ```
 
 You can use one of the following commands to print the content of a file
