@@ -521,12 +521,25 @@ Or
 cat new_file.txt
 ```
 
+### Output 
+
+```plaintext
+This is the content of new_file.txt
+```
+
 #### 4.3	Managing files
 
 Use `cp` to copy a file.
 
 ```bash
 cp new_file.txt copy_file.txt
+```
+
+### Output 
+
+```plaintext
+Desktop    Downloads  Pictures  Templates  copy_file.txt  new_file.txt
+Documents  Music      Public    Videos     newDir         thinclient_drives
 ```
 
 To delete a file use the `rm` command
@@ -538,4 +551,11 @@ rm new_file.txt
 Deletes the new_file.txt
 
 Use `ls` to verify that the file is deleted.
+
+### Output 
+
+```plaintext
+Desktop    Downloads  Pictures  Templates  copy_file.txt  thinclient_drives
+Documents  Music      Public    Videos     newDir
+```
 
