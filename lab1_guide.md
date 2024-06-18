@@ -251,7 +251,7 @@ su
 
 ### Output 
 ```plaintext
-Need password
+root@labvm-1378410:/home/seed#
 ```
 
 When you are done using the superuser mode, you can type `exit` to exit the superuser and return to your user mode.
