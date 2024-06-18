@@ -460,6 +460,8 @@ nano new_file.txt
 This command will create a new_file.txt if it does not exist, and will open it for editing if it already exists.
 The `nano` command opens the file for editing.
 
+![Terminal](fig3.png)
+
 At the bottom of the nano window are the available nano commands. ^ means ctrl.
 So you can write in the file something like “this is a test”
 Then press <ctrl+x> to exit
