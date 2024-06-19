@@ -240,8 +240,11 @@ Press `<q>` to exit the manual.
 
 ### 2. Running commands as a superuser
 
-To run commands as a superuser, you need to use one of two commands.
+To run commands as a superuser, you need to use `sudo`.  
 
+The `sudo` is used to run a single command in superuser mode. For instance, the following command runs `ls` in superuser mode.
+
+<!---
 #### 2.1 Using `su`  
 `su` is a command to substitute user. It changes the user ID. If used without giving a user ID, the command changes to a superuser. After typing su and pressing Enter, the terminal asks for a password. Enter the superuser password. The prompt changes to end with # which indicates that it is running in superuser mode.
 
@@ -267,7 +270,7 @@ seed@labvm-1378410:~$
 ```
 
 #### 2.2 Using `sudo`
-`sudo` is used to run a single command in superuser mode. For instance, the following command runs `ls` in superuser mode.
+--->
 
 ```bash
 sudo ls
