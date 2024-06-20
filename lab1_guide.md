@@ -6,7 +6,11 @@ In this lab, we are going to overview basic Linux commands for extracting inform
 
 All the commands will be run using the command line interface (CLI). The CLI is a powerful tool for running applications, inspecting the system status, and configuring a machine.
 
-1. Open a terminal application. Click on the terminal application on the desktop.
+## Lab Instrcutions
+
+### Starting a shell program
+
+1. Open a terminal application. Double click on the terminal application on the desktop.
 
 ![Terminal Application](fig1.png)
 
@@ -14,15 +18,15 @@ All the commands will be run using the command line interface (CLI). The CLI is 
 
 ![Terminal](fig2.png)
 
-To run a command, type a command in the shell and press Enter. For instance, type `date` in the shell and press Enter. This runs the date command and displays the date and time of the machine.
+To run a command, type a command in the shell and press <Enter>. For instance, type `date` in the shell and press <Enter>. This runs the date command and displays the date and time of the machine.
 
-### Run the `date` command
+<!-- ### Run the `date` command -->
 
 ```bash
 date
 ```
 
-### Output 
+**Output** 
 
 ```plaintext
 Sat Jun 15 00:23:42 UTC 2024
@@ -34,10 +38,10 @@ Sat Jun 15 00:23:42 UTC 2024
 For any given command, you can use the `man` command to print the command manual. For instance:
 
 ```bash
-man su
+man date
 ```
 
-### Output 
+**Output** 
 
 ```plaintext
 SU(1)                            User Commands                           SU(1)
@@ -232,11 +236,11 @@ AVAILABILITY
 util-linux                         July 2014                             SU(1)
 ```
 
-This prints the manual for the su command. The manual usually does not fit on one screen. You have the following options:
+This prints the manual for the date command. The manual usually does not fit on one screen. You have the following options:
 
-Press `<Enter>` to scroll one line down.
-Press `<Space>` to scroll one page of text down.
-Press `<q>` to exit the manual.  
++ Press `<Enter>` to scroll one line down.
++ Press `<Space>` to scroll one page of text down.
++ Press `<q>` to exit the manual.  
 
 ### 2. Running commands as a superuser
 
@@ -248,7 +252,8 @@ Press `<q>` to exit the manual.
 su
 ```
 
-### Output 
+**Output** 
+
 ```plaintext
 root@labvm-1378410:/home/seed#
 ```
@@ -259,7 +264,7 @@ When you are done using the superuser mode, you can type `exit` to exit the supe
 exit
 ```
 
-### Output 
+**Output** 
 ```plaintext
 exit
 seed@labvm-1378410:~$
@@ -276,12 +281,18 @@ For instance, the following command runs `ls` (which lists directory contents) w
 sudo ls
 ```
 
-### Output 
+**Output** 
 
 ```plaintext
 Desktop    Downloads  Pictures	Templates  thinclient_drives
 Documents  Music      Public	Videos
 ```
+
+> [!CAUTION]
+> Using <sudo> runs commands in superuser mode which allows the command that is executed in this mode to change critical configurations and files in the operating system.
+> Consequantly, best practice for using superuser mode is:
+> + Limit the use of the superuser mode to the bare minimum commands that need superuser priviligaes
+> + Only run commands that you trust and know what they do exactly
 
 ### 3. Extracting Machine Information
 
@@ -294,7 +305,7 @@ The file `/etc/os-release` contains the operating system information. We can use
 cat /etc/os-release
 ```
 
-### Output 
+**Output** 
 
 ```plaintext
 NAME="Ubuntu"
@@ -320,7 +331,7 @@ To find the CPU information, you can use the `lscpu` command.
 lscpu
 ```
 
-### Output 
+**Output** 
 
 ```plaintext
 Architecture:                       x86_64
@@ -386,7 +397,7 @@ To find the machine IP address, we can use the `ip` command with the `addr` opti
 ```bash
 ip addr
 ```
-#### Output
+**Output**
 
 ```plaintext
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -406,7 +417,7 @@ ip addr
     inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
        valid_lft forever preferred_lft forever
 ```
-The command prints the ip address of every interface in the system. The lo interface is a local interface an always has an ip address of 127.0.0.1.
+The command prints the ip address of every interface in the system. The lo interface is a local interface and always has an ip address of 127.0.0.1.
 The command shows that this machine has the ip address of 10.0.0.4
 
 ### 4. Basic file system commands
@@ -420,7 +431,7 @@ To find the current working directory, use the `pwd` command.
 pwd
 ```  
 
-### Output 
+**Output** 
 
 ```plaintext
 /home/seed
@@ -435,7 +446,7 @@ ls
 
 This is an example of the list of all directories in the home directory:
 
-### Output 
+**Output** 
 ```plaintext
 Desktop    Downloads  Pictures  Templates  thinclient_drives
 Documents  Music      Public    Videos
@@ -461,15 +472,20 @@ To create a directory, use the `mkdir` command.
 mkdir newDir
 ```
 
-You can notice that "newDir" was created 
-### Output 
+You can notice that "newDir" was created by running the <ls> command
+
+```bash
+ls
+```
+
+**Output** 
 
 ```plaintext
 Desktop    Downloads  Pictures  Templates  newDir
 Documents  Music      Public    Videos     thinclient_drives
 ```
 
-This command creates a new directory named `newDir`.
+This command creates a new directory named `newDir`. You can change to the <newDir>
 
 ```bash
 cd newDir
@@ -479,7 +495,7 @@ cd newDir
 pwd
 ```
 
-### Output 
+**Output** 
 
 ```plaintext
 /home/seed/newDir
@@ -511,7 +527,7 @@ Use `ls` to confirm that the new file is created.
 ls
 ```
 
-### Output 
+**Output** 
 
 ```plaintext
 Desktop    Downloads  Pictures  Templates  newDir        thinclient_drives
@@ -530,7 +546,7 @@ Or
 cat new_file.txt
 ```
 
-### Output 
+**Output** 
 
 ```plaintext
 This is the content of new_file.txt
@@ -543,13 +559,16 @@ Use `cp` to copy a file.
 ```bash
 cp new_file.txt copy_file.txt
 ```
+This command copies the file <new_file.txt> to a new file <copy_file.txt>
 
-### Output 
+**Output** 
 
 ```plaintext
 Desktop    Downloads  Pictures  Templates  copy_file.txt  new_file.txt
 Documents  Music      Public    Videos     newDir         thinclient_drives
 ```
+
+You can see that you have two files now: new_file.txt and copy_file.txt
 
 To delete a file use the `rm` command
 
@@ -561,10 +580,11 @@ Deletes the new_file.txt
 
 Use `ls` to verify that the file is deleted.
 
-### Output 
+**Output** 
 
 ```plaintext
 Desktop    Downloads  Pictures  Templates  copy_file.txt  thinclient_drives
 Documents  Music      Public    Videos     newDir
 ```
 
+### You succefuly completed the Lab
