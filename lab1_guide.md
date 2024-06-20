@@ -44,196 +44,213 @@ man date
 **Output** 
 
 ```plaintext
-SU(1)                            User Commands                           SU(1)
+DATE(1)                          User Commands                         DATE(1)
 
 NAME
-       su - run a command with substitute user and group ID
+       date - print or set the system date and time
 
 SYNOPSIS
-       su [options] [-] [user [argument...]]
+       date [OPTION]... [+FORMAT]
+       date [-u|--utc|--universal] [MMDDhhmm[[CC]YY][.ss]]
 
 DESCRIPTION
-       su allows to run commands with a substitute user and group ID.
+       Display the current time in the given FORMAT, or set the system date.
 
-       When  called  without  arguments, su defaults to running an interactive
-       shell as root.
+       Mandatory  arguments  to  long  options are mandatory for short options
+       too.
 
-       For backward compatibility, su defaults to not change the  current  di‐
-       rectory  and to only set the environment variables HOME and SHELL (plus
-       USER and LOGNAME if the target user is not root).  It is recommended to
-       always use the --login option (instead of its shortcut -) to avoid side
-       effects caused by mixing environments.
+       -d, --date=STRING
+              display time described by STRING, not 'now'
 
-       This version of su uses PAM for  authentication,  account  and  session
-       management.   Some  configuration options found in other su implementa‐
-       tions, such as support for a wheel group, have  to  be  configured  via
-       PAM.
+       --debug
+              annotate the parsed date, and warn about questionable  usage  to
+              stderr
 
-       su  is mostly designed for unprivileged users, the recommended solution
-       for privileged users (e.g. scripts executed by root) is to use non-set-
-       user-ID  command  runuser(1)  that  does not require authentication and
-       provide separate PAM configuration. If the PAM session is not  required
-       at all then the recommend solution is to use command setpriv(1).
+       -f, --file=DATEFILE
+              like --date; once for each line of DATEFILE
 
-OPTIONS
-       -c, --command=command
-              Pass command to the shell with the -c option.
+       -I[FMT], --iso-8601[=FMT]
+              output  date/time  in ISO 8601 format.  FMT='date' for date only
+              (the default), 'hours', 'minutes', 'seconds', or 'ns'  for  date
+              and    time    to    the    indicated    precision.     Example:
+              2006-08-14T02:34:56-06:00
 
-       -f, --fast
-              Pass  -f to the shell, which may or may not be useful, depending
-              on the shell.
+       -R, --rfc-email
+              output date and time in RFC 5322 format.  Example: Mon,  14  Aug
+              2006 02:34:56 -0600
 
-       -g, --group=group
-              Specify the primary group.  This option is available to the root
-              user only.
+       --rfc-3339=FMT
+              output  date/time in RFC 3339 format.  FMT='date', 'seconds', or
+              'ns' for date and time to  the  indicated  precision.   Example:
+              2006-08-14 02:34:56-06:00
 
-       -G, --supp-group=group
-             Specify  a  supplemental group.  This option is available to the
-              root user only.  The first specified supplementary group is also
-              used as a primary group if the option --group is unspecified.
+       -r, --reference=FILE
+              display the last modification time of FILE
 
-       -, -l, --login
-              Start  the shell as a login shell with an environment similar to
-              a real login:
+       -s, --set=STRING
+              set time described by STRING
 
-                 o      clears all the environment variables except  TERM  and
-                        variables specified by --whitelist-environment
+       -u, --utc, --universal
+              print or set Coordinated Universal Time (UTC)
 
-                 o      initializes  the  environment  variables  HOME, SHELL,
-                        USER, LOGNAME, and PATH
+       --help display this help and exit
 
-                 o      changes to the target user's home directory
+       --version
+              output version information and exit
 
-                 o      sets argv[0] of the shell to '-' in order to make  the
-                        shell a login shell
+       FORMAT controls the output.  Interpreted sequences are:
 
-       -m, -p, --preserve-environment
-              Preserve  the  entire  environment,  i.e.  it does not set HOME,
-              SHELL, USER nor LOGNAME.  This option is ignored if  the  option
-              --login is specified.
+       %%     a literal %
 
-       -P, --pty
-              Create pseudo-terminal for the session. The independent terminal
-              provides better security as user does not  share  terminal  with
-              the  original session.  This allow to avoid TIOCSTI ioctl termi‐
-              nal injection and another security attacks against terminal file
-              descriptors.  The  all session is also possible to move to back‐
-              ground (e.g. "su --pty - username -c  application  &").  If  the
-              pseudo-terminal  is enabled then su command works as a proxy be‐
-              tween the sessions (copy stdin and stdout).
+       %a     locale's abbreviated weekday name (e.g., Sun)
 
-              This feature is mostly designed for interactive sessions. If the
-              standard  input  is  not  a terminal, but for example pipe (e.g.
-              echo "date" | su --pty) than ECHO flag for  the  pseudo-terminal
-              is disabled to avoid messy output.
+       %A     locale's full weekday name (e.g., Sunday)
 
-       -s, --shell=shell
-              Run  the  specified  shell instead of the default.  The shell to
-              run is selected according to the following rules, in order:
+       %b     locale's abbreviated month name (e.g., Jan)
 
-                 o      the shell specified with --shell
+       %B     locale's full month name (e.g., January)
 
-                 o      the shell specified in the environment variable SHELL,
-                        if the --preserve-environment option is used
+       %c     locale's date and time (e.g., Thu Mar  3 23:05:25 2005)
 
-                 o      the  shell  listed  in  the passwd entry of the target
-                        user
+       %C     century; like %Y, except omit last two digits (e.g., 20)
 
-                 o      /bin/sh
+       %d     day of month (e.g., 01)
 
-              If the target user has a restricted shell (i.e.  not  listed  in
-              /etc/shells), the --shell option and the SHELL environment vari‐
-              ables are ignored unless the calling user is root.
+       %D     date; same as %m/%d/%y
 
-       --session-command=command
-              Same as -c but do not create a new session.  (Discouraged.)
+       %e     day of month, space padded; same as %_d
 
-       -w, --whitelist-environment=list
-              Don't reset environment variables specified in  comma  separated
-              list  when  clears environment for --login. The whitelist is ig‐
-              nored for the environment variables HOME, SHELL, USER,  LOGNAME,
-              and PATH.
+       %F     full date; same as %Y-%m-%d
 
-       -V, --version
-              Display version information and exit.
+       %g     last two digits of year of ISO week number (see %G)
 
-       -h, --help
-              Display help text and exit.
+       %G     year of ISO week number (see %V); normally useful only with %V
 
-SIGNALS
-       Upon  receiving  either  SIGINT,  SIGQUIT or SIGTERM, su terminates its
-       child and afterwards terminates itself with the received  signal.   The
-       child  is  terminated by SIGTERM, after unsuccessful attempt and 2 sec‐
-       onds of delay the child is killed by SIGKILL.
+       %h     same as %b
 
-CONFIG FILES
-       su reads the /etc/default/su and /etc/login.defs  configuration  files.
-       The following configuration items are relevant for su(1):
+       %H     hour (00..23)
 
-       FAIL_DELAY (number)
-           Delay  in  seconds in case of an authentication failure. The number
-           must be a non-negative integer.
+       %I     hour (01..12)
 
-       ENV_PATH (string)
-           Defines the PATH environment variable for a regular user.  The  de‐
-           fault value is /usr/local/bin:/bin:/usr/bin.
+       %j     day of year (001..366)
 
-       ENV_ROOTPATH (string)
-       ENV_SUPATH (string)
-           Defines  the  PATH environment variable for root.  ENV_SUPATH takes
-           precedence.  The default value  is  /usr/local/sbin:/usr/local/bin:
-           /sbin:/bin:/usr/sbin:/usr/bin.
+       %k     hour, space padded ( 0..23); same as %_H
 
-       ALWAYS_SET_PATH (boolean)
-           If set to yes and --login and --preserve-environment were not spec‐
-           ified su initializes PATH.
+       %l     hour, space padded ( 1..12); same as %_I
 
-       The environment variable PATH may be different on  systems  where  /bin
-       and /sbin are merged into /usr.
+       %m     month (01..12)
 
-EXIT STATUS
-       su normally returns the exit status of the command it executed.  If the
-       command was killed by a signal, su returns the  number  of  the  signal
-       plus 128.
+       %M     minute (00..59)
 
-       Exit status generated by su itself:
+       %n     a newline
 
-                 1      Generic error before executing the requested command
+       %N     nanoseconds (000000000..999999999)
 
-                 126    The requested command could not be executed
+       %p     locale's equivalent of either AM or PM; blank if not known
 
-                 127    The requested command was not found
+       %P     like %p, but lower case
 
-FILES
-       /etc/pam.d/su    default PAM configuration file
-       /etc/pam.d/su-l  PAM configuration file if --login is specified
-       /etc/default/su  command specific logindef config file
-       /etc/login.defs  global logindef config file
+       %q     quarter of year (1..4)
 
-NOTES
-       For  security reasons su always logs failed log-in attempts to the btmp
-       file, but it does not write to the lastlog file at all.  This  solution
-       allows to control su behavior by PAM configuration.  If you want to use
-       the pam_lastlog module to print warning message about failed log-in at‐
-       tempts  then the pam_lastlog has to be configured to update the lastlog
-       file as well. For example by:
+       %r     locale's 12-hour clock time (e.g., 11:11:04 PM)
 
-              session  required  pam_lastlog.so nowtmp
+       %R     24-hour hour and minute; same as %H:%M
+
+       %s     seconds since 1970-01-01 00:00:00 UTC
+
+       %S     second (00..60)
+
+       %t     a tab
+
+       %T     time; same as %H:%M:%S
+
+       %u     day of week (1..7); 1 is Monday
+
+       %U     week number of year, with Sunday as first day of week (00..53)
+
+       %V     ISO week number, with Monday as first day of week (01..53)
+
+       %w     day of week (0..6); 0 is Sunday
+
+       %W     week number of year, with Monday as first day of week (00..53)
+
+       %x     locale's date representation (e.g., 12/31/99)
+
+       %X     locale's time representation (e.g., 23:13:48)
+
+       %y     last two digits of year (00..99)
+
+       %Y     year
+
+       %z     +hhmm numeric time zone (e.g., -0400)
+
+       %:z    +hh:mm numeric time zone (e.g., -04:00)
+
+       %::z   +hh:mm:ss numeric time zone (e.g., -04:00:00)
+
+       %:::z  numeric  time  zone  with  :  to necessary precision (e.g., -04,
+              +05:30)
+
+       %Z     alphabetic time zone abbreviation (e.g., EDT)
+
+       By default, date pads numeric fields with zeroes.   The  following  op‐
+       tional flags may follow '%':
+
+       -      (hyphen) do not pad the field
+
+       _      (underscore) pad with spaces
+
+       0      (zero) pad with zeros
+
+       ^      use upper case if possible
+
+       #      use opposite case if possible
+
+       After  any  flags  comes  an optional field width, as a decimal number;
+       then an optional modifier, which is either E to use the locale's alter‐
+       nate  representations  if available, or O to use the locale's alternate
+       numeric symbols if available.
+
+EXAMPLES
+       Convert seconds since the epoch (1970-01-01 UTC) to a date
+
+              $ date --date='@2147483647'
+
+       Show the time on the west coast of the US (use tzselect(1) to find TZ)
+
+              $ TZ='America/Los_Angeles' date
+
+       Show the local time for 9AM next Friday on the west coast of the US
+
+              $ date --date='TZ="America/Los_Angeles" 09:00 next Fri'
+
+DATE STRING
+       The --date=STRING is a mostly free format human  readable  date  string
+       such  as  "Sun, 29 Feb 2004 16:21:42 -0800" or "2004-02-29 16:21:42" or
+       even "next Thursday".  A date string may contain items indicating  cal‐
+       endar  date,  time of day, time zone, day of week, relative time, rela‐
+       tive date, and numbers.  An empty string indicates the beginning of the
+       day.   The date string format is more complex than is easily documented
+       here but is fully described in the info documentation.
+
+AUTHOR
+       Written by David MacKenzie.
+
+REPORTING BUGS
+       GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+       Report date translation bugs to <https://translationproject.org/team/>
+
+COPYRIGHT
+       Copyright © 2018 Free Software Foundation, Inc.   License  GPLv3+:  GNU
+       GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+       This  is  free  software:  you  are free to change and redistribute it.
+       There is NO WARRANTY, to the extent permitted by law.
 
 SEE ALSO
-       setpriv(1), login.defs(5), shells(5), pam(8), runuser(8)
+       Full documentation at: <https://www.gnu.org/software/coreutils/date>
+       or available locally via: info '(coreutils) date invocation'
 
-HISTORY
-       This su command was derived from coreutils' su, which was based  on  an
-       implementation  by  David MacKenzie. The util-linux has been refactored
-       by Karel Zak.
-
-AVAILABILITY
-       The su command is part of the util-linux package and is available  from
-       Linux   Kernel   Archive  ⟨https://www.kernel.org/pub/linux/utils/util-
-       linux/⟩.
-
-util-linux                         July 2014                             SU(1)
+GNU coreutils 8.30              September 2019                         DATE(1)
 ```
 
 This prints the manual for the date command. The manual usually does not fit on one screen. You have the following options:
