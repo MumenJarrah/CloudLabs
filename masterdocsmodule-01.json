@@ -7,6 +7,11 @@
         "RawFilePath": "https://raw.githubusercontent.com/MumenJarrah/Labs/main/lab1_guide.md",
         "Order": 1
       }
+
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/MumenJarrah/Labs/main/lab2_guide.md",
+        "Order": 1
+      }
     ]
   },
 
