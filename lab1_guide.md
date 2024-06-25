@@ -12,11 +12,11 @@ All the commands will be run using the command line interface (CLI). The CLI is 
 
 1. Open a terminal application. Double click on the terminal application on the desktop.
 
-![Terminal Application](fig1.png)
+![Terminal Application](lab1_fig1.png)
 
 2. The terminal opens showing the shell prompt as shown below. The shell allows running commands and applications.
 
-![Terminal](fig2.png)
+![Terminal](lab1_fig2.png)
 
 To run a command, type a command in the shell and press <Enter>. For instance, type `date` in the shell and press <Enter>. This runs the date command and displays the date and time of the machine.
 
@@ -530,7 +530,7 @@ nano new_file.txt
 This command will create a new_file.txt if it does not exist, and will open it for editing if it already exists.
 The `nano` command opens the file for editing.
 
-![Terminal](fig3.PNG)
+![Terminal](lab1_fig3.PNG)
 
 At the bottom of the nano window are the available nano commands. ^ means ctrl.
 So you can write in the file something like “this is a test”
