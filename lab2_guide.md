@@ -22,11 +22,11 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
 
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Virtual machines (1)**, and then select **Virtual machines (2)** under services.
 
-   ![](../images/lab1-image1.png) 
+   ![](images/lab1-image1.png) 
 
 1. On the **Virtual machines** blade, click **+ Create (1)** and choose **Azure virtual machine (2)**.
 
-    ![](../images/lab1-image2.png) 
+    ![](images/lab1-image2.png) 
 
 1. On the **Basics** tab, fill in the following information (leave the defaults for everything else):
 
@@ -45,13 +45,13 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
     | Select inbound ports | **SSH (22)** and **HTTP (80)** and **HTTPS** (443) (10)|
     |||
    
-    ![](../images/l1vm-u.png)
+    ![](images/l1vm-u.png)
    
-    ![](../images/VM2-u.png)
+    ![](images/VM2-u.png)
 
 1. Click **Next** to switch to the **Disks** tab and in the **OS Disk type** select **Standard HDD** from the dropdown and leave everything else as default and click **Next**. 
 
-   ![Screenshot of the virtual machine properties with the Connect button highlighted.](../images/hdd-u.png)
+   ![Screenshot of the virtual machine properties with the Connect button highlighted.](images/hdd-u.png)
 
 1. Within the Networking tab, look for the **Select inbound ports**:
 
@@ -83,7 +83,7 @@ In this task, we will connect to our new virtual machine using RDP.
 
 1. Once the deployment is complete, click on **Go to resource** you will be directed to the page of the newly created Virtual Machine.
 
-    ![Screenshot of the virtual machine properties with the Connect button highlighted.](../images/goto.png)
+    ![Screenshot of the virtual machine properties with the Connect button highlighted.](images/goto.png)
    
 1. On the virtual machine **Overview** blade, click the **Connect** button and choose the **Connect** from the dropdown.
 
@@ -93,17 +93,17 @@ In this task, we will connect to our new virtual machine using RDP.
 
 1. Within the **Connect** page, click on **Select** under **Native SSH**.
 
-   ![Screenshot of the virtual machine properties with the Connect button highlighted. ](../images/SSH-U.png)
+   ![Screenshot of the virtual machine properties with the Connect button highlighted. ](images/SSH-U.png)
 
 1. Check the terms and conditions and click on **Configure**, Copy the SSH command
 
-    ![Screenshot of the virtual machine properties with the Connect button highlighted. ](../images/SSH-U1.png)
+    ![Screenshot of the virtual machine properties with the Connect button highlighted. ](images/SSH-U1.png)
 
 1. Next, open **Command Prompt** and paste the copied SSH command from previous step.
    
 1. Provide the password(Pa$$w0rd1234) when prompted and click Enter. 
 
-    ![Screenshot of the virtual machine properties with the Connect button highlighted. ](../images/SSHlogin.png)
+    ![Screenshot of the virtual machine properties with the Connect button highlighted. ](images/SSHlogin.png)
 
 ### Task 3:  Install Apache server and access on your New Azure Cloud VM
 
@@ -115,7 +115,7 @@ In this task, install the Apache Web Server and access it.
    ```   
 1. Open a new browser tab, paste the public IP address into the URL text box, and press the Enter key to browse to it. The custom created basic website shows up.
 
-    ![](../images/apache.png)
+    ![](images/apache.png)
 
     >**Congratulations** on completing the task! 
     
