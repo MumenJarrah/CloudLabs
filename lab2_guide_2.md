@@ -51,7 +51,7 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
 
 Here, you chose the size:
 
-   ![](images/lab2_fig5.PNG)
+   ![](images/lab2_fig5-u.PNG)
 
 After expanding the list to view all sizes, you will see the following options:
    
