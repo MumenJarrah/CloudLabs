@@ -51,19 +51,19 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
 
     Here, you choose the size:
 
-   ![](images/lab2_fig5-u.PNG)
+    ![](images/lab2_fig5-u.PNG)
 
-   After expanding the list to view all sizes, you will see the following options:
-  
-   ![](images/lab2_fig6.PNG)
+    After expanding the list to view all sizes, you will see the following options:
+   
+    ![](images/lab2_fig6.PNG)
 
-   Furthermore, you can choose the VM architecture:
+    Furthermore, you can choose the VM architecture:
 
-   ![](images/lab2_fig8.png)
+    ![](images/lab2_fig8.png)
 
-   Additionally, you can select a region from this list:
+    Additionally, you can select a region from this list:
 
-   ![](images/lab2_fig7.png)
+    ![](images/lab2_fig7.png)
 
 
 1. Click **Next** to switch to the **Disks** tab and in the **OS Disk type** select **Standard HDD** from the dropdown and leave everything else as default and click **Next**. 
