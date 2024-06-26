@@ -123,7 +123,7 @@ In this task, install the Apache Web Server and access it.
 #### Overview of the Virtual Machine 
 In this section, you will get an overview of the Virtual Machine (VM). Below, you can see the "Essential" section, which repeats the configuration details of your VM.
 
-![](images/lab2_fig1.png) 
+![](images/lab2_fig1.PNG) 
 
 Additionally, you can use these buttons to manage your VM, including options to Stop, Restart, Capture, and Delete the machine.
 
