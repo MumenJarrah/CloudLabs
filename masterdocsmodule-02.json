@@ -4,12 +4,12 @@
     "Language": "English",
     "Files": [
       {
-        "RawFilePath": "https://raw.githubusercontent.com/MumenJarrah/Labs/main/lab2_guide(1).md",
+        "RawFilePath": "https://raw.githubusercontent.com/MumenJarrah/Labs/main/lab2_guide_1.md",
         "Order": 1
       }
       
       {
-        "RawFilePath": "https://raw.githubusercontent.com/MumenJarrah/Labs/main/lab2_guide(2).md",
+        "RawFilePath": "https://raw.githubusercontent.com/MumenJarrah/Labs/main/lab2_guide_2.md",
         "Order": 2
       }
     ]
