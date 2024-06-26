@@ -49,15 +49,19 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
    
     ![](images/VM2-u.png)
 
-   Here, you chose the size:
+    Here, you choose the size:
 
    ![](images/lab2_fig5-u.PNG)
 
    After expanding the list to view all sizes, you will see the following options:
-   
+  
    ![](images/lab2_fig6.PNG)
 
-   Also, you can pick a region form this list:
+   Furthermore, you can choose the VM architecture:
+
+   ![](images/lab2_fig8.png)
+
+   Additionally, you can select a region from this list:
 
    ![](images/lab2_fig7.png)
 
