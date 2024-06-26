@@ -123,29 +123,21 @@ In this task, install the Apache Web Server and access it.
 #### Overview of the Virtual Machine 
 In this section, you will get an overview of the Virtual Machine (VM). Below, you can see the "Essential" section, which repeats the configuration details of your VM.
 
-SCREENSHOT of Essential
+![](images/lab2_fig1.png) 
 
-Additionally, you can explore several tabs that provide detailed information and controls for your VM:
+Additionally, you can use these buttons to manage your VM, including options to Stop, Restart, Capture, and Delete the machine.
+
+![](images/lab2_fig4.png) 
+
+yMoreover, you can explore several tabs that provide detailed information and controls for your VM:
 
 - Properties: Displays the properties of the machine.
 
-SCREENSHOT of Properties
+![](images/lab2_fig2.png) 
 
-- Monitoring: Provides monitoring information, such as performance metrics and availability. For example, an availability of 1 indicates that the machine is always available.
+- Monitoring: Offers comprehensive information, including performance metrics and availability. Key metrics include availability, where a score of 1 indicates the machine is always available; CPU usage, which displays the current CPU usage of the virtual machine (VM); and disk usage, which shows the current disk usage of the VM.
 
-SCREENSHOT of Monitoring graphs
-
-- CPU Usage: Shows the current CPU usage of the VM.
-
-SCREENSHOT of CPU usage graphs
-
-- Disk Usage: Displays the current disk usage of the VM.
-
-SCREENSHOT of Disk usage graphs
-
-Moreover, you can use these buttons to manage your VM, including options to Stop, Restart, Capture, and Delete the machine.
-
-SCREENSHOT of Control Buttons
+![](images/lab2_fig3.png) 
 
 #### Setup A Cost Alert
 Manage how mony you spent, fill write a name for a budghet (like $500), 
