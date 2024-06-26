@@ -117,7 +117,39 @@ In this task, install the Apache Web Server and access it.
 
     ![](images/apache.png)
 
-    >**Congratulations** on completing the task! 
+   
+    >**Congratulations** on completing the task!
+    
+#### Overview of the Virtual Machine 
+In this section, you will get an overview of the Virtual Machine (VM). Below, you can see the "Essential" section, which repeats the configuration details of your VM.
+
+SCREENSHOT of Essential
+
+Additionally, you can explore several tabs that provide detailed information and controls for your VM:
+
+- Properties: Displays the properties of the machine.
+
+SCREENSHOT of Properties
+
+- Monitoring: Provides monitoring information, such as performance metrics and availability. For example, an availability of 1 indicates that the machine is always available.
+
+SCREENSHOT of Monitoring graphs
+
+- CPU Usage: Shows the current CPU usage of the VM.
+
+SCREENSHOT of CPU usage graphs
+
+- Disk Usage: Displays the current disk usage of the VM.
+
+SCREENSHOT of Disk usage graphs
+
+Moreover, you can use these buttons to manage your VM, including options to Stop, Restart, Capture, and Delete the machine.
+
+SCREENSHOT of Control Buttons
+
+#### Setup A Cost Alert
+Manage how mony you spent, fill write a name for a budghet (like $500), 
+- Steps: budget name:
     
 ### Review
 
