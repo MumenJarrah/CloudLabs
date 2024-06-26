@@ -135,7 +135,7 @@ Moreover, by scrolling down, you can explore several tabs that provide detailed 
 
 ![](images/lab2_fig2.png) 
 
-- Monitoring: Offers comprehensive information, including performance metrics and availability. Key metrics include availability, where a score of 1 indicates the machine is always available; CPU usage, which displays the current CPU usage of the virtual machine (VM); and disk usage, which shows the current disk usage of the VM.
+- Monitoring: Offers comprehensive information, including performance metrics and availability, for example CPU usage, which displays the current CPU usage of the virtual machine (VM); and disk usage, which shows the current disk usage of the VM.
 
 ![](images/lab2_fig3.png) 
 
