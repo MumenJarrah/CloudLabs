@@ -129,7 +129,7 @@ Additionally, you can use these buttons to manage your VM, including options to 
 
 ![](images/lab2_fig4.png) 
 
-Moreover, you can explore several tabs that provide detailed information and controls for your VM:
+Moreover, by scrolling down, you can explore several tabs that provide detailed information and controls for your virtual machine (VM).
 
 - Properties: Displays the properties of the machine.
 
