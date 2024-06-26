@@ -161,7 +161,7 @@ Manage how mony you spent, fill write a name for a budghet (like $500),
 
  ![](images/lab2_fig9.png)
 
-- In real deployments you would click “submit” to enable the cost alert. This feature is not enabled for this lab
+- In real deployments you would click “submit” to enable the cost alert. This feature is not enabled for this lab.
     
 ### Review
 
