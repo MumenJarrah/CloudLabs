@@ -87,7 +87,7 @@ In this task, we will connect to our new virtual machine using RDP.
    
 1. On the virtual machine **Overview** blade, click the **Connect** button and choose the **Connect** from the dropdown.
 
-    ![Screenshot of the virtual machine properties with the Connect button highlighted.](../images/conrdp.png)
+    ![Screenshot of the virtual machine properties with the Connect button highlighted.](images/conrdp.png)
 
     >**Note:**: The following directions tell you how to connect to your VM from a Windows computer.
 
