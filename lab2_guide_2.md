@@ -57,6 +57,10 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
    
    ![](images/lab2_fig6.PNG)
 
+   Also, you can pick a region form this list:
+
+   ![](images/lab2_fig7.png)
+
 
 1. Click **Next** to switch to the **Disks** tab and in the **OS Disk type** select **Standard HDD** from the dropdown and leave everything else as default and click **Next**. 
 
