@@ -12,7 +12,7 @@ All the commands will be run using the command line interface (CLI). The CLI is 
 
 1. Open a terminal application. Double click on the terminal application on the desktop.
 
-![](../images/lab1_fig1.png)
+![](images/lab1_fig1.png)
 
 2. The terminal opens showing the shell prompt as shown below. The shell allows running commands and applications.
 
