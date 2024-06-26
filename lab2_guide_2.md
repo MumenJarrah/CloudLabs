@@ -49,6 +49,13 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
    
     ![](images/VM2-u.png)
 
+   Here, you chose the size
+
+   ![](images/lab2_fig5.png)
+   
+   ![](images/lab2_fig6.png)
+
+
 1. Click **Next** to switch to the **Disks** tab and in the **OS Disk type** select **Standard HDD** from the dropdown and leave everything else as default and click **Next**. 
 
    ![Screenshot of the virtual machine properties with the Connect button highlighted.](images/hdd-u.png)
