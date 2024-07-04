@@ -1,5 +1,3 @@
-# Lab 2 - Create a Linux virtual machine in the portal
-
 ## Lab overview
 
 An Azure Virtual Machine (VM) is a computing resource provided by Microsoft Azure. It allows users to create and use virtualized computing instances in the cloud. Azure Virtual Machines enable users to run applications, host websites, and perform various computing tasks without needing to purchase and maintain physical hardware.
