@@ -415,6 +415,63 @@ To find information about the avaiable memory in a machine and stats about its u
 less  /proc/meminfo
 ```
 
+**Output**
+
+```plaintext
+MemTotal:        4007988 kB
+MemFree:         2610804 kB
+MemAvailable:    3079076 kB
+Buffers:           35736 kB
+Cached:           635200 kB
+SwapCached:            0 kB
+Active:           161660 kB
+Inactive:        1005704 kB
+Active(anon):       1292 kB
+Inactive(anon):   512536 kB
+Active(file):     160368 kB
+Inactive(file):   493168 kB
+Unevictable:       21672 kB
+Mlocked:           18600 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:              1668 kB
+Writeback:             0 kB
+AnonPages:        498844 kB
+Mapped:           278692 kB
+Shmem:              9196 kB
+KReclaimable:      54620 kB
+Slab:             108852 kB
+SReclaimable:      54620 kB
+SUnreclaim:        54232 kB
+KernelStack:        6588 kB
+PageTables:        10956 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     2003992 kB
+Committed_AS:    2877440 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:       36476 kB
+VmallocChunk:          0 kB
+Percpu:             2136 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:    133120 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:      118720 kB
+DirectMap2M:     3026944 kB
+DirectMap1G:     3145728 kB
+~
+```
+
 The `less` command prints the file `/proc/meminfo` one page at a time.
 The file `/proc/meminfo` contains information about the memory confiugration and its usage.
 
