@@ -408,7 +408,21 @@ Flags:                              fpu vme de pse tsc msr pae mce cx8 apic sep
 
 The output of this command shows that this machine has an intel Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz
 
-#### 3.3 Finding the machine IP address
+#### 3.3 Finding the memory information
+To find information about the avaiable memory in a machine and stats about its usage you can read the /proc/meminfo
+
+```bash
+less  /proc/meminfo
+```
+
+The `less` command prints the file `/proc/meminfo` one page at a time.
+The file `/proc/meminfo` contains information about the memory confiugration and its usage.
+
+**Output**
+
+The ouput shows that this machine has X GB of memory. At this moment, X GB are used and X GB are free.
+
+#### 3.4 Finding the machine IP address
 To find the machine IP address, we can use the `ip` command with the `addr` option.
 
 ```bash
@@ -436,6 +450,8 @@ ip addr
 ```
 The command prints the ip address of every interface in the system. The lo interface is a local interface and always has an ip address of 127.0.0.1.
 The command shows that this machine has the ip address of 10.0.0.4
+
+
 
 ### 4. Basic file system commands
 
