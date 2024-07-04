@@ -573,10 +573,15 @@ You can use one of the following commands to print the content of a file
 more new_file.txt
 ```
 
-Or 
+or 
 
 ```bash
 cat new_file.txt
+```
+or
+
+```bash
+less new_file.txt
 ```
 
 **Output** 
