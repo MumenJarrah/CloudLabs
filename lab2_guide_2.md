@@ -116,13 +116,13 @@ In this task, we will connect to our new virtual machine using RDP.
 
 1. Next, open a command prompt terminal application and paste the copied SSH command from previous step.
 
-     ![](images/;ab2-cmd-prompt-1.png)
+     ![](images/lab2-cmd-prompt-1.png)
    
-     ![](images/;ab2-cmd-prompt-2.png)
+     ![](images/lab2-cmd-prompt-2.png)
    
 1. Provide the password(Pa$$w0rd1234) when prompted and click Enter. 
 
-    ![Screenshot of the virtual machine properties with the Connect button highlighted. ](images/SSHlogin.png)
+    <!--- ![Screenshot of the virtual machine properties with the Connect button highlighted. ](images/SSHlogin.png) --->
 
 ### Task 3:  Install Apache server and access on your New Azure Cloud VM
 
