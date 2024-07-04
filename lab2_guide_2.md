@@ -116,11 +116,12 @@ In this task, we will connect to our new virtual machine using RDP.
 
 1. Next, open a command prompt terminal application and paste the copied SSH command from previous step.
 
-     ![](images/lab2-cmd-prompt-1.png)
+     ![](images/lab2-cmd-prompt-1-u.png)
    
-     ![](images/lab2-cmd-prompt-2.png)
-   
-1. Provide the password(Pa$$w0rd1234) when prompted and click Enter. 
+ 
+1. Provide the password(Pa$$w0rd1234) when prompted and click Enter.
+
+    ![](images/lab2-cmd-prompt-2.png)
 
     <!--- ![Screenshot of the virtual machine properties with the Connect button highlighted. ](images/SSHlogin.png) --->
 
