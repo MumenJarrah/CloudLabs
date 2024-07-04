@@ -479,7 +479,81 @@ The file `/proc/meminfo` contains information about the memory confiugration and
 
 The ouput shows that this machine has X GB of memory. At this moment, X GB are used and X GB are free.
 
-#### 3.4 Finding the machine IP address
+#### 3.4 
+
+```bash
+top
+```
+
+**Output**
+
+The ouput shows that this machine has XXXXXXXXXXXXXX.
+
+```plaintext
+top - 19:19:17 up 54 min,  0 users,  load average: 0.00, 0.01, 0.00
+Tasks: 178 total,   1 running, 177 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  1.7 us,  0.7 sy,  0.0 ni, 97.3 id,  0.3 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   3914.1 total,   1273.8 free,    737.4 used,   1902.9 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   2899.0 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                               
+   3738 xrdp      20   0   30168  24768   8760 S   2.3   0.6   0:04.18 xrdp                                                  
+   1835 seed      20   0  374264 146944  57192 S   1.7   3.7   0:08.11 Xorg                                                  
+   2916 seed      20   0  396940  46652  34956 S   1.3   1.2   0:03.21 xfce4-terminal                                        
+   1855 seed      20   0    7900   4868   3936 S   0.3   0.1   0:00.73 dbus-daemon                                           
+   1930 seed      20   0  758704  91496  60948 S   0.3   2.3   0:01.52 xfwm4                                                 
+   2012 seed      20   0  506212  38388  31048 S   0.3   1.0   0:02.29 panel-8-pulseau                                       
+      1 root      20   0  104384  13456   8592 S   0.0   0.3   0:07.19 systemd                                               
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.01 kthreadd                                              
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp                                                
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par_gp                                            
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 slub_flushwq                                          
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns                                                 
+      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri                           
+     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_percpu_wq                                          
+     11 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_rude_                                       
+     12 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_trace                                       
+     13 root      20   0       0      0      0 S   0.0   0.0   0:00.15 ksoftirqd/0                                           
+     14 root      20   0       0      0      0 I   0.0   0.0   0:00.48 rcu_sched                                             
+     15 root      rt   0       0      0      0 S   0.0   0.0   0:00.11 migration/0                                           
+     17 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0                                               
+     18 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1                                               
+     19 root      rt   0       0      0      0 S   0.0   0.0   0:00.69 migration/1                                           
+     20 root      20   0       0      0      0 S   0.0   0.0   0:00.19 ksoftirqd/1                                           
+     22 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/1:0H                                          
+     23 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kdevtmpfs                                             
+     24 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 inet_frag_wq                                          
+     25 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kauditd                                               
+     26 root      20   0       0      0      0 S   0.0   0.0   0:00.00 khungtaskd                                            
+     27 root      20   0       0      0      0 S   0.0   0.0   0:00.00 oom_reaper                                            
+     28 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 writeback                                             
+     29 root      20   0       0      0      0 S   0.0   0.0   0:00.13 kcompactd0                                            
+     30 root      25   5       0      0      0 S   0.0   0.0   0:00.00 ksmd                                                  
+     31 root      39  19       0      0      0 S   0.0   0.0   0:00.09 khugepaged                                            
+     78 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kintegrityd                                           
+     79 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kblockd                                               
+     80 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 blkcg_punt_bio                                        
+     81 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 tpm_dev_wq                                            
+     82 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 ata_sff                                               
+     83 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 md                                                    
+     84 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 edac-poller                                           
+     85 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 hv_vmbus_con
+```
+
+Also, there is another command 
+
+```bash
+ps
+```
+
+**Output**
+```plaintext
+    PID TTY          TIME CMD
+   2921 pts/0    00:00:00 bash
+   3764 pts/0    00:00:00 ps
+```
+
+#### 3.5 Finding the machine IP address
 To find the machine IP address, we can use the `ip` command with the `addr` option.
 
 ```bash
