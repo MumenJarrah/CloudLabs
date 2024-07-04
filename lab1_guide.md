@@ -479,7 +479,7 @@ The file `/proc/meminfo` contains information about the memory confiugration and
 
 The ouput shows that this machine has X GB of memory. At this moment, X GB are used and X GB are free.
 
-#### 3.4 
+#### 3.4 Show the Linux Processes
 
 ```bash
 top
