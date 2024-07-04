@@ -1,6 +1,6 @@
 # Lab 2 - Create a Linux virtual machine in the portal
 
-Welcome to your Microsoft Azure Fundamentals workshop! We've prepared a seamless environment for you to explore and learn about foundational knowledge of cloud concepts in general and Microsoft Azure in particular. Let's begin by making the most of this experience:
+<!--- Welcome to your Microsoft Azure Fundamentals workshop! We've prepared a seamless environment for you to explore and learn about foundational knowledge of cloud concepts in general and Microsoft Azure in particular. Let's begin by making the most of this experience:--->
  
 ## Lab Prerequisite
 
