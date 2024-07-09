@@ -409,11 +409,13 @@ Flags:                              fpu vme de pse tsc msr pae mce cx8 apic sep
 The output of this command shows that this machine has an intel Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz
 
 #### 3.3 Finding the memory information
-To find information about the avaiable memory in a machine and stats about its usage you can read the /proc/meminfo
+To find information about the memory system in a machine and stats about its usage you can read the /proc/meminfo
 
 ```bash
 less  /proc/meminfo
 ```
+The `less` command prints the file `/proc/meminfo` one page at a time.
+The file `/proc/meminfo` contains information about the memory confiugration and its usage.
 
 **Output**
 
@@ -472,22 +474,45 @@ DirectMap1G:     3145728 kB
 ~
 ```
 
-The `less` command prints the file `/proc/meminfo` one page at a time.
-The file `/proc/meminfo` contains information about the memory confiugration and its usage.
+**Output**
+
+The output shows that this machine has close to 4 GB of memory. Around 2.6 GB is free.
+
+#### 3.4 Processes Management 
+
+To find information about the processes running on an operating system, you can use `ps` or `top.`
+`ps` is the command to check the process status. The command offers a number of options to display details about processes.
+
+```bash
+ps
+```
+
+**Output**
+```plaintext
+    PID TTY          TIME CMD
+   2921 pts/0    00:00:00 bash
+   3764 pts/0    00:00:00 ps
+```
+
+The output shows the processes that are run by the current user.
+The `ps -e -f` command is a variation of the ps command in Linux that allows you to display a list of all the processes running on your Linux system in a more detailed format. It provides a full-process listing that includes information such as the process owner, parent process ID, and start time.
+
+```bash
+ps -e -f
+```
 
 **Output**
 
-The ouput shows that this machine has X GB of memory. At this moment, X GB are used and X GB are free.
+***PLEASE FILL THE OUTPUT***
 
-#### 3.4 Show the Linux Processes
+A second common command for monitoring processes on a machine is `top.`
+It provides a dynamic real-time view of the running system. Usually, this command shows the system's summary information and the list of processes running. As soon as you run this command, it will open an interactive command mode. The top half portion contains the statistics of processes and resource usage, and the lower half contains a list of the currently running processes. Pressing `q` will simply exit the command mode.
 
 ```bash
 top
 ```
 
 **Output**
-
-The ouput shows that this machine has XXXXXXXXXXXXXX.
 
 ```plaintext
 top - 19:19:17 up 54 min,  0 users,  load average: 0.00, 0.01, 0.00
@@ -540,18 +565,16 @@ MiB Swap:      0.0 total,      0.0 free,      0.0 used.   2899.0 avail Mem
      85 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 hv_vmbus_con
 ```
 
-Also, there is another command 
-
-```bash
-ps
-```
-
-**Output**
-```plaintext
-    PID TTY          TIME CMD
-   2921 pts/0    00:00:00 bash
-   3764 pts/0    00:00:00 ps
-```
+Here is the meaning of the most important columns in the output:
+- PID: Shows unique process id.
+- VIRT: Total virtual memory used by the task.
+- USER: The user name of the owner of the task.
+- %CPU: Represents the CPU usage.
+- TIME+: CPU Time, the same as ‘TIME’, but reflecting more granularity through hundredths of a second.
+- SHR: Represents the Shared Memory size (kb) used by a task.
+- %MEM: Shows the Memory usage of a process.
+- RES: How much physical RAM the process is using, measured in kilobytes.
+- COMMAND: The name of the command that started the process.
 
 #### 3.5 Finding the machine IP address
 To find the machine IP address, we can use the `ip` command with the `addr` option.
