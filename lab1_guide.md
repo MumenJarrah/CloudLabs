@@ -490,8 +490,8 @@ ps
 **Output**
 ```plaintext
     PID TTY          TIME CMD
-   2921 pts/0    00:00:00 bash
-   3764 pts/0    00:00:00 ps
+   1991 pts/0    00:00:00 bash
+   3356 pts/0    00:00:00 ps
 ```
 
 The output shows the processes that are run by the current user.
@@ -502,8 +502,200 @@ ps -e -f
 ```
 
 **Output**
-
-***PLEASE FILL THE OUTPUT***
+```plaintext
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  1 23:30 ?        00:00:02 /sbin/init
+root           2       0  0 23:30 ?        00:00:00 [kthreadd]
+root           3       2  0 23:30 ?        00:00:00 [rcu_gp]
+root           4       2  0 23:30 ?        00:00:00 [rcu_par_gp]
+root           5       2  0 23:30 ?        00:00:00 [slub_flushwq]
+root           6       2  0 23:30 ?        00:00:00 [netns]
+root           7       2  0 23:30 ?        00:00:00 [kworker/0:0-events]
+root           8       2  0 23:30 ?        00:00:00 [kworker/0:0H-events_highpri
+root           9       2  0 23:30 ?        00:00:00 [kworker/u4:0-ext4-rsv-conve
+root          10       2  0 23:30 ?        00:00:00 [mm_percpu_wq]
+root          11       2  0 23:30 ?        00:00:00 [rcu_tasks_rude_]
+root          12       2  0 23:30 ?        00:00:00 [rcu_tasks_trace]
+root          13       2  0 23:30 ?        00:00:00 [ksoftirqd/0]
+root          14       2  0 23:30 ?        00:00:00 [rcu_sched]
+root          15       2  0 23:30 ?        00:00:00 [migration/0]
+root          16       2  0 23:30 ?        00:00:00 [kworker/0:1-cgroup_destroy]
+root          17       2  0 23:30 ?        00:00:00 [cpuhp/0]
+root          18       2  0 23:30 ?        00:00:00 [cpuhp/1]
+root          19       2  0 23:30 ?        00:00:00 [migration/1]
+root          20       2  0 23:30 ?        00:00:00 [ksoftirqd/1]
+root          21       2  0 23:30 ?        00:00:00 [kworker/1:0-cgroup_destroy]
+root          22       2  0 23:30 ?        00:00:00 [kworker/1:0H-events_highpri
+root          23       2  0 23:30 ?        00:00:00 [kdevtmpfs]
+root          24       2  0 23:30 ?        00:00:00 [inet_frag_wq]
+root          25       2  0 23:30 ?        00:00:00 [kauditd]
+root          26       2  0 23:30 ?        00:00:00 [khungtaskd]
+root          27       2  0 23:30 ?        00:00:00 [oom_reaper]
+root          28       2  0 23:30 ?        00:00:00 [writeback]
+root          29       2  0 23:30 ?        00:00:00 [kcompactd0]
+root          30       2  0 23:30 ?        00:00:00 [ksmd]
+root          31       2  0 23:30 ?        00:00:00 [khugepaged]
+root          36       2  0 23:30 ?        00:00:01 [kworker/1:1-events]
+root          78       2  0 23:30 ?        00:00:00 [kintegrityd]
+root          79       2  0 23:30 ?        00:00:00 [kblockd]
+root          80       2  0 23:30 ?        00:00:00 [blkcg_punt_bio]
+root          81       2  0 23:30 ?        00:00:00 [tpm_dev_wq]
+root          82       2  0 23:30 ?        00:00:00 [ata_sff]
+root          83       2  0 23:30 ?        00:00:00 [md]
+root          84       2  0 23:30 ?        00:00:00 [edac-poller]
+root          85       2  0 23:30 ?        00:00:00 [hv_vmbus_con]
+root          86       2  0 23:30 ?        00:00:00 [hv_pri_chan]
+root          87       2  0 23:30 ?        00:00:00 [hv_sub_chan]
+root          88       2  0 23:30 ?        00:00:00 [devfreq_wq]
+root          89       2  0 23:30 ?        00:00:00 [watchdogd]
+root          90       2  0 23:30 ?        00:00:00 [kworker/u4:1-events_unbound
+root          91       2  0 23:30 ?        00:00:00 [kworker/1:1H-kblockd]
+root          93       2  0 23:30 ?        00:00:00 [kswapd0]
+root          94       2  0 23:30 ?        00:00:00 [ecryptfs-kthrea]
+root          96       2  0 23:30 ?        00:00:00 [kthrotld]
+root          97       2  0 23:30 ?        00:00:00 [nfit]
+root          98       2  0 23:30 ?        00:00:00 [nvme-wq]
+root          99       2  0 23:30 ?        00:00:00 [kworker/u4:2-events_unbound
+root         100       2  0 23:30 ?        00:00:00 [scsi_eh_0]
+root         101       2  0 23:30 ?        00:00:00 [scsi_eh_1]
+root         102       2  0 23:30 ?        00:00:00 [scsi_tmf_0]
+root         103       2  0 23:30 ?        00:00:00 [kworker/u4:3-events_unbound
+root         104       2  0 23:30 ?        00:00:00 [scsi_tmf_1]
+root         105       2  0 23:30 ?        00:00:00 [nvme-reset-wq]
+root         106       2  0 23:30 ?        00:00:00 [nvme-delete-wq]
+root         107       2  0 23:30 ?        00:00:00 [scsi_eh_2]
+root         108       2  0 23:30 ?        00:00:00 [kworker/u4:4-events_unbound
+root         109       2  0 23:30 ?        00:00:00 [scsi_eh_3]
+root         110       2  0 23:30 ?        00:00:00 [scsi_tmf_2]
+root         111       2  0 23:30 ?        00:00:00 [scsi_tmf_3]
+root         112       2  0 23:30 ?        00:00:00 [scsi_eh_4]
+root         113       2  0 23:30 ?        00:00:00 [scsi_tmf_4]
+root         114       2  0 23:30 ?        00:00:00 [scsi_eh_5]
+root         115       2  0 23:30 ?        00:00:00 [scsi_tmf_5]
+root         116       2  0 23:30 ?        00:00:00 [kworker/u4:5-events_unbound
+root         117       2  0 23:30 ?        00:00:00 [kworker/u4:6-writeback]
+root         118       2  0 23:30 ?        00:00:00 [kworker/u4:7-ext4-rsv-conve
+root         119       2  0 23:30 ?        00:00:00 [vfio-irqfd-clea]
+root         120       2  0 23:30 ?        00:00:00 [kworker/u4:8]
+root         121       2  0 23:30 ?        00:00:00 [mld]
+root         122       2  0 23:30 ?        00:00:00 [kworker/0:1H-kblockd]
+root         123       2  0 23:30 ?        00:00:00 [hv_balloon]
+root         124       2  0 23:30 ?        00:00:00 [ipv6_addrconf]
+root         133       2  0 23:30 ?        00:00:00 [kstrp]
+root         136       2  0 23:30 ?        00:00:00 [zswap-shrink]
+root         137       2  0 23:30 ?        00:00:00 [kworker/u5:0]
+root         142       2  0 23:30 ?        00:00:00 [jbd2/sdb1-8]
+root         143       2  0 23:30 ?        00:00:00 [ext4-rsv-conver]
+root         183       1  0 23:30 ?        00:00:00 /lib/systemd/systemd-journal
+root         202       2  0 23:30 ?        00:00:00 [kworker/0:2-rcu_gp]
+root         210       2  0 23:30 ?        00:00:00 [kworker/1:2-cgroup_destroy]
+root         228       1  0 23:30 ?        00:00:00 /lib/systemd/systemd-udevd
+root         256       2  0 23:30 ?        00:00:00 [cryptd]
+root         298       1  0 23:30 ?        00:00:00 /usr/lib/linux-tools/5.15.0-
+root         336       2  0 23:30 ?        00:00:00 [kworker/1:3-events]
+root         377       2  0 23:30 ?        00:00:00 bpfilter_umh
+root         430       2  0 23:30 ?        00:00:00 [kaluad]
+root         431       2  0 23:30 ?        00:00:00 [kmpath_rdacd]
+root         432       2  0 23:30 ?        00:00:00 [kmpathd]
+root         433       2  0 23:30 ?        00:00:00 [kmpath_handlerd]
+root         434       1  0 23:30 ?        00:00:00 /sbin/multipathd -d -s
+root         474       2  0 23:30 ?        00:00:00 [kworker/1:4-events]
+systemd+     563       1  0 23:30 ?        00:00:00 /lib/systemd/systemd-network
+systemd+     565       1  0 23:30 ?        00:00:00 /lib/systemd/systemd-resolve
+root         638       2  0 23:30 ?        00:00:00 [jbd2/sda1-8]
+root         639       2  0 23:30 ?        00:00:00 [ext4-rsv-conver]
+root         682       1  0 23:30 ?        00:00:00 /usr/lib/accountsservice/acc
+avahi        683       1  0 23:30 ?        00:00:00 avahi-daemon: running [labvm
+root         685       1  0 23:30 ?        00:00:00 /usr/sbin/cupsd -l
+message+     687       1  0 23:30 ?        00:00:00 /usr/bin/dbus-daemon --syste
+root         688       1  0 23:30 ?        00:00:00 /usr/sbin/NetworkManager --n
+root         693       1  0 23:30 ?        00:00:00 /usr/sbin/irqbalance --foreg
+root         697       1  0 23:30 ?        00:00:00 /usr/bin/python3 /usr/bin/ne
+root         699       1  0 23:30 ?        00:00:00 /usr/lib/policykit-1/polkitd
+syslog       706       1  0 23:30 ?        00:00:00 /usr/sbin/rsyslogd -n -iNONE
+root         707       1  0 23:30 ?        00:00:00 /usr/lib/snapd/snapd
+root         708       1  0 23:30 ?        00:00:00 /usr/libexec/switcheroo-cont
+root         714       1  0 23:30 ?        00:00:00 /lib/systemd/systemd-logind
+root         715       1  0 23:30 ?        00:00:00 /usr/lib/udisks2/udisksd
+root         716       1  0 23:30 ?        00:00:00 /sbin/wpa_supplicant -u -s -
+avahi        719     683  0 23:30 ?        00:00:00 avahi-daemon: chroot helper
+root         731       1  0 23:30 ?        00:00:00 /usr/sbin/cups-browsed
+root         746       1  0 23:30 ?        00:00:00 /usr/sbin/ModemManager
+root         786       1  0 23:30 ?        00:00:00 /usr/bin/python3 /usr/share/
+root         809       1  0 23:30 ?        00:00:00 /usr/bin/containerd
+_chrony      815       1  0 23:30 ?        00:00:00 /usr/sbin/chronyd -F -1
+_chrony      818     815  0 23:30 ?        00:00:00 /usr/sbin/chronyd -F -1
+root         833       1  0 23:30 ?        00:00:00 /usr/sbin/inetd
+root         838       1  0 23:30 ?        00:00:00 /usr/sbin/xrdp-sesman
+root         843       1  0 23:30 ?        00:00:00 /usr/sbin/cron -f
+root         856       1  0 23:30 ?        00:00:00 /usr/bin/python3 -u /usr/sbi
+daemon       860       1  0 23:30 ?        00:00:00 /usr/sbin/atd -f
+root         877       1  0 23:30 ttyS0    00:00:00 /sbin/agetty -o -p -- \u --k
+root         891       1  0 23:30 tty1     00:00:00 /sbin/agetty -o -p -- \u --n
+root         936       1  0 23:30 ?        00:00:00 sshd: /usr/sbin/sshd -D [lis
+xrdp         952       1  0 23:30 ?        00:00:00 /usr/sbin/xrdp
+root        1042       1  0 23:30 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data    1043    1042  0 23:30 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data    1044    1042  0 23:30 ?        00:00:00 /usr/sbin/apache2 -k start
+root        1137       1  0 23:30 ?        00:00:00 /usr/bin/dockerd -H fd:// --
+root        1303       2  0 23:30 ?        00:00:00 [kworker/0:3-events]
+root        1329     856  0 23:30 ?        00:00:00 python3 -u bin/WALinuxAgent-
+root        1587       2  0 23:30 ?        00:00:00 [kworker/1:5-events]
+xrdp        1657     952  1 23:32 ?        00:00:00 /usr/sbin/xrdp
+root        1658     838  0 23:32 ?        00:00:00 /usr/sbin/xrdp-sesman
+seed        1660       1  0 23:32 ?        00:00:00 /lib/systemd/systemd --user
+seed        1661    1660  0 23:32 ?        00:00:00 (sd-pam)
+seed        1666    1660  0 23:32 ?        00:00:00 /usr/bin/pulseaudio --daemon
+seed        1667    1658  0 23:32 ?        00:00:00 /bin/bash /home/seed/.xsessi
+seed        1668    1658  1 23:32 ?        00:00:00 /usr/lib/xorg/Xorg :10 -auth
+seed        1671    1658  0 23:32 ?        00:00:00 /usr/sbin/xrdp-chansrv
+seed        1688    1660  0 23:32 ?        00:00:00 /usr/bin/dbus-daemon --sessi
+rtkit       1695       1  0 23:32 ?        00:00:00 /usr/libexec/rtkit-daemon
+seed        1730    1667  0 23:32 ?        00:00:00 /usr/bin/ssh-agent /usr/bin/
+seed        1739    1667  0 23:32 ?        00:00:00 xfce4-session
+seed        1740    1660  0 23:32 ?        00:00:00 /usr/libexec/at-spi-bus-laun
+seed        1745    1740  0 23:32 ?        00:00:00 /usr/bin/dbus-daemon --confi
+seed        1749    1660  0 23:32 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xf
+seed        1755    1660  0 23:32 ?        00:00:00 /usr/libexec/at-spi2-registr
+seed        1761    1660  0 23:32 ?        00:00:00 /usr/bin/gpg-agent --supervi
+seed        1763    1739  0 23:32 ?        00:00:00 xfwm4
+seed        1766    1660  0 23:32 ?        00:00:00 /usr/libexec/gvfsd
+seed        1778       1  0 23:32 ?        00:00:00 xfsettingsd
+seed        1779    1739  0 23:32 ?        00:00:00 xfce4-panel
+root        1782       1  0 23:32 ?        00:00:00 /usr/lib/upower/upowerd
+seed        1790    1739  0 23:32 ?        00:00:00 Thunar --daemon
+seed        1795    1739  1 23:32 ?        00:00:00 xfdesktop
+seed        1799    1660  0 23:32 ?        00:00:00 /usr/lib/x86_64-linux-gnu/tu
+seed        1809    1739  0 23:32 ?        00:00:00 /usr/bin/python3 /usr/share/
+seed        1819    1739  0 23:32 ?        00:00:00 /usr/libexec/evolution-data-
+seed        1825       1  0 23:32 ?        00:00:00 xfce4-power-manager
+seed        1829    1739  0 23:32 ?        00:00:00 xiccd
+seed        1830    1739  0 23:32 ?        00:00:00 nm-applet
+seed        1834    1739  0 23:32 ?        00:00:00 /usr/libexec/geoclue-2.0/dem
+colord      1841       1  0 23:32 ?        00:00:00 /usr/libexec/colord
+seed        1843    1660  0 23:32 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xf
+seed        1848    1660  0 23:32 ?        00:00:00 /usr/libexec/dconf-service
+seed        1858    1779  0 23:32 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xf
+seed        1861    1779  0 23:32 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xf
+seed        1862    1779  0 23:32 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xf
+seed        1865    1779  0 23:32 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xf
+seed        1866    1779  0 23:32 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xf
+seed        1884    1660  0 23:32 ?        00:00:00 /usr/libexec/gvfs-udisks2-vo
+seed        1890    1660  0 23:32 ?        00:00:00 /usr/libexec/gvfs-goa-volume
+seed        1907    1660  0 23:32 ?        00:00:00 /usr/libexec/goa-daemon
+seed        1915    1660  0 23:32 ?        00:00:00 /usr/libexec/goa-identity-se
+seed        1917    1660  0 23:32 ?        00:00:00 /usr/libexec/gvfs-mtp-volume
+seed        1921    1660  0 23:32 ?        00:00:00 /usr/libexec/gvfs-afc-volume
+seed        1931    1660  0 23:32 ?        00:00:00 /usr/libexec/evolution-sourc
+seed        1936    1660  0 23:32 ?        00:00:00 /usr/libexec/gvfs-gphoto2-vo
+seed        1947    1766  0 23:32 ?        00:00:00 /usr/libexec/gvfsd-trash --s
+seed        1953    1660  0 23:32 ?        00:00:00 /usr/libexec/gvfsd-metadata
+seed        1957    1660  0 23:32 ?        00:00:00 /usr/libexec/evolution-calen
+seed        1966    1660  0 23:32 ?        00:00:00 /usr/libexec/evolution-addre
+seed        1986    1790  0 23:32 ?        00:00:00 xfce4-terminal
+seed        1991    1986  0 23:32 pts/0    00:00:00 bash
+seed        1999    1991  0 23:32 pts/0    00:00:00 ps -e -f
+```
 
 A second common command for monitoring processes on a machine is `top.`
 It provides a dynamic real-time view of the running system. Usually, this command shows the system's summary information and the list of processes running. As soon as you run this command, it will open an interactive command mode. The top half portion contains the statistics of processes and resource usage, and the lower half contains a list of the currently running processes. Pressing `q` will simply exit the command mode.
