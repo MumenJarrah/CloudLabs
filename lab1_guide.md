@@ -971,4 +971,4 @@ Desktop    Downloads  Pictures  Templates  copy_file.txt  thinclient_drives
 Documents  Music      Public    Videos     newDir
 ```
 
-### You succefuly completed the Lab
+### You successfully completed the Lab
