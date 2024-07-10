@@ -942,8 +942,11 @@ Use `cp` to copy a file.
 
 ```bash
 cp new_file.txt copy_file.txt
+ls
 ```
 This command copies the file <new_file.txt> to a new file <copy_file.txt>
+Use `ls` to verify that the file is copied.
+
 
 **Output** 
 
