@@ -974,4 +974,7 @@ Desktop    Downloads  Pictures  Templates  copy_file.txt  thinclient_drives
 Documents  Music      Public    Videos     newDir
 ```
 
+#### Additional Resources
+Here is a cheat sheet of common Linux commands.
+
 ### You successfully completed the Lab
