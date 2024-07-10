@@ -975,6 +975,7 @@ Documents  Music      Public    Videos     newDir
 ```
 
 #### Additional Resources
-Here is a cheat sheet of common Linux commands.
+Here is a cheat sheet of common Linux commands. 
+[test document](Linux_cheat_sheet.pdf)!
 
 ### You successfully completed the Lab
