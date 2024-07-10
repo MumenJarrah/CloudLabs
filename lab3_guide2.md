@@ -25,7 +25,7 @@ In this task, we will create a new container instance for the web application.
 
 1. On Azure Portal page, in **Search resources, services and docs (G+/)** box at the top of the portal, enter **Container instances (1)**, and then select **Container instances (2)** under services.
 
-   ![](../images/lab3-image1.png)
+   ![](images/lab3-image1.png)
    
 1. On **Container instances** blade, click **+ Create**. 
 
@@ -67,21 +67,21 @@ In this task, we verify that the container instance is running by ensuring that 
 
 1. After the deployment is complete, click the **Go to resource** button.
 
-   ![](../images/lab3-image3.png)
+   ![](images/lab3-image3.png)
 
 1. On the **Overview** blade of **mycontainer**, ensure your container **Status** is **Running**.
 
-    ![](../images/lab3-image6.png)
+    ![](images/lab3-image6.png)
 
 1. Locate and copy the **Fully Qualified Domain Name (FQDN)**.
 
-    ![](../images/lab3-image4.png)
+    ![](images/lab3-image4.png)
 
 1. Paste the container's FQDN into the new browser tab and press **Enter**. The Welcome page should display.
 
    >**Note**: It might take 3 - 5 minutes to load the page.
  
-   ![](../images/lab3-image5.png)
+   ![](images/lab3-image5.png)
 	
    >**Note**: You could also use the container IP address in your browser.
 
