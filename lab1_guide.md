@@ -975,7 +975,7 @@ Documents  Music      Public    Videos     newDir
 ```
 
 #### Additional Resources
-Here is a [cheat sheet]([Linux_cheat_sheet.pdf](https://github.com/MumenJarrah/CloudLabs/blob/a2febfdeae415de8786a19f14a4e16001a83bbea/Linux_cheat_sheet.pdf)) of common Linux commands. 
+Here is a [cheat sheet](https://github.com/MumenJarrah/CloudLabs/blob/a2febfdeae415de8786a19f14a4e16001a83bbea/Linux_cheat_sheet.pdf) of common Linux commands. 
 
 
 ### You successfully completed the Lab
