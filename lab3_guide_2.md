@@ -17,9 +17,9 @@ In this lab, you will complete the following tasks:
 
 ![](images/az900lab03.PNG) 
 
-### Task 1: Create a container instance
+### Task 1: Create Azure Container Instances (ACI) and Deploying a Web Server (Nginx) on it.
 
-In this task, we will create a new container instance for the web application. 
+In this task, we will create a new container instance and deploying a web server (Nginx) on it. 
 
 1. On Azure Portal page, in **Search resources, services and docs (G+/)** box at the top of the portal, enter **Container instances (1)**, and then select **Container instances (2)** under services.
 
@@ -28,6 +28,7 @@ In this task, we will create a new container instance for the web application.
 1. On **Container instances** blade, click **+ Create**. 
 
 1. On the **basics** tab. Provide the following basic details for creating a new container instance then click **Next : Networking >**.
+1. Using Pre-defined images: These are prebuilt container images provided by Azure. They are ready-to-use images that you can select when creating a container instance without needing to build or customize the image yourself.
 
 	| Setting| Value|
 	|----|----|
@@ -35,10 +36,8 @@ In this task, we will create a new container instance for the web application.
 	| Resource group | **myRGContainer-<inject key="DeploymentID" enableCopy="false" />** |
 	| Container name| **mycontainer**|
 	| Region | **<inject key="Region" enableCopy="false"/>** |
-	| Image source| **Other registry**|
-	| Image type| **Public**|
-	| Image| **mcr.microsoft.com/azuredocs/aci-helloworld**|
-	| OS type| **Linux** |
+	| Image source| **Quickstart images**|
+	| Image| **mcr.microsoft.com/oss/nginx/nginx:1.9.15-alpine (Linux)**|
 	| Size| ***Leave at the default***|
 
 	
