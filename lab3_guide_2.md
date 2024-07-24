@@ -49,7 +49,7 @@ In this task, we will create a new container instance for the web application.
     | DNS name label| **mycontainerdns<inject key="DeploymentID" enableCopy="false" /> (1)** |
     |||
 
-    ![](../images/lab3-image2.png)
+    ![](images/lab3-image2.png)
    
 	>**Note**: Your container will be publicly reachable at dns-name-label.region.azurecontainer.io. If you receive a **DNS name label not available** error message following the deployment.
 
