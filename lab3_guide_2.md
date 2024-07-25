@@ -88,7 +88,7 @@ In this task, we verify that the container instance is running by ensuring that 
 
    >**Note**: It might take 3 - 5 minutes to load the page.
  
-       ![](images/lab3-6-u.png)
+   ![](images/lab3-6-u.png)
 	
    >**Note**: You could also use the container IP address in your browser.
 
