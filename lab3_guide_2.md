@@ -28,7 +28,8 @@ In this task, we will create a new container instance and deploying a web server
 1. On **Container instances** blade, click **+ Create**. 
 
 1. On the **basics** tab. Provide the following basic details for creating a new container instance then click **Next : Networking >**.
-1. Using Pre-defined images: These are prebuilt container images provided by Azure. They are ready-to-use images that you can select when creating a container instance without needing to build or customize the image yourself.
+1. Using Pre-defined images: There are prebuilt container images provided by Azure. They are ready-to-use images that you can select when creating a container instance without needing to build or customize the image yourself.
+2. Next, Select Nginx or any other desired image from the list provided.
 
 	| Setting| Value|
 	|----|----|
@@ -41,6 +42,7 @@ In this task, we will create a new container instance and deploying a web server
 	| Size| ***Leave at the default***|
 
   ![](images/lab3-1-u.png)
+  ![](images/lab3-2-u.png)
   
 1. On **Networking** tab . Specify the following and leave all other settings at their default values and click **Review + create (2)**.
 
