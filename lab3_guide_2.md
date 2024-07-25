@@ -83,13 +83,13 @@ In this task, we verify that the container instance is running by ensuring that 
 
 1. Locate and copy the **Fully Qualified Domain Name (FQDN)**.
 
-    ![](images/lab3-image4.png)
+   ![](images/lab3-5-u.png)
 
 1. Paste the container's FQDN into the new browser tab and press **Enter**. The Welcome page should display.
 
    >**Note**: It might take 3 - 5 minutes to load the page.
  
-   ![](images/lab3-image5.png)
+       ![](images/lab3-6-u.png)
 	
    >**Note**: You could also use the container IP address in your browser.
 
