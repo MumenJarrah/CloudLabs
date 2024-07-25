@@ -52,6 +52,7 @@ In this task, we will create a new container instance and deploying a web server
     |||
 
     ![](images/lab3-image2.png)
+    ![](images/lab3-4-u.png)
    
 	>**Note**: Your container will be publicly reachable at dns-name-label.region.azurecontainer.io. If you receive a **DNS name label not available** error message following the deployment.
 
