@@ -79,7 +79,6 @@ In this task, we verify that the container instance is running by ensuring that 
 3.	You can check the status of the Azure Container instance,  if it is Stopped/Running.
 4.	Manage the instance by starting or stopping it as needed
 
-   ![](images/lab3-image6.png)
 
 1. Locate and copy the **Fully Qualified Domain Name (FQDN)**.
 
