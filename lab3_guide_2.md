@@ -52,7 +52,7 @@ In this task, we will create a new container instance and deploying a web server
     |||
 
     ![](images/lab3-image2.png)
-    ![](images/lab3-4-u.png)
+    ![](images/lab3-4-uu.png)
    
 	>**Note**: Your container will be publicly reachable at dns-name-label.region.azurecontainer.io. If you receive a **DNS name label not available** error message following the deployment.
 
@@ -72,7 +72,14 @@ In this task, we verify that the container instance is running by ensuring that 
 
 1. On the **Overview** blade of **mycontainer**, ensure your container **Status** is **Running**.
 
-    ![](images/lab3-image6.png)
+ Overview of Checking Deployment Stats: After deploying your web server, you can monitor its deployment stats through the Azure portal:
+
+1.	Navigate to the created Azure container instance(ACI)
+2.	From the Overview tab, view metrics such as CPU, memory usage, and network statistics.
+3.	You can check the status of the Azure Container instance,  if it is Stopped/Running.
+4.	Manage the instance by starting or stopping it as needed
+
+   ![](images/lab3-image6.png)
 
 1. Locate and copy the **Fully Qualified Domain Name (FQDN)**.
 
