@@ -40,7 +40,8 @@ In this task, we will create a new container instance and deploying a web server
 	| Image| **mcr.microsoft.com/oss/nginx/nginx:1.9.15-alpine (Linux)**|
 	| Size| ***Leave at the default***|
 
-	
+  ![](images/lab3-1-u.png)
+  
 1. On **Networking** tab . Specify the following and leave all other settings at their default values and click **Review + create (2)**.
 
     | Setting| Value|
