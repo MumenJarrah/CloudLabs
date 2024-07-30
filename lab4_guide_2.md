@@ -27,7 +27,7 @@ In this lab, you will complete the following tasks:
 
 ## Architecture diagram
 
-  ![Diagram of the tasks.](images/az104-lab07-architecture.png)
+  ![Diagram of the tasks.](/images/az104-lab07-architecture.png)
 
 ## Exercise 1
 
