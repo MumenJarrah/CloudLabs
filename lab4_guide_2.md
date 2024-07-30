@@ -1,5 +1,3 @@
-# Lab 07 - Manage Azure Storage
-
 ## Lab introduction
 
 In this lab you learn to create storage accounts for Azure blobs and Azure files. You learn to configure and secure blob containers. You also learn to use Storage Browser to configure and secure Azure file shares. 
