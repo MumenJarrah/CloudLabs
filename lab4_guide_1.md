@@ -6,7 +6,7 @@ Welcome to your AZ-104: Microsoft Azure Administrator  workshop! We've prepared 
  
 Once you're ready to dive in, your virtual machine and lab guide will be right at your fingertips within your web browser.
  
-![Access Your VM and Lab Guide](../media/labguide.png)
+![Access Your VM and Lab Guide](images/labguide.png)
 
 ### Virtual Machine & Lab Guide
  
