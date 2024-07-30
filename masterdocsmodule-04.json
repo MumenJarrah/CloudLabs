@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "Module 04 - Manage Azure Storage",
+    "Language": "English",
+    "Files": [
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-104-MicrosoftAzureAdministrator/prod/Instructions/Labs/LabIntro2.md",
+        "Order": 1
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-104-MicrosoftAzureAdministrator/prod/Instructions/Labs/LAB_07-Manage_Azure_Storage.md",
+        "Order": 2
+      }
+    ]
+  }
+]
