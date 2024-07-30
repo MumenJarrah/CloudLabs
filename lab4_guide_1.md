@@ -1,4 +1,4 @@
-# Getting Started with Your AZ-104: Microsoft Azure Administrator Workshop
+# Lab 07 - Manage Azure Storage
  
 Welcome to your AZ-104: Microsoft Azure Administrator  workshop! We've prepared a seamless environment for you to explore and learn Azure Services. Let's begin by making the most of this experience:
  
