@@ -4,11 +4,11 @@
     "Language": "English",
     "Files": [
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-104-MicrosoftAzureAdministrator/prod/Instructions/Labs/LabIntro2.md",
+        "RawFilePath": "https://raw.githubusercontent.com/MumenJarrah/Labs/main/lab4_guide_1.md",
         "Order": 1
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-104-MicrosoftAzureAdministrator/prod/Instructions/Labs/LAB_07-Manage_Azure_Storage.md",
+        "RawFilePath": "https://raw.githubusercontent.com/MumenJarrah/Labs/main/lab4_guide_2.md",
         "Order": 2
       }
     ]
