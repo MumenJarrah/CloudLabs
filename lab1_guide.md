@@ -974,6 +974,25 @@ Desktop    Downloads  Pictures  Templates  copy_file.txt  thinclient_drives
 Documents  Music      Public    Videos     newDir
 ```
 
+#### 4.4	Save the Command History to a File
+```bash
+history > ~/my_bash_history.txt
+```
+
+
+#### 4.5	Terminate the Shell Session
+Run the following command to exit the shell session
+
+```bash
+exit
+```
+
+#### 4.5	Terminate the Shell Session
+Check the history file you created using the following command to view the history file
+```bash
+cat ~/my_bash_history.txt
+```
+
 #### Additional Resources
 Here is a [cheat sheet](https://github.com/MumenJarrah/CloudLabs/blob/a2febfdeae415de8786a19f14a4e16001a83bbea/Linux_cheat_sheet.pdf) of common Linux commands. 
 
