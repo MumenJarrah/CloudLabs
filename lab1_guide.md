@@ -975,6 +975,8 @@ Documents  Music      Public    Videos     newDir
 ```
 
 #### 4.4	Save the Command History to a File
+You can save the command history to a file by running the following command:
+
 ```bash
 history > ~/my_history.txt
 ```
