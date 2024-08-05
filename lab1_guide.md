@@ -976,7 +976,7 @@ Documents  Music      Public    Videos     newDir
 
 #### 4.4	Save the Command History to a File
 ```bash
-history > ~/my_bash_history.txt
+history > ~/my_history.txt
 ```
 
 
@@ -987,10 +987,11 @@ Run the following command to exit the shell session
 exit
 ```
 
-#### 4.5	Terminate the Shell Session
+#### 4.6	Verify the History File
 Check the history file you created using the following command to view the history file
+
 ```bash
-cat ~/my_bash_history.txt
+cat ~/my_history.txt
 ```
 
 #### Additional Resources
