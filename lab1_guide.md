@@ -1,4 +1,4 @@
-# Lab 1 - Basic Linux Commands
+# Lab 1 - Basic Linux commands
 
 ## Lab overview
 
@@ -6,19 +6,19 @@ In this lab, we are going to overview basic Linux commands for extracting inform
 
 All the commands will be run using the command line interface (CLI). The CLI is a powerful tool for running applications, inspecting the system status, and configuring a machine.
 
-## Lab Instrcutions
+## Lab instructions
 
 ### Starting a shell program
 
 1. Open a terminal application. Double click on the terminal application on the desktop.
 
-![](images/lab1_fig1.png)
+![Desktop home screen. The terminal application icon on the desktop and in the dock is highlighted.](images/lab1_fig1.png)
 
-2. The terminal opens showing the shell prompt as shown below. The shell allows running commands and applications.
+2. The terminal opens, showing the shell prompt as shown below. The shell allows running commands and applications.
 
-![](images/lab1_fig2.png)
+![An open terminal window with a prompt at the top.](images/lab1_fig2.png)
 
-To run a command, type a command in the shell and press <Enter>. For instance, type `date` in the shell and press <Enter>. This runs the date command and displays the date and time of the machine.
+To run a command, type a command in the shell and press `<Enter>`. For instance, type `date` in the shell and press `<Enter>`. This runs the date command and displays the date and time of the machine.
 
 <!-- ### Run the `date` command -->
 
@@ -306,12 +306,12 @@ Documents  Music      Public	Videos
 ```
 
 > [!CAUTION]
-> Using <sudo> runs commands in superuser mode which allows the command that is executed in this mode to change critical configurations and files in the operating system.
-> Consequantly, best practice for using superuser mode is:
-> + Limit the use of the superuser mode to the bare minimum commands that need superuser priviligaes
+> Using `sudo` runs commands in superuser mode which allows the command that is executed in this mode to change critical configurations and files in the operating system.
+> Consequently, best practice for using superuser mode is:
+> + Limit the use of the superuser mode to the bare minimum commands that need superuser privileges
 > + Only run commands that you trust and know what they do exactly
 
-### 3. Extracting Machine Information
+### 3. Extracting machine information
 
 Several common Linux commands help us extract information about the machine.
 
@@ -406,16 +406,16 @@ Flags:                              fpu vme de pse tsc msr pae mce cx8 apic sep
                                     xsaveopt xsavec xsaves md_clear
 ```
 
-The output of this command shows that this machine has an intel Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz
+The output of this command shows that this machine has an Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz
 
 #### 3.3 Finding the memory information
-To find information about the memory system in a machine and stats about its usage you can read the /proc/meminfo
+To find information about the memory system in a machine and stats about its usage you can read the `/proc/meminfo`
 
 ```bash
 less  /proc/meminfo
 ```
 The `less` command prints the file `/proc/meminfo` one page at a time.
-The file `/proc/meminfo` contains information about the memory confiugration and its usage.
+The file `/proc/meminfo` contains information about the memory configuration and its usage.
 
 **Output**
 
@@ -474,13 +474,11 @@ DirectMap1G:     3145728 kB
 ~
 ```
 
-**Output**
-
 The output shows that this machine has close to 4 GB of memory. Around 2.6 GB is free.
 
-#### 3.4 Processes Management 
+#### 3.4 Processes management 
 
-To find information about the processes running on an operating system, you can use `ps` or `top.`
+To find information about the processes running on an operating system, you can use `ps` or `top`.
 `ps` is the command to check the process status. The command offers a number of options to display details about processes.
 
 ```bash
@@ -495,7 +493,7 @@ ps
 ```
 
 The output shows the processes that are run by the current user.
-The `ps -e -f` command is a variation of the ps command in Linux that allows you to display a list of all the processes running on your Linux system in a more detailed format. It provides a full-process listing that includes information such as the process owner, parent process ID, and start time.
+The `ps -e -f` command is a variation of the `ps` command in Linux that allows you to display a list of all the processes running on your Linux system in a more detailed format. It provides a full-process listing that includes information such as the process owner, parent process ID, and start time.
 
 ```bash
 ps -e -f
@@ -697,7 +695,7 @@ seed        1991    1986  0 23:32 pts/0    00:00:00 bash
 seed        1999    1991  0 23:32 pts/0    00:00:00 ps -e -f
 ```
 
-A second common command for monitoring processes on a machine is `top.`
+A second common command for monitoring processes on a machine is `top`.
 It provides a dynamic real-time view of the running system. Usually, this command shows the system's summary information and the list of processes running. As soon as you run this command, it will open an interactive command mode. The top half portion contains the statistics of processes and resource usage, and the lower half contains a list of the currently running processes. Pressing `q` will simply exit the command mode.
 
 ```bash
@@ -763,8 +761,8 @@ Here is the meaning of the most important columns in the output:
 - USER: The user name of the owner of the task.
 - %CPU: Represents the CPU usage.
 - TIME+: CPU Time, the same as ‘TIME’, but reflecting more granularity through hundredths of a second.
-- SHR: Represents the Shared Memory size (kb) used by a task.
-- %MEM: Shows the Memory usage of a process.
+- SHR: Represents the shared memory size (kb) used by a task.
+- %MEM: Shows the memory usage of a process.
 - RES: How much physical RAM the process is using, measured in kilobytes.
 - COMMAND: The name of the command that started the process.
 
@@ -794,8 +792,8 @@ ip addr
     inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
        valid_lft forever preferred_lft forever
 ```
-The command prints the ip address of every interface in the system. The lo interface is a local interface and always has an ip address of 127.0.0.1.
-The command shows that this machine has the ip address of 10.0.0.4
+The command prints the IP address of every interface in the system. The lo interface is a local interface and always has an IP address of 127.0.0.1.
+The command shows that this machine has the IP address of 10.0.0.4
 
 
 
@@ -851,7 +849,7 @@ To create a directory, use the `mkdir` command.
 mkdir newDir
 ```
 
-You can notice that "newDir" was created by running the <ls> command
+You can notice that "newDir" was created by running the `ls` command
 
 ```bash
 ls
@@ -864,7 +862,7 @@ Desktop    Downloads  Pictures  Templates  newDir
 Documents  Music      Public    Videos     thinclient_drives
 ```
 
-This command creates a new directory named `newDir`. You can change to the <newDir>
+This command creates a new directory named `newDir`. You can change to the `newDir`
 
 ```bash
 cd newDir
@@ -889,16 +887,16 @@ There are many commands for creating and editing a text file from within the ter
 nano new_file.txt
 ```
 
-This command will create a new_file.txt if it does not exist, and will open it for editing if it already exists.
+This command will create `new_file.txt` if it does not exist, and will open it for editing if it already exists.
 The `nano` command opens the file for editing.
 
 ![](images/lab1_fig3.PNG)
 
-At the bottom of the nano window are the available nano commands. ^ means ctrl.
-So you can write in the file something like “this is a test”
-Then press <ctrl+x> to exit
-When asked, press <y> to save the changes.
-Press <enter> to confirm the file name.
+At the bottom of the nano window are the available nano commands. ^ means `<ctrl>`.
+So you can write in the file something like “This is the content of new_file.txt”
+Then press `<ctrl+x>` to exit
+When asked, press `<y>` to save the changes.
+Press `<enter>` to confirm the file name.
 
 Use `ls` to confirm that the new file is created.
 
@@ -909,8 +907,7 @@ ls
 **Output** 
 
 ```plaintext
-Desktop    Downloads  Pictures  Templates  newDir        thinclient_drives
-Documents  Music      Public    Videos     new_file.txt
+new_file.txt
 ```
 
 You can use one of the following commands to print the content of a file
@@ -944,18 +941,17 @@ Use `cp` to copy a file.
 cp new_file.txt copy_file.txt
 ls
 ```
-This command copies the file <new_file.txt> to a new file <copy_file.txt>
+This command copies the file `new_file.txt` to a new file `copy_file.txt`
 Use `ls` to verify that the file is copied.
 
 
 **Output** 
 
 ```plaintext
-Desktop    Downloads  Pictures  Templates  copy_file.txt  new_file.txt
-Documents  Music      Public    Videos     newDir         thinclient_drives
+copy_file.txt  new_file.txt
 ```
 
-You can see that you have two files now: new_file.txt and copy_file.txt
+You can see that you have two files now: `new_file.txt` and `copy_file.txt`
 
 To delete a file use the `rm` command
 
@@ -963,37 +959,35 @@ To delete a file use the `rm` command
 rm new_file.txt
 ```
 
-Deletes the new_file.txt
+Deletes the 'new_file.txt'
 
 Use `ls` to verify that the file is deleted.
 
 **Output** 
 
 ```plaintext
-Desktop    Downloads  Pictures  Templates  copy_file.txt  thinclient_drives
-Documents  Music      Public    Videos     newDir
+copy_file.txt
 ```
 
-#### 4.4	Save the Command History to a File
+#### 4.4	Save the command history to a file
 You can save the command history to a file by running the following command:
 
 ```bash
 history > ~/my_history.txt
 ```
 
-
-#### 4.5	Terminate the Shell Session
-Run the following command to exit the shell session
-
-```bash
-exit
-```
-
-#### 4.6	Verify the History File
+#### 4.5	Verify the history file
 Check the history file you created using the following command to view the history file
 
 ```bash
 cat ~/my_history.txt
+```
+
+#### 4.6	Terminate the shell session
+Run the following command to exit the shell session
+
+```bash
+exit
 ```
 
 #### Additional Resources
