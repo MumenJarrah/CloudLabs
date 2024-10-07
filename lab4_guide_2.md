@@ -185,7 +185,7 @@ In this task, you will create a blob container and upload a blob into it.
     | Expiry time | current time |
     | Allowed IP addresses | leave blank |
 
-    ![image](./media/lab4-22.png)
+    ![image](images/lab4-22.png)
    
 1. Click **Generate SAS token and URL**.
 
