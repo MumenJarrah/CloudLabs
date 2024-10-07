@@ -129,7 +129,7 @@ In this task, you will create a blob container and upload a blob into it.
     | Set retention period for | `180` days |
     | Select **Save** |
    
-     ![image](images/lab4-20.png)
+     ![image](images/lab4-19.png)
 
 ## Manage blob uploads
 
@@ -146,7 +146,7 @@ In this task, you will create a blob container and upload a blob into it.
     | Access tier | **Hot** |
     | Upload to folder | **licenses** |
 
-    ![image](images/lab4-21.png)
+    ![image](images/lab4-20.png)
    
     > **Note**: Access tier can be set for individual blobs.
 
@@ -185,13 +185,13 @@ In this task, you will create a blob container and upload a blob into it.
     | Expiry time | current time |
     | Allowed IP addresses | leave blank |
 
-    ![image](./media/lab4-22.png)
+    ![image](./media/lab4-21.png)
    
 1. Click **Generate SAS token and URL**.
 
 1. Click the **Copy to clipboard** button next to the **Blob SAS URL** entry (you need to scroll down).
 
-    ![image](images/lab4-23.png)
+    ![image](images/lab4-22.png)
 
 1. Open another browser window by using InPrivate mode and navigate to the URL you copied in the previous step.
 
@@ -231,7 +231,7 @@ In this task, you will create and configure Azure Files shares.
 
 1. Select your **az104-07-share** directory and notice you can **+ Add directory**. This lets you create a folder structure. Provide name **az104-07-folder** and click on **OK**
 
-    ![image](images/lab4-24.png)
+    ![image](images/lab4-23.png)
 
 1. Open file explorer and create text document named **az104-07-file.txt**.
 
@@ -281,7 +281,7 @@ In this task, you will create and configure Azure Files shares.
 
     >**Note:** You should receive a message *not authorized to perform this operation*. You are not connecting from the virtual network. It may take a couple of minutes for this to take effect.
 
-     ![image](images/l1-image16.png)
+     ![image](images/lab4-24.png)
    
 ## Key takeaways
 
