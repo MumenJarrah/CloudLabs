@@ -36,7 +36,7 @@ In this task, you will create and configure an Azure Storage account.
 
 1. On Azure Portal page, in **Search resources, services and docs (G+/)** box at the top of the portal, enter **Storage accounts**, and then select **Storage accounts** under services.
 
-    ![image](images/l1-image1.png)
+    ![image](images/lab4-14.png)
 
 1. On **Storage accounts** blade, click **+ Create**.
    
@@ -65,13 +65,13 @@ In this task, you will create and configure an Azure Storage account.
 
 1. In the same blade **Redundancy** drop-down list select **Locally redundant storage (LRS)** and save the change. 
 
-    ![image](images/l1-image2.png)
+    ![image](images/lab4-15.png)
 
 1. In the same blade note that, at this point, the Storage account has the primary location.
 
 1. Select **Configuration** blade under **Settings** section of the Storage account, set **Blob access tier (default)** to **Cool**, and save the change.
 
-    ![image](images/l1-image3.png)
+    ![image](images/lab4-16.png)
 
     > **Note**: The cool access tier is optimal for data that is not accessed frequently.
 
@@ -88,11 +88,11 @@ In this task, you will create and configure an Azure Storage account.
 
     + **Name** the rule `Movetocool`. Notice your options for limiting the scope of the rule.
   
-      ![image](images/l1-image5.png)
+      ![image](images/lab4-17.png)
     
     + On the **Base blobs** tab, *if* based blobs were last modified more than `30 days` ago *then* **move to cool storage**. Notice your other choices. Notice you can configure other conditions. Select **Add** when you are done exploring.
 
-      ![image](images/l1-image6.png)
+      ![image](images/lab4-18.png)
       
    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
@@ -119,7 +119,7 @@ In this task, you will create a blob container and upload a blob into it.
 
 1. On your container, scroll to the ellipsis (...) on the far right, select **Access Policy**.
 
-     ![image](images/l1-image9.png)
+     ![image](images/lab4-19.png)
 
 1. On the **Access policy** window under the **Immutable blob storage** area, select **Add policy**.
 
@@ -129,7 +129,7 @@ In this task, you will create a blob container and upload a blob into it.
     | Set retention period for | `180` days |
     | Select **Save** |
    
-     ![image](images/l1-image10.png)
+     ![image](images/lab4-20.png)
 
 ## Manage blob uploads
 
@@ -146,7 +146,7 @@ In this task, you will create a blob container and upload a blob into it.
     | Access tier | **Hot** |
     | Upload to folder | **licenses** |
 
-    ![image](images/l1-image14.png)
+    ![image](images/lab4-21.png)
    
     > **Note**: Access tier can be set for individual blobs.
 
@@ -185,13 +185,13 @@ In this task, you will create a blob container and upload a blob into it.
     | Expiry time | current time |
     | Allowed IP addresses | leave blank |
 
-    ![image](./media/l1-image13.png)
+    ![image](./media/lab4-22.png)
    
 1. Click **Generate SAS token and URL**.
 
 1. Click the **Copy to clipboard** button next to the **Blob SAS URL** entry (you need to scroll down).
 
-    ![image](images/l1-image15.png)
+    ![image](images/lab4-23.png)
 
 1. Open another browser window by using InPrivate mode and navigate to the URL you copied in the previous step.
 
@@ -231,7 +231,7 @@ In this task, you will create and configure Azure Files shares.
 
 1. Select your **az104-07-share** directory and notice you can **+ Add directory**. This lets you create a folder structure. Provide name **az104-07-folder** and click on **OK**
 
-    ![image](images/l1-image12.png)
+    ![image](images/lab4-24.png)
 
 1. Open file explorer and create text document named **az104-07-file.txt**.
 
