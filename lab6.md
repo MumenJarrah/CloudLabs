@@ -1,4 +1,4 @@
-# Secret-Key Encryption Lab
+# Lab 6: Secret-Key Encryption Lab
 
 ```
 Copyright © 2018 by Wenliang Du.
