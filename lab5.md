@@ -1,4 +1,4 @@
-# Public-Key Infrastructure (PKI) Lab
+# Lab 5: Public-Key Infrastructure (PKI) Lab
 
 ```
 Copyright © 2018 by Wenliang Du.
