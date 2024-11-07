@@ -404,4 +404,16 @@ our malicious web server.
 Step 3: Browse the target website. With everything set up, now visit the target real website, and see what
 your browser would say. Please explain what you have observed.
 
+Figure 2 shows the Apache2 Ubuntu Default Page displayed when accessing http://www.example.com. This indicates that the browser request is being directed to our server, confirming the DNS redirection is working.
+
+![](images/lab5_2.png)
+
+Figure 2: Apache2 Default Page showing successful DNS redirection to the attacker’s server for http://www.example.com.
+
+Figure 3 shows the browser displaying a "Warning: Potential Security Risk Ahead" message when accessing https://www.example.com. The warning occurs because the certificate presented by our server does not match the www.example.com, that prevent MITM attacks.
+
+![](images/lab5_3.png)
+
+Figure 3: Security warning in the browser when accessing https://www.example.com
+
 ### You have successfully completed the lab
