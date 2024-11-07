@@ -1,4 +1,4 @@
-# Firewall Exploration Lab
+# Lab 6: Firewall Exploration Lab
 
 ```
 Copyright © 2006 - 2021 by Wenliang Du.
