@@ -292,7 +292,7 @@ structure of the command is depicted in the following:
 
 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; Table 1: `iptables` Tables and Chains
 
-![iptables Tables and Chains](../images/net-sec-firewall-exploration-iptables-chains.png)
+![iptables Tables and Chains](images/net-sec-firewall-exploration-iptables-chains.png)
 
 ```
 iptables -t <table> -<operation> <chain>  <rule>  -j <target>
