@@ -404,23 +404,4 @@ our malicious web server.
 Step 3: Browse the target website. With everything set up, now visit the target real website, and see what
 your browser would say. Please explain what you have observed.
 
-### 3.6 Task 6: Launching a Man-In-The-Middle Attack with a Compromised CA
-
-In this task, we assume that the root CA created in Task 1 is compromised by an attacker, and its private key
-is stolen. Therefore, the attacker can generate any arbitrary certificate using this CA’s private key. In this
-task, we will see the consequence of such a compromise.
-Please design an experiment to show that the attacker can successfully launch MITM attacks on any
-HTTPS website. You can use the same setting created in Task 5, but this time, you need to demonstrate that
-the MITM attack is successful, i.e., the browser will not raise any suspicion when the victim tries to visit a
-website but land in the MITM attacker’s fake website.
-
-## 4 Submission
-
-You need to submit a detailed lab report, with screenshots, to describe what you have done and what you
-have observed. You also need to provide explanation to the observations that are interesting or surprising.
-
-
-Please also list the important code snippets followed by explanation. Simply attaching code without any
-explanation will not receive credits.
-
-
+### You have successfully completed the lab
