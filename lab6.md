@@ -39,7 +39,7 @@ $ sudo unzip Labsetup.zip
 
 Please download the `Labsetup.zip` file to your VM from the lab’s website, unzip it, enter the `Labsetup` folder, and use the `docker-compose.yml` file to set up the lab environment. Detailed explanation of the content in this file and all the involved `Dockerfile` can be found from the user manual, which is linked
 
-![Lab setup](../media/net-sec-firewall-exploration-lab-setup.png)
+![Lab setup](../images/net-sec-firewall-exploration-lab-setup.png)
 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Figure 1: Lab setup
 
 to the website of this lab. If this is the first time you set up a SEED lab environment using containers, it is very important that you read the user manual.
@@ -292,7 +292,7 @@ structure of the command is depicted in the following:
 
 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; Table 1: `iptables` Tables and Chains
 
-![iptables Tables and Chains](../media/net-sec-firewall-exploration-iptables-chains.png)
+![iptables Tables and Chains](../images/net-sec-firewall-exploration-iptables-chains.png)
 
 ```
 iptables -t <table> -<operation> <chain>  <rule>  -j <target>
