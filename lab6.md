@@ -1,76 +1,64 @@
-# Lab 6: Secret-Key Encryption Lab
+# Firewall Exploration Lab
 
 ```
-Copyright © 2018 by Wenliang Du.
-This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-License. If you remix, transform, or build upon the material, this copyright notice must be left intact, or
-reproduced in a way that is reasonable to the medium in which the work is being re-published.
+Copyright © 2006 - 2021 by Wenliang Du.
+This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. If you remix, transform, or build upon the material, this copyright notice must be left intact, or reproduced in a way that is reasonable to the medium in which the work is being re-published.
 ```
+
 ## 1 Overview
 
-The learning objective of this lab is for students to get familiar with the concepts in the secret-key encryption
-and some common attacks on encryption. From this lab, students will gain a first-hand experience on
-encryption algorithms, encryption modes, paddings, and initial vector (IV). Moreover, students will be able
-to use tools and write programs to encrypt/decrypt messages.
-Many common mistakes have been made by developers in using the encryption algorithms and modes.
-These mistakes weaken the strength of the encryption, and eventually lead to vulnerabilities. This lab
-exposes students to some of these mistakes, and ask students to launch attacks to exploit those vulnerabilities.
-This lab covers the following topics:
+The learning objective of this lab is two-fold: learning how firewalls work, and setting up a simple firewall for a network. Students will first implement a simple stateless packet-filtering firewall, which inspects packets, and decides whether to drop or forward a packet based on firewall rules. Through this implementation task, students can get the basic ideas on how firewall works.
+<Br>
+&emsp; Actually, Linux already has a built-in firewall, also based on `netfilter`. This firewall is called `iptables`. Students will be given a simple network topology, and are asked to use `iptables` to set up firewall rules to protect the network. Students will also be exposed to several other interesting applications of `iptables`. This lab covers the following topics:
 
-* Secret-key encryption
-* Substitution cipher and frequency analysis
-* Encryption modes, IV, and paddings
-* Common mistakes in using encryption algorithms
-* Programming using the crypto library
+- Firewall
+- Netfilter
+- Loadable kernel module
+- Using `iptables` to set up firewall rules
+- Various applications of `iptables`
 
-Readings. Detailed coverage of the secret-key encryption can be found in the following:
+**Readings and videos.** Detailed coverage of firewalls can be found in the following:
 
-* Chapter 21 of the SEED Book,Computer & Internet Security: A Hands-on Approach, 2nd Edition,
-    by Wenliang Du. See details at https://www.handsonsecurity.net.
+- Chapter 17 of the SEED Book,Computer & Internet Security: A Hands-on Approach, 2nd Edition, by Wenliang Du. See details at `https://www.handsonsecurity.net`.
+- Section 9 of the SEED Lecture,Internet Security: A Hands-on Approach, by Wenliang Du. See details at `https://www.handsonsecurity.net/video.html`.
 
-Lab Environment. This lab has been tested on our pre-built Ubuntu 20.04 VM, which can be downloaded
-from the SEED website.
+**Lab environment.** This lab has been tested on the SEED Ubuntu 20.04 VM. You can download a pre-built image from the SEED website, and run the SEED VM on your own computer. However, most of the SEED labs can be conducted on the cloud, and you can follow our instruction to create a SEED VM on the cloud.
 
-## 2 Lab Environment
+## 2 Environment Setup Using Containers
+
+In this lab, we need to use multiple machines. Their setup is depicted in Figure 1. We will use containers to set up this lab environment.
 
 Files needed for this lab are included in Labsetup.zip, which can be fetched by running the following commands.
 
 ```
-$ sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/Crypto_Encryption/Labsetup.zip
+$ sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/Firewall/Labsetup.zip
 $ sudo unzip Labsetup.zip
 ```
 
-In this lab, we use a container to run an encryption oracle. The container is only needed in Task 6.3, so you
-do not need to start the container for other tasks.
+### 2.1 Container Setup and Commands
 
-Container Setup and Commands. Please download the `Labsetup.zip` file to your VM from the lab’s
-website, unzip it, enter the Labsetup folder, and use the `docker-compose.yml` file to set up the lab
-environment. Detailed explanation of the content in this file and all the involved Dockerfile can be
-found from the user manual, which is linked to the website of this lab. If this is the first time you set up a
-SEED lab environment using containers, it is very important that you read the user manual.
-In the following, we list some of the commonly used commands related to Docker and Compose. Since
-we are going to use these commands very frequently, we have created aliases for them in the `.bashrc` file
-(in our provided SEEDUbuntu 20.04 VM).
+Please download the `Labsetup.zip` file to your VM from the lab’s website, unzip it, enter the `Labsetup` folder, and use the `docker-compose.yml` file to set up the lab environment. Detailed explanation of the content in this file and all the involved `Dockerfile` can be found from the user manual, which is linked
 
+![Lab setup](../media/net-sec-firewall-exploration-lab-setup.png)
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Figure 1: Lab setup
+
+to the website of this lab. If this is the first time you set up a SEED lab environment using containers, it is very important that you read the user manual.
+<Br>
+&emsp; In the following, we list some of the commonly used commands related to Docker and Compose. Since we are going to use these commands very frequently, we have created aliases for them in the.bashrcfile (in our provided SEEDUbuntu 20.04 VM).
 ```
-$ docker-compose build # Build the container image
-$ docker-compose up # Start the container
-$ docker-compose down # Shut down the container
+$ docker-compose build      # Build the container image
+$ docker-compose up         # Start the container
+$ docker-compose down       # Shut down the container
 
 // Aliases for the Compose commands above
-$ dcbuild # Alias for: docker-compose build
-$ dcup # Alias for: docker-compose up
-$ dcdown # Alias for: docker-compose down
+$ dcbuild       # Alias for: docker-compose build
+$ dcup          # Alias for: docker-compose up
+$ dcdown        # Alias for: docker-compose down
 ```
-
-All the containers will be running in the background. To run commands on a container, we often need
-to get a shell on that container. We first need to use the `"docker ps"` command to find out the ID of
-the container, and then use `"docker exec"` to start a shell on that container. We have created aliases for
-them in the .bashrc file.
-
+&emsp; All the containers will be running in the background. To run commands on a container, we often need to get a shell on that container. We first need to use the "`docker ps`" command to find out the ID of the container, and then use "`docker exec`" to start a shell on that container. We have created aliases for them in the `.bashrc` file.
 ```
-$ dockps // Alias for: docker ps --format "{{.ID}} {{.Names}}"
-$ docksh <id> // Alias for: docker exec -it <id> /bin/bash
+$ dockps        // Alias for: docker ps --format "{{.ID}} {{.Names}}"
+$ docksh <id>  // Alias for: docker exec -it <id> /bin/bash
 
 // The following example shows how to get a shell inside hostC
 $ dockps
@@ -82,385 +70,425 @@ $ docksh 96
 root@9652715c8e0a:/#
 
 // Note: If a docker command requires a container ID, you do not need to
-// type the entire ID string. Typing the first few characters will
-// be sufficient, as long as they are unique among all the containers.
+//      type the entire ID string. Typing the first few characters will
+//      be sufficient, as long as they are unique among all the containers.
 ```
-
-If you encounter problems when setting up the lab environment, please read the “Common Problems”
+&emsp; If you encounter problems when setting up the lab environment, please read the “Common Problems”
 section of the manual for potential solutions.
 
-## 3 Task 1: Frequency Analysis
+## 3 Task 1: Implementing a Simple Firewall
 
-It is well-known that monoalphabetic substitution cipher (also known as monoalphabetic cipher) is not
-secure, because it can be subjected to frequency analysis. In this lab, you are given a cipher-text that is
-encrypted using a monoalphabetic cipher; namely, each letter in the original text is replaced by another
-letter, where the replacement does not vary (i.e., a letter is always replaced by the same letter during the
-encryption). Your job is to find out the original text using frequency analysis. It is known that the original
-text is an English article.
-In the following, we describe how we encrypt the original article, and what simplification we have made.
-Instructors can use the same method to encrypt an article of their choices, instead of asking students to use
-the ciphertext made by us.
+In this task, we will implement a simple packet filtering type of firewall, which inspects each incoming and outgoing packets, and enforces the firewall policies set by the administrator. Since the packet processing is done within the kernel, the filtering must also be done within the kernel. Therefore, it seems that implementing such a firewall requires us to modify the `Linux` kernel. In the past, this had to be done by modifying and rebuilding the kernel. The modern `Linux` operating systems provide several new mechanisms to facilitate the manipulation of packets without rebuilding the kernel image. These two mechanisms are *Loadable Kernel Module*(`LKM`) and `Netfilter`.
 
-* Step 1: let us generate the encryption key, i.e., the substitution table. We will permute the alphabet
-    fromatozusing Python, and use the permuted alphabet as the key. See the following program.
+**Notes about containers.** Since all the containers share the same kernel, kernel modules are global. Therefore, if we set a kernel model from a container, it affects all the containers and the host. For this reason, it does not matter where you set the kernel module. In this lab, we will just set the kernel module from the host VM.
+<Br>
+&emsp; Another thing to keep in mind is that containers’ IP addresses are virtual. Packets going to these virtual IP addresses may not traverse the same path as what is described in the Netfilter document. Therefore, in this task, to avoid confusion, we will try to avoid using those virtual addresses. We do most tasks on the host VM. The containers are mainly for the other tasks.
+
+### 3.1 Task 1.A: Implement a Simple Kernel Module
+
+`LKM` allows us to add a new module to the kernel at the runtime. This new module enables us to extend the functionalities of the kernel, without rebuilding the kernel or even rebooting the computer. The packet filtering part of a firewall can be implemented as an LKM. In this task, we will get familiar with LKM.
+<Br>
+&emsp; The following is a simple loadable kernel module. It prints out "`Hello World!`" when the module is loaded; when the module is removed from the kernel, it prints out "`Bye-bye World!`" . The messages are not printed out on the screen; they are actually printed into the `/var/log/syslog` file. You can use "`dmesg`" to view the messages.
+
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; **Listing 1:** `hello.c` (included in the lab setup files)
+```
+Listing 1:hello.c(included in the lab setup files)
+#include <linux/module.h>
+#include <linux/kernel.h>
+
+int initialization(void)
+{
+    printk(KERN_INFO "Hello World!\n");
+    return 0;
+}
+
+void cleanup(void)
+{
+    printk(KERN_INFO "Bye-bye World!.\n");
+}
+
+
+module_init(initialization);
+module_exit(cleanup);
+```
+&emsp; We now need to create `Makefile`, which includes the following contents (the file is included in the lab setup files). Just type`make`, and the above program will be compiled into a loadable kernel module (if you copy and paste the following into `Makefile`, make sure replace the spaces before the `make` commands with a tab).
+```
+obj-m += hello.o
+
+all:
+        make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+clean:
+        make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+```
+&emsp; The generated kernel module is in `hello.ko`. You can use the following commands to load the module, list all modules, and remove the module. Also, you can use "`modinfo hello.ko`" to show information about a Linux Kernel module.
+```
+$ sudo insmod hello.ko      (inserting a module)
+$ lsmod | grep hello        (list modules)
+$ sudo rmmod hello          (remove the module)
+$ dmesg                     (check the messages)
+```
+**Task.** Please compile this simple kernel module on your VM, and run it on the VM. For this task, we will not use containers. Please show your running results in the lab report.
+
+### 3.2 Task 1.B: Implement a Simple Firewall Using Netfilter
+
+In this task, we will write our packet filtering program as an LKM, and then insert in into the packet processing path inside the kernel. This cannot be easily done in the past before the `netfilter` was introduced into the `Linux`.
+<Br>
+&emsp; `Netfilter` is designed to facilitate the manipulation of packets by authorized users. It achieves this goal by implementing a number of hooks in the `Linux` kernel. These hooks are inserted into various places, including the packet incoming and outgoing paths. If we want to manipulate the incoming packets, we simply need to connect our own programs (within LKM) to the corresponding hooks. Once an incoming
+packet arrives, our program will be invoked. Our program can decide whether this packet should be blocked or not; moreover, we can also modify the packets in the program.
+<Br>
+&emsp; In this task, you need to use LKM and `Netfilter` to implement a packet filtering module. This module will fetch the firewall policies from a data structure, and use the policies to decide whether packets should be blocked or not. We would like students to focus on the filtering part, the core of firewalls, so students are allowed to hardcode firewall policies in the program. Detailed guidelines on how to use `Netfilter` can
+be found in Chapter 17 of the SEED book. We will provide some guidelines in here as well.
+
+**Hooking to Netfilter**. Using `netfilter` is quite straightforward. All we need to do is to hook our functions (in the kernel module) to the corresponding `netfilter` hooks. Here we show an example (the code is in `Labsetup/packet_filter`, but it may not be exactly the same as this example).
+
+&emsp; The structure of the code follows the structure of the kernel module implemented earlier. When the kernel module is added to the kernel, the `registerFilter()` function in the code will be invoked. Inside this function, we register two hooks to `netfilter`.
+<Br>
+&emsp; To register a hook, you need to prepare a hook data structure, and set all the needed parameters, the most important of which are a function name (Line ➊) and a hook number (Line  ➋). The hook number is one of the 5 hooks in `netfilter`, and the specified function will be invoked when a packet has reached this hook. In this example, when a packet gets to the `LOCALIN` hook, the function `printInfo()` will be invoked (this function will be given later). Once the hook data structure is prepared, we attach the hook to `netfilter` in Line ➌).
+
+&emsp; &emsp; &emsp; &emsp;  &emsp; &emsp;  Listing 2: Register hook functions to `netfilter`
+```
+static struct nf_hook_ops hook1, hook2;
+
+int registerFilter(void) {
+    printk(KERN_INFO "Registering filters.\n");
+
+    // Hook 1
+    hook1.hook = printInfo;                           ➊
+    hook1.hooknum = NF_INET_LOCAL_IN;                 ➋
+    hook1.pf = PF_INET;
+    hook1.priority = NF_IP_PRI_FIRST;
+    nf_register_net_hook(&init_net, &hook1);          ➌
+
+    // Hook 2
+    hook2.hook = blockUDP;
+    hook2.hooknum = NF_INET_POST_ROUTING;
+    hook2.pf = PF_INET;
+    hook2.priority = NF_IP_PRI_FIRST;
+    nf_register_net_hook(&init_net, &hook2);
+
+    return 0;
+}
+
+void removeFilter(void) {
+    printk(KERN_INFO "The filters are being removed.\n");
+    nf_unregister_net_hook(&init_net, &hook1);
+    nf_unregister_net_hook(&init_net, &hook2);
+}
+
+module_init(registerFilter);
+module_exit(removeFilter);
+```
+**Note for Ubuntu 20.04 VM:** The code in the SEED book was developed in Ubuntu 16.04. It needs to be changed slightly to work in Ubuntu 20.04. The change is in the hook registration and un-registration APIs. See the difference in the following:
+```
+// Hook registration:
+nf_register_hook(&nfho);                 // For Ubuntu 16.04 VM
+nf_register_net_hook(&init_net, &nfho);  // For Ubuntu 20.04 VM
+
+// Hook unregistration:
+nf_unregister_hook(&nfho);                // For Ubuntu 16.04 VM
+nf_unregister_net_hook(&init_net, &nfho); // For Ubuntu 20.04 VM
+```
+**Hook functions.** We give an example of hook function below. It only prints out the packet information. When `netfilter` invokes a hook function, it passes three arguments to the function, including a pointer to the actual packet (`skb`). In the following code, Line  ➊ shows how to retrieve the hook number from the `state` argument. In Line  ➋, we use `iphdr()` function to get the pointer for the IP header, and then use the `%pI4` format string specifier to print out the source and destination IP addresses in Line ➌.
+
+&emsp; &emsp; &emsp; &emsp;  &emsp; &emsp;  &emsp; &emsp;  Listing 3: An example of hook function
+```
+unsigned int printInfo(void *priv, struct sk_buff *skb,
+                        const struct nf_hook_state *state)
+{
+    struct iphdr *iph;
+    char *hook;
+
+    switch (state->hook){                ➊
+        case NF_INET_LOCAL_IN:
+            printk("*** LOCAL_IN"); break;
+        .. (code omitted) ...
+    }
+
+    iph = ip_hdr(skb);                   ➋
+    printk(" %pI4 --> %pI4\n", &(iph->saddr), &(iph->daddr));     ➌
+    return NF_ACCEPT;
+}
+```
+&emsp; If you need to get the headers for other protocols, you can use the following functions defined in various header files. The structure definition of these headers can be found inside the `/lib/modules/5.4.0-54-generic/build/include/uapi/linux` folder, where the version number in the path is the result of "`uname -r`", so it may be different if the kernel version is different.
+```
+struct  iphdr   *iph    = ip_hdr(skb)     // (need to include <linux/ip.h>)
+struct  tcphdr  *tcph   = tcp_hdr(skb)   // (need to include <linux/tcp.h>)
+struct  udphdr  *udph   = udp_hdr(skb)   // (need to include <linux/udp.h>)
+struct  icmphdr *icmph  = icmp_hdr(skb)  // (need to include <linux/icmp.h>)
+```
+**Blocking packets.** We also provide a hook function example to show how to block a packet, if it satisfies the specified condition. The following example blocks the UDP packets if their destination IP is `8.8.8.8.` and the destination port is `53`. This means blocking the DNS query to the nameserver `8.8.8.8`.
+
+&emsp; &emsp; &emsp; &emsp;  &emsp; &emsp;  &emsp; &emsp; Listing 4: Code example: blocking UDP
+```
+unsigned int blockUDP(void *priv, struct sk_buff *skb,
+                        const struct nf_hook_state *state)
+{
+    struct iphdr *iph;
+    struct udphdr *udph;
+    u32 ip_addr;
+    char ip[16] = "8.8.8.8";
+
+    // Convert the IPv4 address from dotted decimal to a 32-bit number
+    in4_pton(ip, -1, (u8*)&ip_addr, ’\0’, NULL);                   ➊
+
+    iph = ip_hdr(skb);
+    if (iph->protocol == IPPROTO_UDP) {
+        udph = udp_hdr(skb);
+        if (iph->daddr == ip_addr && ntohs(udph->dest) == 53){     ➋
+            printk(KERN_DEBUG "****Dropping %pI4 (UDP), port %d\n",
+                                &(iph->daddr), port);
+            return NF_DROP;                                        ➌
+        }
+    }
+    return NF_ACCEPT;                                              ➍   
+}
+```
+&emsp; In the code above, Line ➊ shows, inside the kernel, how to convert an IP address in the dotted decimal format (i.e., a string, such as `1.2.3.4`) to a 32-bit binary (`0x01020304`), so it can be compared with the binary number stored inside packets. LineÀcompares the destination IP address and port number with the values in our specified rule. If they match the rule, the `NF_DROP` will be returned to `netfilter`, which will drop the packet. Otherwise, the `NF_ACCEPT` will be returned, and `netfilter` will let the packet continue its journey (`NF_ACCEPT` only means that the packet is accepted by this hook function; it may still be dropped by other hook functions).
+
+**Tasks.** The complete sample code is called `seedFilter.c`, which is included in the lab setup files (inside the `Files/packet_filter` folder). Please do the following tasks (do each of them separately):
+
+1. Compile the sample code using the provided `Makefile`. Load it into the kernel, and demonstrate that the firewall is working as expected. You can use the following command to generate UDP packets to `8.8.8.8`, which is Google’s DNS server. If your firewall works, your request will be blocked; otherwise, you will get a response.
+    ```
+    dig @8.8.8.8 http://www.example.com
+    ```
+
+2. Hook the `printInfo` function to all of the `netfilter` hooks. Here are the macros of the hook numbers. Using your experiment results to help explain at what condition will each of the hook function be invoked.
+    ```
+    NF_INET_PRE_ROUTING
+    NF_INET_LOCAL_IN
+    NF_INET_FORWARD
+    NF_INET_LOCAL_OUT
+    NF_INET_POST_ROUTING
+    ```
+3. Implement two more hooks to achieve the following: (1) preventing other computers to ping the VM, and (2) preventing other computers to telnet into the VM. Please implement two different hook functions, but register them to the same `netfilter` hook. You should decide what hook to use. Telnet’s default port is TCP port `23`. To test it, you can start the containers, go to `10.9.0.5`, run the following commands (`10.9.0.1` is the IP address assigned to the VM; for the sake of simplicity, you can hardcode this IP address in your firewall rules):
+    ```
+    ping 10.9.0.1
+    telnet 10.9.0.1
+    ```
+**Important note:** Since we make changes to the kernel, there is a high chance that you would crash the kernel. Make sure you back up your files frequently, so you don’t lose them. One of the common reasons for system crash is that you forget to unregister hooks. When a module is removed, these hooks will still be triggered, but the module is no longer present in the kernel. That will cause system crash. To avoid this, make sure for each hook you add to your module, add a line in `removeFilter` to unregister it, so when
+the module is removed, those hooks are also removed.
+
+## 4 Task 2: Experimenting with Stateless Firewall Rules
+
+In the previous task, we had a chance to build a simple firewall using `netfilter`. Actually,`Linux` already has a built-in firewall, also based on `netfilter`. This firewall is called `iptables`. Technically, the kernel part implementation of the firewall is called `Xtables`, while `iptables` is a user-space program to configure the firewall. However,`iptables` is often used to refer to both the kernel-part implementation
+and the user-space program.
+
+### 4.1 Background of iptables
+
+In this task, we will use `iptables` to set up a firewall. The` iptables` firewall is designed not only to filter packets, but also to make changes to packets. To help manage these firewall rules for different purposes, `iptables` organizes all rules using a hierarchical structure: table, chain, and rules. There are several tables, each specifying the main purpose of the rules as shown in Table 1. For example, rules for
+packet filtering should be placed in the `filter` table, while rules for making changes to packets should be placed in the `nat` or `mangle` tables.
+<Br>
+&emsp; Each table contains several chains, each of which corresponds to a `netfilter` hook. Basically, each chain indicates where its rules are enforced. For example, rules on the `FORWARD` chain are enforced at the `NF_INET_FORWARD` hook, and rules on the `INPUT` chain are enforced at the `NF_INET_LOCALIN` hook.
+<Br>
+&emsp; Each chain contains a set of firewall rules that will be enforced. When we set up firewalls, we add rules to these chains. For example, if we would like to block all incoming `telnet` traffic, we would add a rule to the `INPUT` chain of the `filter` table. If we would like to redirect all incoming `telnet` traffic to a different port on a different host, basically doing port forwarding, we can add a rule to the `INPUT` chain of the `mangle` table, as we need to make changes to packets.
+
+### 4.2 Using iptables
+
+To add rules to the chains in each table, we use the `iptables` command, which is a quite powerful command. Students can find the manual of `iptables` by typing "`man iptables`" or easily find many tutorials from online. What makes `iptables` complicated is the many command-line arguments that we need to provide when using the command. However, if we understand the structure of these command-line arguments, we will find out that the command is not that complicated.
+<Br>
+&emsp; In a typical `iptables` command, we add a rule to or remove a rule from one of the chains in one of the tables, so we need to specify a table name (the default is `filter`), a chain name, and an operation on the chain. After that, we specify the rule, which is basically a pattern that will be matched with each of the packets passing through. If there is a match, an action will be performed on this packet. The general
+structure of the command is depicted in the following:
+
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; Table 1: `iptables` Tables and Chains
+
+![iptables Tables and Chains](../media/net-sec-firewall-exploration-iptables-chains.png)
 
 ```
-#!/bin/env python
-
-import random
-s = "abcdefghijklmnopqrstuvwxyz"
-list = random.sample(s, len(s))
-key = ’’.join(list)
-print(key)
+iptables -t <table> -<operation> <chain>  <rule>  -j <target>
+         ----------  -------------------- ------- -----------
+           Table       Chain               Rule     Action
 ```
-
-* Step 2: let us do some simplification to the original article. We convert all upper cases to lower cases,
-    and then removed all the punctuations and numbers. We do keep the spaces between words, so you can
-    still see the boundaries of the words in the ciphertext. In real encryption using monoalphabetic cipher,
-    spaces will be removed. We keep the spaces to simplify the task. We did this using the following
-    command:
-
+&emsp; The rule is the most complicated part of theiptablescommand. We will provide additional information later when we use specific rules. In the following, we list some commonly used commands:
 ```
-$ tr [:upper:] [:lower:] < article.txt > lowercase.txt
-$ tr -cd ’[a-z][\n][:space:]’ < lowercase.txt > plaintext.txt
+// List all the rules in a table (without line number)
+iptables -t nat -L -n
+
+// List all the rules in a table (with line number)
+iptables -t filter -L -n --line-numbers
+
+// Delete rule No. 2 in the INPUT chain of the filter table
+iptables -t filter -D INPUT 2
+
+// Drop all the incoming packets that satisfy the <rule>
+iptables -t filter -A INPUT <rule> -j DROP
 ```
+**Note.** Docker relies on `iptables` to manage the networks it creates, so it adds many rules to the `nat` table. When we manipulate `iptables` rules, we should be careful not to remove Docker rules. For example, it will be quite dangerous to run the "`iptables -t nat -F`" command, because it removes all the rules in thenattable, including many of the Docker rules. That will cause trouble to Docker containers. Doing this for the `filter` table is fine, because Docker does not touch this table.
 
-- Step 3: we use thetrcommand to do the encryption. We only encrypt letters, while leaving the space
-    and return characters alone.
+### 4.3 Task 2.A: Protecting the Router
 
+In this task, we will set up rules to prevent outside machines from accessing the router machine, except ping. Please execute the follow `ingiptables` command on the router container, and then try to access it from `10.9.0.5`. (1) Can you ping the router? (2) Can you telnet into the router (a telnet server is running on all the containers; an account called `seed` was created on them with a password `dees`). Please report your
+observation and explain the purpose for each rule.
+
+<pre>
+iptables -A INPUT  -p icmp --icmp-type echo-request -j ACCEPT
+iptables -A OUTPUT -p icmp --icmp-type echo-reply   -j ACCEPT
+iptables -P OUTPUT DROP <b>  <---- Set default rule for OUTPUT </b>
+iptables -P INPUT  DROP <b>  <---- Set default rule for INPUT </b>
+</pre>
+
+**Cleanup.** Before moving on to the next task, please restore the `filter` table to its original state by running the following commands:
 ```
-$ tr ’abcdefghijklmnopqrstuvwxyz’ ’sxtrwinqbedpvgkfmalhyuojzc’ \
-       < plaintext.txt > ciphertext.txt
+iptables -F
+iptables -P OUTPUT ACCEPT
+iptables -P INPUT ACCEPT
 ```
-
-We have created a ciphertext using a different encryption key (not the one described above). It is included
-in  `Labsetup.zip` file, which can be downloaded from the lab’s website. Your job is to use the frequency
-analysis to figure out the encryption key and the original plaintext.
-We have also provided a Python program (`freq.py`) inside the `Labsetup/Files` folder. It reads
-the `ciphertext.txt` file, and produces the statistics for n-grams, including the single-letter frequencies,
-bigram frequencies (2-letter sequence), and trigram frequencies (3-letter sequence), etc.
-
+&emsp; Another way to restore the states of all the tables is to restart the container. You can do it using the following command (you need to find the container’s ID first):
 ```
-$ ./freq.py
--------------------------------------
-1-gram (top 20):
-n: 488
-y: 373
-v: 348
-...
--------------------------------------
-2-gram (top 20):
-yt: 115
-tn: 89
-mu: 74
-...
--------------------------------------
-3-gram (top 20):
-ytn: 78
-vup: 30
-mur: 20
-...
+$ docker restart <Container ID>
 ```
+### 4.4 Task 2.B: Protecting the Internal Network
 
-Guidelines. Using the frequency analysis, you can find out the plaintext for some of the characters quite
-easily. For those characters, you may want to change them back to its plaintext, as you may be able to get
-more clues. It is better to use capital letters for plaintext, so for the same letter, we know which is plaintext and which is ciphertext. You can use the t r command to do this. For example, in the following, we replace
-letters `a, e`, and `t` in `in.txt` with letters `X, G, E`, respectively; the results are saved in `out.txt`.
+In this task, we will set up firewall rules on the router to protect the internal network `192.168.60.0/24`. We need to use the FORWARD chain for this purpose.
+<Br>
+&emsp; The directions of packets in the INPUT and OUTPUT chains are clear: packets are either coming into (for INPUT) or going out (for OUTPUT). This is not true for the FORWARD chain, because it is bi-directional: packets going into the internal network or going out to the external network all go through this chain. To specify the direction, we can add the interface options using "`-i xyz`" (coming in from the `xyz` interface) and/or "`-o xyz`" (going out from the `xyz` interface). The interfaces for the internal and external networks are different. You can find out the interface names via the "`ip addr`" command.
+<Br>
+&emsp; In this task, we want to implement a firewall to protect the internal network. More specifically, we need to enforce the following restrictions on the ICMP traffic:
 
+1. Outside hosts cannot ping internal hosts.
+2. Outside hosts can ping the router.
+3. Internal hosts can ping outside hosts.
+4. All other packets between the internal and external networks should be blocked.
+
+&emsp; You will need to use the "`-p icmp`" options to specify the match options related to the ICMP protocol. You can run "`iptables -p icmp -h`" to find out all the ICMP match options. The following example drops the ICMP echo request.
 ```
-$ tr ’aet’ ’XGE’ < in.txt > out.txt
+iptables -A FORWARD -p icmp --icmp-type echo-request -j DROP
 ```
+&emsp; In your lab report, please include your rules and screenshots to demonstrate that your firewall works as expected. When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
-There are many online resources that you can use. We list some useful links in the following:
+### 4.5 Task 2.C: Protecting Internal Servers
 
-* `https://en.wikipedia.org/wiki/Frequency_analysis`: This Wikipedia page pro-
-    vides frequencies for a typical English plaintext.
-* `https://en.wikipedia.org/wiki/Bigram`: Bigram frequency.
-* `https://en.wikipedia.org/wiki/Trigram`: Trigram frequency.
+In this task, we want to protect the TCP servers inside the internal network ( `192.168.60.0/24`). More specifically, we would like to achieve the following objectives.
 
-## 4 Task 2: Encryption using Different Ciphers and Modes
+1. All the internal hosts run a telnet server (listening to port `23`). Outside hosts can only access the telnet server on `192.168.60.5`, not the other internal hosts.
+2. Outside hosts cannot access other internal servers.
+3. Internal hosts can access all the internal servers.
+4. Internal hosts cannot access external servers.
+5. In this task, the connection tracking mechanism is not allowed. It will be used in a later task.
 
-In this task, we will play with various encryption algorithms and modes. You can use the following `openssl enc` command to encrypt/decrypt a file. To see the manuals, you can type `man openssl` and `man enc`.
-
+&emsp; You will need to use the "`-p tcp`" options to specify the match options related to the TCP protocol. You can run "`iptables -p tcp -h`" to find out all the TCP match options. The following example allows the TCP packets coming from the interfaceeth0if their source port is `5000`.
 ```
-$ openssl enc -ciphertype -e -in plain.txt -out cipher.bin \
-        -K 00112233445566778889aabbccddeeff \
-        -iv 0102030405060708
+iptables -A FORWARD -i eth0 -p tcp --sport 5000 -j ACCEPT
 ```
+&emsp; When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
-Please replace the `ciphertype` with a specific cipher type, such as `-aes-128-cbc, -bf-cbc, -aes-128-cfb`, etc. In this task, you should try at least 3 different ciphers. You can find the meaning
-of the command-line options and all the supported cipher types by typing `"man enc"`. We include some
-common options for the `openssl enc` command in the following:
+## 5 Task 3: Connection Tracking and Stateful Firewall
 
+In the previous task, we have only set up stateless firewalls, which inspect each packet independently. However, packets are usually not independent; they may be part of a TCP connection, or they may be ICMP packets triggered by other packets. Treating them independently does not take into consideration the context of the packets, and can thus lead to inaccurate, unsafe, or complicated firewall rules. For example, if we would like to allow TCP packets to get into our network only if a connection was made first, we can-
+not achieve that easily using stateless packet filters, because when the firewall examines each individual TCP packet, it has no idea whether the packet belongs to an existing connection or not, unless the firewall maintains some state information for each connection. If it does that, it becomes a stateful firewall.
+
+### 5.1 Task 3.A: Experiment with the Connection Tracking
+
+To support stateful firewalls, we need to be able to track connections. This is achieved by the `conntrack` mechanism inside the kernel. In this task, we will conduct experiments related to this module, and get familiar with the connection tracking mechanism. In our experiment, we will check the connection tracking information on the router container. This can be done using the following command:
 ```
--in <file> input file
--out <file> output file
--e encrypt
--d decrypt
--K/-iv key/iv in hex is the next argument
--[pP] print the iv/key (then exit if -P)
+# conntrack -L
 ```
-## 5 Task 3: Encryption Mode – ECB vs. CBC
+&emsp; The goal of the task is to use a series of experiments to help students understand the connection concept in this tracking mechanism, especially for the ICMP and UDP protocols, because unlike TCP, they do not have connections. Please conduct the following experiments. For each experiment, please describe your observation, along with your explanation.
 
-The file `pic.original.bmp` is included in the `Labsetup.zi`p file, and it is a simple picture. We
-would like to encrypt this picture, so people without the encryption keys cannot know what is in the picture.
-Please encrypt the file using the ECB (Electronic Code Book) and CBC (Cipher Block Chaining) modes,
-and then do the following:
+- ICMP experiment: Run the following command and check the connection tracking information on the router. Describe your observation. How long is the ICMP connection state be kept?
+    ```
+    // On 10.9.0.5, send out ICMP packets
+    # ping 192.168.60.5
+    ```
 
-1. Let us treat the encrypted picture as a picture, and use a picture viewing software to display it. How-
-    ever, For the `.bmp` file, the first 54 bytes contain the header information about the picture, we have
-    to set it correctly, so the encrypted file can be treated as a legitimate .bmpfile. We will replace the
-    header of the encrypted picture with that of the original picture. We can use the `bless` hex editor
-    tool (already installed on our VM) to directly modify binary files. We can also use the following
-    commands to get the header from `p1.bmp`, the data from `p2.bmp` (from offset 55 to the end of the
-    file), and then combine the header and data together into a new file.
+- UDP experiment: Run the following command and check the connection tracking information on the router. Describe your observation. How long is the UDP connection state be kept?
+    ```
+    // On 192.168.60.5, start a netcat UDP server
+    # nc -lu 9090
 
+    // On 10.9.0.5, send out UDP packets
+    # nc -u 192.168.60.5 9090
+    <type something, then hit return>
+    ```
 
+- TCP experiment: Run the following command and check the connection tracking information on the router. Describe your observation. How long is the TCP connection state be kept?
+    ```
+    // On 192.168.60.5, start a netcat TCP server
+    # nc -l 9090
+
+    // On 10.9.0.5, send out TCP packets
+    # nc 192.168.60.5 9090
+    <type something, then hit return>
+    ```
+
+### 5.2 Task 3.B: Setting Up a Stateful Firewall
+
+Now we are ready to set up firewall rules based on connections. In the following example, the "`-m conntrack`" option indicates that we are using the `conntrack` module, which is a very important module for `iptables`; it tracks connections, and `iptables` replies on the tracking information to build stateful firewalls. The `--ctsate ESTABLISHED,RELATED` indicates that whether a packet belongs to an `ESTABLISHED` or `RELATED` connection. The rule allows TCP packets belonging to an existing connection to pass through.
 ```
-$ head -c 54 p1.bmp > header
-$ tail -c +55 p2.bmp > body
-$ cat header body > new.bmp
+iptables -A FORWARD -p tcp -m conntrack     \
+         --ctstate ESTABLISHED,RELATED -j ACCEPT
 ```
-
-2. Display the encrypted picture using a picture viewing program (we have installed an image viewer
-    program called `eog` on our VM). Can you derive any useful information about the original picture
-    from the encrypted picture? Please explain your observations.\
-   
-Select a picture of your choice, repeat the experiment above, and report your observations.
-
-## 6 Task 4: Padding
-
-For block ciphers, when the size of a plaintext is not a multiple of the block size, padding may be required.
-The PKCS#5 padding scheme is widely used by many block ciphers (see Chapter 21.4 of the SEED book
-for details). We will conduct the following experiments to understand how this type of padding works:
-
-1. Use ECB, CBC, CFB, and OFB modes to encrypt a file (you can pick any cipher). Please report which
-    modes have paddings and which ones do not. For those that do not need paddings, please explain why.
-2. Let us create three files, which contain 5 bytes, 10 bytes, and 16 bytes, respectively. We can use the
-    following `"echo -n"` command to create such files. The following example creates a file `f1.txt`
-    with length 5 (without the `-n` option, the length will be 6, because a newline character will be added
-    by `echo`):
-
+&emsp; The rule above does not cover the SYN packets, which do not belong to any established connection. Without it, we will not be able to create a connection in the first place. Therefore, we need to add a rule to accept incoming SYN packet:
 ```
-$ echo -n "12345" > f1.txt
+iptables -A FORWARD -p tcp -i eth0 --dport 8080 --syn     \
+         -m conntrack --ctstate NEW -j ACCEPT
 ```
-We then use "`openssl enc -aes-128-cbc -e`" to encrypt these three files using 128-bit AES
-with CBC mode. Please describe the size of the encrypted files.
-We would like to see what is added to the padding during the encryption. To achieve this goal, we
-will decrypt these files using "`openssl enc -aes-128-cbc -d`". Unfortunately, decryption
-by default will automatically remove the padding, making it impossible for us to see the padding.
-However, the command does have an option called "`-nopad`", which disables the padding, i.e.,
-during the decryption, the command will not remove the padded data. Therefore, by looking at the
-decrypted data, we can see what data are used in the padding. Please use this technique to figure out
-what paddings are added to the three files.
-It should be noted that padding data may not be printable, so you need to use a hex tool to display the
-content. The following example shows how to display a file in the hex format:
-
+&emsp; Finally, we will set the default policy on FORWARD to drop everything. This way, if a packet is not accepted by the two rules above, they will be dropped.
 ```
-$ hexdump -C p1.txt
-00000000 31 32 33 34 35 36 37 38 39 49 4a 4b 4c 0a |123456789IJKL.|
-$ xxd p1.txt
-00000000: 3132 3334 3536 3738 3949 4a4b 4c0a 123456789IJKL.
+iptables -P FORWARD DROP
 ```
-
-## 7 Task 5: Error Propagation – Corrupted Cipher Text
-
-To understand the error propagation property of various encryption modes, we would like to do the following
-exercise:
+&emsp; Please rewrite the firewall rules in Task 2.C, but this time, **we will add a rule allowing internal hosts to visit any external server** (this was not allowed in Task 2.C). After you write the rules using the connection tracking mechanism, think about how to do it without using the connection tracking mechanism (you do not need to actually implement them). Based on these two sets of rules, compare these two different approaches, and explain the advantage and disadvantage of each approach. When you are done with this task, remember to clear all the rules.
 
 
-1. Create a text file that is at least 1000 bytes long.
-2. Encrypt the file using the AES-128 cipher.
-3. Unfortunately, a single bit of the 55th byte in the encrypted file got corrupted. You can achieve this
-    corruption using the `bless` hex editor.
-4. Decrypt the corrupted ciphertext file using the correct key and IV.
+## 6 Task 4: Limiting Network Traffic
 
-Please answer the following question: How much information can you recover by decrypting the corrupted file, if the encryption mode is ECB, CBC, CFB, or OFB, respectively? Please answer this question before you conduct this task, and then find out whether your answer is correct or wrong after you finish this
-task. Please provide justification.
-
-## 8 Task 6: Initial Vector (IV) and Common Mistakes
-
-Most of the encryption modes require an initial vector (IV). Properties of an IV depend on the cryptographic
-scheme used. If we are not careful in selecting IVs, the data encrypted by us may not be secure at all, even
-though we are using a secure encryption algorithm and mode. The objective of this task is to help students
-understand the problems if an IV is not selected properly. The detailed guidelines for this task is provided
-in Chapter 21.5 of the SEED book.
-
-### 8.1 Task 6.1. IV Experiment
-
-A basic requirement for IV is *uniqueness*, which means that no IV may be reused under the same key. To
-understand why, please encrypt the same plaintext using (1) two different IVs, and (2) the same IV. Please
-describe your observation, based on which, explain why IV needs to be unique.
-
-### 8.2 Task 6.2. Common Mistake: Use the Same IV
-
-One may argue that if the plaintext does not repeat, using the same IV is safe. Let us look at the Output
-Feedback (OFB) mode. Assume that the attacker gets hold of a plaintext `(P1)` and a ciphertext `(C1)` ,
-can he/she decrypt other encrypted messages if the IV is always the same? You are given the following
-information, please try to figure out the actual content of `P2` based on `C2, P1`, and `C1`.
-
+In addition to blocking packets, we can also limit the number of packets that can pass through the firewall. This can be done using the `limit` module of `iptables`. In this task, we will use this module to limit how many packets from `10.9.0.5` are allowed to get into the internal network. You can use "`iptables -m limit -h`" to see the manual. 
 ```
-Plaintext (P1): This is a known message!
-Ciphertext (C1): a469b1c502c1cab966965e50425438e1bb1b5f9037a4c159
-
-Plaintext (P2): (unknown to you)
-Ciphertext (C2): bf73bcd3509299d566c35b5d450337e1bb175f903fafc159
+$ iptables -m limit -h
+limit match options:
+--limit avg          max average match rate: default 3/hour
+                     [Packets per second unless followed by
+                     /sec /minute /hour /day postfixes]
+--limit-burst number number to match in a burst, default 5
 ```
-
-If we replace OFB in this experiment with CFB (Cipher Feedback), how much of `P2`can be revealed? You only need to answer the question; there is no need to demonstrate that. The attack used in this experiment is called the *known-plaintext attack*, which is an attack model for cryptanalysis where the attacker has access to both the plaintext and its encrypted version (ciphertext). If this can lead to the revealing of further secret information, the encryption scheme is not considered as secure.
-
-Sample Code. We provide a sample program called `samplecode.py`, which can be found inside the `Labsetup/Files` folder. It shows you how to XOR strings (ascii strings and hex strings). The code is
-shown in the following:
-
+&emsp; Please run the following commands on router, and then ping `192.168.60.5` from `10.9.0.5`. Describe your observation. Please conduct the experiment with and without the second rule, and then explain whether the second rule is needed or not, and why.
 ```
-#!/usr/bin/python
+iptables -A FORWARD -s 10.9.0.5 -m limit \
+         --limit 10/minute --limit-burst 5 -j ACCEPT
 
-# XOR two bytearrays
-def xor(first, second):
-return bytearray(xˆy for x,y in zip(first, second))
-
-MSG = "A message"
-HEX_1 = "aabbccddeeff1122334455"
-HEX_2 = "1122334455778800aabbdd"
-
-# Convert ascii/hex string to bytearray
-D1 = bytes(MSG, ’utf-8’)
-D2 = bytearray.fromhex(HEX_1)
-D3 = bytearray.fromhex(HEX_2)
-
-r1 = xor(D1, D2)
-r2 = xor(D2, D3)
-r3 = xor(D2, D2)
-print(r1.hex())
-print(r2.hex())
-print(r3.hex())
+iptables -A FORWARD -s 10.9.0.5 -j DROP
 ```
+## 7 Task 5: Load Balancing
 
-### 8.3 Task 6.3. Common Mistake: Use a Predictable IV
-
-From the previous tasks, we now know that IVs cannot repeat. Another important requirement on IV is that
-IVs need to be unpredictable for many schemes, i.e., IVs need to be randomly generated. In this task, we
-will see what is going to happen if IVs are predictable.
-Assume that Bob just sent out an encrypted message, and Eve knows that its content is either `Yes` or
-`No`; Eve can see the ciphertext and the IV used to encrypt the message, but since the encryption algorithm
-AES is quite strong, Eve has no idea what the actual content is. However, since Bob uses predictable IVs,
-Eve knows exactly what IV Bob is going to use next.
-A good cipher should not only tolerate the known-plaintext attack described previously, it should also
-tolerate the *chosen-plaintext attack*, which is an attack model for cryptanalysis where the attacker can obtain the ciphertext for an arbitrary plaintext. Since AES is a strong cipher that can tolerate the chosen-plaintext attack, Bob does not mind encrypting any plaintext given by Eve; he does use a different IV for each
-plaintext, but unfortunately, the IVs he generates are not random, and they can always be predictable.
-Your job is to construct a message and ask Bob to encrypt it and give you the ciphertext. Your objective
-is to use this opportunity to figure out whether the actual content of Bob’s secret message is `Yes` or `No`. For this task, your are given an encryption oracle which simulates Bob and encrypts message with 128-bit AES
-with CBC mode. You can get access to the oracle by running the following command:
-
+The `iptables` is very powerful. In addition to firewalls, it has many other applications. We will not be able to cover all its applications in this lab, but we will experimenting with one of the applications, load balancing. In this task, we will use it to load balance three UDP servers running in the internal network. Let’s first start the server on each of the hosts: `192.168.60.5,192.168.60.6`, and `192.168.60`. (the `-k` option indicates that the server can receive UDP datagrams from multiple hosts):
 ```
-$ nc 10.9.0.80 3000
-Bob’s secret message is either "Yes" or "No", without quotations.
-Bob’s ciphertex: 54601f27c6605da997865f62765117ce
-The IV used : d27d724f59a84d9b61c0f2883efa7bbc
-
-Next IV : d34c739f59a84d9b61c0f2883efa7bbc
-
-Your plaintext : 11223344aabbccdd
-Your ciphertext: 05291d3169b2921f08fe34449ddc
-
-Next IV : cd9f1ee659a84d9b61c0f2883efa7bbc
-Your plaintext : <your input>
+nc -luk 8080
 ```
-
-After showing you the next IV, the oracle will ask you to input a plaintext message (as a hex string).
-The oracle will encrypt the message with the next IV, and outputs the new ciphertext. You can try different
-plaintexts, but keep in mind that every time, the IV will change, but it is predictable. To simply your job, we
-let the oracle print out the next IV. To exit from the interaction, press Ctrl+C.
-
-### 8.4 Additional Readings
-
-There are more advanced cryptanalysis on IV that is beyond the scope of this lab. Students can read the
-article posted in this URL: `https://defuse.ca/cbcmodeiv.htm`. Because the requirements on IV
-really depend on cryptographic schemes, it is hard to remember what properties should be maintained when
-we select an IV. However, we will be safe if we always use a new IV for each encryption, and the new IV
-needs to be generated using a good pseudo random number generator, so it is unpredictable by adversaries.
-See another SEED lab (Random Number Generation Lab) for details on how to generate cryptographically
-strong pseudo random numbers.
-
-## 9 Task 7: Programming using the Crypto Library
-
-This task is mainly designed for students in Computer Science/Engineering or related fields, where pro-
-gramming is required. Students should check with their professors to see whether this task is required for
-their courses or not.
-In this task, you are given a plaintext and a ciphertext, and your job is to find the key that is used for the
-encryption. You do know the following facts:
-
-* The `aes-128-cbc` cipher is used for the encryption.
-* The key used to encrypt this plaintext is an English word shorter than 16 characters; the word can be
-    found from a typical English dictionary. Since the word has less than 16 characters (i.e. 128 bits),
-    pound signs (#: hexadecimal value is `0x23`) are appended to the end of the word to form a key of
-    128 bits.
-
-Your goal is to write a program to find out the encryption key. You can download a English word list
-from the Internet. We have also included one in the `Labsetup.zip` file. The plaintext, ciphertext, and IV
-are listed in the following:
-
+&emsp; We can use the `statistic` module to achieve load balancing. You can type the following command to get its manual. You can see there are two modes: `random` and `nth`. We will conduct experiments using both of them.
 ```
-Plaintext (total 21 characters): This is a top secret.
-Ciphertext (in hex format): 764aa26b55a4da654df6b19e4bce00f
-ed05e09346fb0e762583cb7da2ac93a
-IV (in hex format): aabbccddeeff
+$ iptables -m statistic -h
+statistic match options:
+--mode mode          Match mode (random, nth)
+random mode:
+[!] --probability p  Probability
+nth mode:
+[!] --every n        Match every nth packet
+--packet p           Initial counter value (0 <= p <= n-1, default 0)
 ```
-
-You need to pay attention to the following issues:
-
-- If you choose to store the plaintext message in a file, and feed the file to your program, you need to
-    check whether the file length is 21. If you type the message in a text editor, you need to be aware that
-    some editors may add a special character to the end of the file. The easiest way to store the message
-    in a file is to use the following command (the `-n` flag tells `echo` not to add a trailing newline):
-
+**Using the nth mode (round-robin).** On the router container, we set the following rule, which applies to all the UDP packets going to port `8080`. The `nth` mode of the `statistic` module is used; it implements a round-robin load balancing policy: for every three packets, pick the packet 0 (i.e., the first one), change its destination IP address and port number to `192.168.60.5` and `8080`, respectively. The modified packets will continue on its journey.
 ```
-$ echo -n "This is a top secret." > file
+iptables -t nat -A PREROUTING -p udp --dport 8080 \
+         -m statistic --mode nth --every 3 --packet 0 \
+         -j DNAT --to-destination 192.168.60.5:8080
 ```
-
-- In this task, you are supposed to write your own program to invoke the crypto library. No credit will
-    be given if you simply use the `openssl` commands to do this task. Sample code can be found from
-    the following URL:
-       https://www.openssl.org/docs/man1.1.1/man3/EVP_CipherInit.html
-
-- When you compile your code using `gcc`, do not forget to include the `-lcrypto` flag, because your
-    code needs the `crypto` library. See the following example:
-
+&emsp; It should be noted that those packets that do not match the rule will continue on their journeys; they will not be modified or blocked. With this rule in place, if you send a UDP packet to the router’s `8080` port, you will see that one out of three packets gets to `192.168.60.5`.
 ```
-$ gcc -o myenc myenc.c -lcrypto
+// On 10.9.0.5
+echo hello | nc -u 10.9.0.11 8080
+<hit Ctrl-C>
 ```
+&emsp; Please add more rules to the router container, so all the three internal hosts get the equal number of packets. Please provide some explanation for the rules.
 
-Note to instructors. We encourage instructors to generate their own plaintext and ciphertext using a dif-
-ferent key; this way students will not be able to get the answer from another place or from previous courses.
-Instructors can use the following commands to achieve this goal (please replace the word `example` with
-another secret word, and add the correct number of # signs to make the length of the string to be 16):
-
+**Using the random mode.** Let’s use a different mode to achieve the load balancing. The following rule will select a matching packet with the probability `P`. You need to replace `P` with a probability number.
 ```
-$ echo -n "This is a top secret." > plaintext.txt
-$ echo -n "example#########" > key
-$ xxd -p key
-6578616d706c
-$ openssl enc -aes-128-cbc -e -in plaintext.txt -out ciphertext.bin \
--K 6578616d706c65232323232323232323 \
--iv 010203040506070809000a0b0c0d0e0f \
-$ xxd -p ciphertext.bin
-e5accdb667e8e569b1b34f423508c15422631198454e104ceb658f5918800c
+iptables -t nat -A PREROUTING -p udp --dport 8080 \
+-m statistic --mode random --probability P \
+-j DNAT --to-destination 192.168.60.5:8080
 ```
+&emsp; Please use this mode to implement your load balancing rules, so each internal server get roughly the same amount of traffic (it may not be exactly the same, but should be close when the total number of packets is large). Please provide some explanation for the rules.
 
-## 10 Submission
+## 8 Submission and Demonstration
 
-You need to submit a detailed lab report, with screenshots, to describe what you have done and what you
-have observed. You also need to provide explanation to the observations that are interesting or surprising.
-Please also list the important code snippets followed by explanation. Simply attaching code without any
-explanation will not receive credits.
-
-## 11 Acknowledgment
-
-We would like to acknowledge the contribution made by the following people and organizations:
-
-- Jiamin Shen developed the following: the code running inside the container, and the container version
-    of the task on predictable IV.
-- The US National Science Foundation provided the funding for the SEED project from 2002 to 2020.
-- Syracuse University provided the resources for the SEED project from 2001 onwards.
+You need to submit a detailed lab report, with screenshots, to describe what you have done and what you have observed. You also need to provide explanation to the observations that are interesting or surprising. Please also list the important code snippets followed by explanation. Simply attaching code without any explanation will not receive credits.
 
 
