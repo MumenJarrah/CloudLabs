@@ -103,20 +103,13 @@ root@9652715c8e0a:/#
 // be sufficient, as long as they are unique among all the containers.
 ```
 
-If you encounter problems when setting up the lab environment, please read the “Common Problems”
-section of the manual for potential solutions.
 
-DNS setup. In this document, we use `www.bank32.com` as an example to show how to set up an HTTPS
-web server with this name. Students need to use a different name for their lab. Unless the name is specified
-by the instructors, students should include their last name and the current year in the server name. For
-example, if `John Smith` does this lab in 2020, the server name should be `www.smith2020.com`. You
-do not need to own this domain; you just need to map this name to the container’s IP address by adding the
-following entries to `/etc/hosts`(the first entry is required, otherwise, the example in this lab description
-will not work):
+### DNS setup.
+In this document, we will use bank32.com as the server name for the HTTPS web server throughout the lab.
+The bank32.com server name will be recognized within the container setup as specified in the docker-compose.yml and related configuration files.
 
 ```
 10.9.0.80 [http://www.bank32.com](http://www.bank32.com)
-10.9.0.80 [http://www.smith2020.com](http://www.smith2020.com)
 ```
 
 ## 3 Lab Tasks
