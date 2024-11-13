@@ -324,8 +324,8 @@ In order to make the website work, we need to enable Apache’s `ssl` module and
 They can be done using the following commands, which are already executed when the container is built.
 
 ```
-# a2enmod ssl // Enable the SSL module
-# a2ensite bank32_apache_ssl // Enable the sites described in this file
+$ a2enmod ssl // Enable the SSL module
+$ a2ensite bank32_apache_ssl // Enable the sites described in this file
 ```
 
 Starting the Apache server. The Apache server is not automatically started in the container, because of
@@ -334,13 +334,13 @@ command to start the server (we also list some related commands):
 
 ```
 // Start the server
-# service apache2 start
+$ service apache2 start
 
 // Stop the server
-# service apache2 stop
+$ service apache2 stop
 
 // Restart a server
-# service apache2 restart
+$ service apache2 restart
 ```
 
 When Apache starts, it needs to load the private key for each HTTPS site. Our private key is encrypted,
@@ -356,7 +356,8 @@ container. When you use the Compose file inside the `Labsetup` folder to create 
 sub-folder will be mounted to the container. Anything you put inside this folder will be accessible from
 inside of the running container.
 
-Browsing the website. Now, point the browser to your web server (note: you should put `https` at the
+### Browsing the website. 
+Now, point the browser to your web server (note: you should put `https` at the
 beginning of your URL, instead of using `http`). Please describe and explain your observations. Most likely,
 you will not be able to succeed, this is because ... (the reasons are omitted here; students should provide the
 explanation in their lab reports). Please fix the problem and demonstrate that you can successfully visit the
@@ -389,7 +390,8 @@ we will emulate an MITM attack, and see how exactly PKI can defeat it. We will s
 first. In this document, we use `www.example.com` as the target website, but in the task, to make it more
 meaningful, students should pick a popular website, such as a banking site and social network site.
 
-Step 1: Setting up the malicious website. In Task 4, we have already set up an HTTPS website. We
+#### Step 1: Setting up the malicious website. 
+In Task 4, we have already set up an HTTPS website. We
 will use the same Apache server to impersonate `www.example.com` (or the site chosen by students).
 To achieve that, we will follow the instruction in Task 4 to add a `VirtualHost` entry to Apache’s SSL
 configuration file: the `ServerName` should be `www.example.com`, but the rest of the configuration can
@@ -406,7 +408,8 @@ website, The fake site can display a login page similar to the one in the target
 tell the difference, they may type their account credentials in the fake webpage, essentially disclosing the
 credentials to the attacker.
 
-Step 2: Becoming the man in the middle There are several ways to get the user’s HTTPS request to land
+#### Step 2: Becoming the man in the middle.
+There are several ways to get the user’s HTTPS request to land
 in our web server. One way is to attack the routing, so the user’s HTTPS request is routed to our web server.
 Another way is to attack DNS, so when the victim’s machine tries to find out the IP address of the target web
 server, it gets the IP address of our web server. In this task, we simulate the attack-DNS approach. Instead of
@@ -418,7 +421,8 @@ our malicious web server.
 10.9.0.80 [http://www.example.com](http://www.example.com)
 ```
 
-Step 3: Browse the target website. With everything set up, now visit the target real website, and see what
+#### Step 3: Browse the target website. 
+With everything set up, now visit the target real website, and see what
 your browser would say. Please explain what you have observed.
 
 Figure 2 shows the Apache2 Ubuntu Default Page displayed when accessing http://www.example.com. This indicates that the browser request is being directed to our server, confirming the DNS redirection is working.
