@@ -25,50 +25,59 @@ root trust is broken. This lab covers the following topics:
 - Apache, HTTP, and HTTPS
 - Man-in-the-middle attacks
 
-Readings. Detailed coverage of PKI can be found in the following:
-
-- Chapter 23 of the SEED Book,Computer & Internet Security: A Hands-on Approach, 2nd Edition,
-    by Wenliang Du. See details at https://www.handsonsecurity.net.
-
-Related labs. A topic related to this lab is the Transport Layer Security (TLS), which is based on PKI.
-We have a separate lab for TLS. In addition, we have a lab called RSA Public-Key Encryption and Signature
-Lab, which focuses on the algorithm part of the public-key cryptography.
-
-Lab environment. This lab has been tested on the SEED Ubuntu 20.04 VM. You can download a pre-built
-image from the SEED website, and run the SEED VM on your own computer. However, most of the SEED
-labs can be conducted on the cloud, and you can follow our instruction to create a SEED VM on the cloud.
 
 ## 2 Lab Environment
 
-Files needed for this lab are included in Labsetup.zip, which can be fetched by running the following commands.
+### Step 1: Download and Extract the Lab Files
+Download Labsetup.zip from the lab’s website and unzip it. This will provide you with the necessary files, including the docker-compose.yml for setting up the lab environment.
 
 ```
+# Download the lab setup files
 $ sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/Crypto_PKI/Labsetup.zip
+
+# Unzip the lab setup files
 $ sudo unzip Labsetup.zip
 ```
 
-In this lab, we will generate public-key certificates, and then use them to secure web servers. The certificate
-generation tasks will be conducted on the VM, but we will use a container to host the web server.
-
-
-Container Setup and Commands. Please download the `Labsetup.zip` file to your VM from the lab’s
-website, unzip it, enter the Labsetup folder, and use the `docker-compose.yml` file to set up the lab
-environment. Detailed explanation of the content in this file and all the involved `Dockerfile` can be
-found from the user manual, which is linked to the website of this lab. If this is the first time you set up a
-SEED lab environment using containers, it is very important that you read the user manual.
-In the following, we list some of the commonly used commands related to Docker and Compose. Since
-we are going to use these commands very frequently, we have created aliases for them in the `.bashrc` file
-(in our provided SEEDUbuntu 20.04 VM).
+### Step 2: Navigate to the Lab Setup Directory
+Move into the extracted Labsetup folder, where you will find the docker-compose.yml file and other necessary files.
 
 ```
-$ docker-compose build # Build the container image
-$ docker-compose up # Start the container
-$ docker-compose down # Shut down the container
+# Enter the Labsetup folder
+$ cd Labsetup
+```
 
-// Aliases for the Compose commands above
-$ dcbuild # Alias for: docker-compose build
-$ dcup # Alias for: docker-compose up
-$ dcdown # Alias for: docker-compose down
+### Step 3: Build the Docker Container
+Use Docker Compose to build the container image. This step prepares the environment for running your web server with the required configurations.
+
+```
+# Build the Docker container
+$ docker-compose build
+
+# OR use the alias provided in the SEEDUbuntu 20.04 VM
+$ dcbuild
+```
+
+### Step 4: Start the Docker Container
+This command initializes and runs the container based on the configurations specified in the docker-compose.yml file.
+
+```
+# Start the Docker container
+$ docker-compose up
+
+# OR use the alias
+$ dcup
+```
+
+### Step 5: Stop and Shut Down the Docker Container
+When you’re finished or need to reset the environment, shut down the running container to release resources.
+
+```
+# Stop and shut down the Docker container
+$ docker-compose down
+
+# OR use the alias
+$ dcdown
 ```
  
 All the containers will be running in the background. To run commands on a container, we often need
