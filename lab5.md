@@ -149,7 +149,7 @@ By default, OpenSSL use the configuration file from `/usr/lib/ssl/openssl.cnf`. 
 to make changes to this file, we will copy it into our current directory, and instruct `OpenSSL` to use this
 copy instead.
 The `[CAdefault]` section of the configuration file shows the default setting that we need to prepare.
-We need to create several sub-directories. Please uncomment the `uniquesubject` line to allow creation
+We need to create several sub-directories. Please uncomment the `uniquesubject` line (by removing the sign (#) in the CA_default settings) to allow creation
 of certifications with the same subject, because it is very likely that we will do that in the lab.
 
 Listing 1: Default CA setting
@@ -160,7 +160,7 @@ dir = ./demoCA # Where everything is kept
 certs = $dir/certs # Where the issued certs are kept
 crl_dir = $dir/crl # Where the issued crl are kept
 database = $dir/index.txt # database index file.
-#unique_subject = no # Set to ’no’ to allow creation of
+# unique_subject = no # Set to ’no’ to allow creation of
 # several certs with same subject.
 new_certs_dir = $dir/newcerts # default place for new certs.
 serial = $dir/serial # The current serial number
