@@ -54,7 +54,7 @@ Use Docker Compose to build the container image. This step prepares the environm
 # Build the Docker container
 $ docker-compose build
 
-# OR use the alias provided in the SEEDUbuntu 20.04 VM
+# OR use the alias
 $ dcbuild
 ```
 
