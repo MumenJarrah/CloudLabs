@@ -213,7 +213,7 @@ Please run the above commands. From the output, please identify the followings:
 
 ### 3.2 Task 2: Generating a Certificate Request for Your Web Server
 
-A company called `bank32.com`(replace this with the name of your own web server) wants to get a public-
+A company called `bank32.com` wants to get a public-
 key certificate from our CA. First it needs to generate a Certificate Signing Request (CSR), which basically
 includes the company’s public key and identity information. The CSR will be sent to the CA, who will
 verify the identity information in the request, and then generate a certificate.
