@@ -85,23 +85,38 @@ to get a shell on that container. We first need to use the `"docker ps"` command
 the container, and then use `"docker exec"` to start a shell on that container. We have created aliases for
 them in the `.bashrc` file.
 
-```
-$ dockps // Alias for: docker ps --format "{{.ID}} {{.Names}}"
-$ docksh <id> // Alias for: docker exec -it <id> /bin/bash
+#### Step 1: List Running Docker Containers
+Use the alias dockps to view a list of running containers, displaying each container's ID and name in a simplified format.
 
-// The following example shows how to get a shell inside hostC
+```
 $ dockps
+```
+
+#### Output
+The output will list all running Docker containers, each with its unique ID and assigned name. An example output might look like this:
+
+```
 b1004832e275 hostA-10.9.0.5
 0af4ea7a3e2e hostB-10.9.0.6
 9652715c8e0a hostC-10.9.0.7
-
-$ docksh 96
-root@9652715c8e0a:/#
-
-// Note: If a docker command requires a container ID, you do not need to
-// type the entire ID string. Typing the first few characters will
-// be sufficient, as long as they are unique among all the containers.
 ```
+Each line includes the container ID and its corresponding name (in this case, hostA, hostB, and hostC), along with their assigned IP addresses.
+
+#### Step 2: Access a Specific Container’s Shell
+To open a shell inside a specific container, use the alias docksh followed by the first few characters of the container's ID. For example, to access hostC, use the ID prefix 96 (from the third line in the previous output).
+
+```
+$ docksh 96
+```
+
+#### Output
+You will be logged into a shell session inside the specified container. The prompt will change to show the container ID, indicating that you are now inside the container:
+
+```
+root@9652715c8e0a:/#
+```
+
+#### Note: If a Docker command requires the container ID, you only need to type the first few characters, as long as they are unique among all running containers.
 
 
 ### DNS setup.
