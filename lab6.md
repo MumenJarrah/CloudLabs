@@ -85,7 +85,14 @@ $ sudo unzip Labsetup.zip
 ```
 
 ### Step 2: Navigate to the Lab Setup Directory
-Move into the extracted Labsetup folder, where you will find the docker-compose.yml file and other necessary files.
+Move into the extracted Labsetup folder, where you will find the docker-compose.yml file and other necessary files. Detailed explanation of the content in this file and all the involved `Dockerfile` can be found from the user manual, which is linked
+
+![Lab setup](images/net-sec-firewall-exploration-lab-setup.png)
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Figure 1: Lab setup
+
+to the website of this lab. If this is the first time you set up a SEED lab environment using containers, it is very important that you read the user manual.
+<Br>
+&emsp; 
 
 ```
 # Enter the Labsetup folder
