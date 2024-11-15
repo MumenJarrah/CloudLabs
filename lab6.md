@@ -17,60 +17,6 @@ The learning objective of this lab is two-fold: learning how firewalls work, and
 - Using `iptables` to set up firewall rules
 - Various applications of `iptables`
 
-**Lab environment.** This lab has been tested on the SEED Ubuntu 20.04 VM. You can download a pre-built image from the SEED website, and run the SEED VM on your own computer. However, most of the SEED labs can be conducted on the cloud, and you can follow our instruction to create a SEED VM on the cloud.
-
-## 2 Environment Setup Using Containers
-
-In this lab, we need to use multiple machines. Their setup is depicted in Figure 1. We will use containers to set up this lab environment.
-
-Files needed for this lab are included in Labsetup.zip, which can be fetched by running the following commands.
-
-```
-$ sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/Firewall/Labsetup.zip
-$ sudo unzip Labsetup.zip
-```
-
-### 2.1 Container Setup and Commands
-
-Please download the `Labsetup.zip` file to your VM from the lab’s website, unzip it, enter the `Labsetup` folder, and use the `docker-compose.yml` file to set up the lab environment. Detailed explanation of the content in this file and all the involved `Dockerfile` can be found from the user manual, which is linked
-
-![Lab setup](images/net-sec-firewall-exploration-lab-setup.png)
-&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Figure 1: Lab setup
-
-to the website of this lab. If this is the first time you set up a SEED lab environment using containers, it is very important that you read the user manual.
-<Br>
-&emsp; In the following, we list some of the commonly used commands related to Docker and Compose. Since we are going to use these commands very frequently, we have created aliases for them in the.bashrcfile (in our provided SEEDUbuntu 20.04 VM).
-```
-$ docker-compose build      # Build the container image
-$ docker-compose up         # Start the container
-$ docker-compose down       # Shut down the container
-
-// Aliases for the Compose commands above
-$ dcbuild       # Alias for: docker-compose build
-$ dcup          # Alias for: docker-compose up
-$ dcdown        # Alias for: docker-compose down
-```
-&emsp; All the containers will be running in the background. To run commands on a container, we often need to get a shell on that container. We first need to use the "`docker ps`" command to find out the ID of the container, and then use "`docker exec`" to start a shell on that container. We have created aliases for them in the `.bashrc` file.
-```
-$ dockps        // Alias for: docker ps --format "{{.ID}} {{.Names}}"
-$ docksh <id>  // Alias for: docker exec -it <id> /bin/bash
-
-// The following example shows how to get a shell inside hostC
-$ dockps
-b1004832e275 hostA-10.9.0.5
-0af4ea7a3e2e hostB-10.9.0.6
-9652715c8e0a hostC-10.9.0.7
-
-$ docksh 96
-root@9652715c8e0a:/#
-
-// Note: If a docker command requires a container ID, you do not need to
-//      type the entire ID string. Typing the first few characters will
-//      be sufficient, as long as they are unique among all the containers.
-```
-&emsp; If you encounter problems when setting up the lab environment, please read the “Common Problems”
-section of the manual for potential solutions.
-
 ## 2 Lab Environment
 
 ### Step 1: Download and Extract the Lab Files
@@ -85,7 +31,7 @@ $ sudo unzip Labsetup.zip
 ```
 
 ### Step 2: Navigate to the Lab Setup Directory
-Move into the extracted Labsetup folder, where you will find the docker-compose.yml file and other necessary files. 
+Move into the extracted Labsetup folder, where you will find the docker-compose.yml file and other necessary files. Figure 1 shows the lab setup.
 
 ![Lab setup](images/net-sec-firewall-exploration-lab-setup.png)
 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Figure 1: Lab setup
