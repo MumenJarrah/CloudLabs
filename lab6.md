@@ -5,7 +5,7 @@ Copyright © 2006 - 2021 by Wenliang Du.
 This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. If you remix, transform, or build upon the material, this copyright notice must be left intact, or reproduced in a way that is reasonable to the medium in which the work is being re-published.
 ```
 
-## 1 Overview
+## 1. Overview
 
 The learning objective of this lab is two-fold: learning how firewalls work, and setting up a simple firewall for a network. Students will first implement a simple stateless packet-filtering firewall, which inspects packets, and decides whether to drop or forward a packet based on firewall rules. Through this implementation task, students can get the basic ideas on how firewall works.
 <Br>
@@ -17,7 +17,7 @@ The learning objective of this lab is two-fold: learning how firewalls work, and
 - Using `iptables` to set up firewall rules
 - Various applications of `iptables`
 
-## 2 Lab Environment
+## 2. Lab Environment
 
 ### Step 1: Download and Extract the Lab Files
 Download Labsetup.zip from the lab’s website and unzip it. This will provide you with the necessary files, including the docker-compose.yml for setting up the lab environment.
@@ -115,7 +115,7 @@ root@9652715c8e0a:/#
 
 #### Note: If a Docker command requires the container ID, you only need to type the first few characters, as long as they are unique among all running containers.
 
-## 3 Task 1: Implementing a Simple Firewall
+## 3. Task 1: Implementing a Simple Firewall
 
 In this task, we will implement a simple packet filtering type of firewall, which inspects each incoming and outgoing packets, and enforces the firewall policies set by the administrator. Since the packet processing is done within the kernel, the filtering must also be done within the kernel. Therefore, it seems that implementing such a firewall requires us to modify the `Linux` kernel. In the past, this had to be done by modifying and rebuilding the kernel. The modern `Linux` operating systems provide several new mechanisms to facilitate the manipulation of packets without rebuilding the kernel image. These two mechanisms are *Loadable Kernel Module*(`LKM`) and `Netfilter`.
 
@@ -308,7 +308,7 @@ unsigned int blockUDP(void *priv, struct sk_buff *skb,
 **Important note:** Since we make changes to the kernel, there is a high chance that you would crash the kernel. Make sure you back up your files frequently, so you don’t lose them. One of the common reasons for system crash is that you forget to unregister hooks. When a module is removed, these hooks will still be triggered, but the module is no longer present in the kernel. That will cause system crash. To avoid this, make sure for each hook you add to your module, add a line in `removeFilter` to unregister it, so when
 the module is removed, those hooks are also removed.
 
-## 4 Task 2: Experimenting with Stateless Firewall Rules
+## 4. Task 2: Experimenting with Stateless Firewall Rules
 
 In the previous task, we had a chance to build a simple firewall using `netfilter`. Actually,`Linux` already has a built-in firewall, also based on `netfilter`. This firewall is called `iptables`. Technically, the kernel part implementation of the firewall is called `Xtables`, while `iptables` is a user-space program to configure the firewall. However,`iptables` is often used to refer to both the kernel-part implementation
 and the user-space program.
@@ -411,7 +411,7 @@ iptables -A FORWARD -i eth0 -p tcp --sport 5000 -j ACCEPT
 ```
 &emsp; When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
-## 5 Task 3: Connection Tracking and Stateful Firewall
+## 5. Task 3: Connection Tracking and Stateful Firewall
 
 In the previous task, we have only set up stateless firewalls, which inspect each packet independently. However, packets are usually not independent; they may be part of a TCP connection, or they may be ICMP packets triggered by other packets. Treating them independently does not take into consideration the context of the packets, and can thus lead to inaccurate, unsafe, or complicated firewall rules. For example, if we would like to allow TCP packets to get into our network only if a connection was made first, we can-
 not achieve that easily using stateless packet filters, because when the firewall examines each individual TCP packet, it has no idea whether the packet belongs to an existing connection or not, unless the firewall maintains some state information for each connection. If it does that, it becomes a stateful firewall.
@@ -469,7 +469,7 @@ iptables -P FORWARD DROP
 &emsp; Please rewrite the firewall rules in Task 2.C, but this time, **we will add a rule allowing internal hosts to visit any external server** (this was not allowed in Task 2.C). After you write the rules using the connection tracking mechanism, think about how to do it without using the connection tracking mechanism (you do not need to actually implement them). Based on these two sets of rules, compare these two different approaches, and explain the advantage and disadvantage of each approach. When you are done with this task, remember to clear all the rules.
 
 
-## 6 Task 4: Limiting Network Traffic
+## 6. Task 4: Limiting Network Traffic
 
 In addition to blocking packets, we can also limit the number of packets that can pass through the firewall. This can be done using the `limit` module of `iptables`. In this task, we will use this module to limit how many packets from `10.9.0.5` are allowed to get into the internal network. You can use "`iptables -m limit -h`" to see the manual. 
 ```
@@ -487,7 +487,7 @@ iptables -A FORWARD -s 10.9.0.5 -m limit \
 
 iptables -A FORWARD -s 10.9.0.5 -j DROP
 ```
-## 7 Task 5: Load Balancing
+## 7. Task 5: Load Balancing
 
 The `iptables` is very powerful. In addition to firewalls, it has many other applications. We will not be able to cover all its applications in this lab, but we will experimenting with one of the applications, load balancing. In this task, we will use it to load balance three UDP servers running in the internal network. Let’s first start the server on each of the hosts: `192.168.60.5,192.168.60.6`, and `192.168.60`. (the `-k` option indicates that the server can receive UDP datagrams from multiple hosts):
 ```
