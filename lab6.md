@@ -6,14 +6,8 @@ This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAl
 ```
 
 ## 1. Overview
+Linux has a built-in firewall is called `iptables`. In this lab, students will be given a simple network topology, and are asked to use `iptables` to set up firewall rules to protect the network. Students will also be exposed to several other interesting applications of `iptables`. This lab covers the following topics:
 
-The learning objective of this lab is two-fold: learning how firewalls work, and setting up a simple firewall for a network. Students will first implement a simple stateless packet-filtering firewall, which inspects packets, and decides whether to drop or forward a packet based on firewall rules. Through this implementation task, students can get the basic ideas on how firewall works.
-<Br>
-&emsp; Actually, Linux already has a built-in firewall, also based on `netfilter`. This firewall is called `iptables`. Students will be given a simple network topology, and are asked to use `iptables` to set up firewall rules to protect the network. Students will also be exposed to several other interesting applications of `iptables`. This lab covers the following topics:
-
-- Firewall
-- Netfilter
-- Loadable kernel module
 - Using `iptables` to set up firewall rules
 - Various applications of `iptables`
 
