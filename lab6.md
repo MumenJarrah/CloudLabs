@@ -153,6 +153,9 @@ iptables -t filter -D INPUT 2
 // Drop all the incoming packets that satisfy the <rule>
 iptables -t filter -A INPUT <rule> -j DROP
 ```
+The following figure shows all the rules in a table (with line number):
+![iptables_rules](images/lab6-demo-1.png)
+
 **Note.** Docker relies on `iptables` to manage the networks it creates, so it adds many rules to the `nat` table. When we manipulate `iptables` rules, we should be careful not to remove Docker rules. For example, it will be quite dangerous to run the "`iptables -t nat -F`" command, because it removes all the rules in thenattable, including many of the Docker rules. That will cause trouble to Docker containers. Doing this for the `filter` table is fine, because Docker does not touch this table.
 
 ### 3.3 Task 1.A: Protecting the Router
