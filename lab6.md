@@ -171,6 +171,12 @@ iptables -P OUTPUT DROP <b>  <---- Set default rule for OUTPUT </b>
 iptables -P INPUT  DROP <b>  <---- Set default rule for INPUT </b>
 </pre>
 
+After running ping and telent, you can see the following outputs:
+
+![iptables_rules](images/lab6-demo-2.png)
+
+![iptables_rules](images/lab6-demo-3.png)
+
 **Cleanup.** Before moving on to the next task, please restore the `filter` table to its original state by running the following commands:
 ```
 iptables -F
