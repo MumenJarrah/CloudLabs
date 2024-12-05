@@ -342,5 +342,9 @@ iptables -t nat -A PREROUTING -p udp --dport 8080 \
 ```
 &emsp; Please use this mode to implement your load balancing rules, so each internal server get roughly the same amount of traffic (it may not be exactly the same, but should be close when the total number of packets is large). Please provide some explanation for the rules.
 
+It is expecting to see something like this:
+
+![iptables_rules](images/lab6-demo-5.png)
+
 ### You have successfully completed the lab
 
