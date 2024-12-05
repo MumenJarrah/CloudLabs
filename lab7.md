@@ -586,9 +586,4 @@ arping -I tap0 192.168.53.
 arping -I tap0 1.2.3.
 ```
 
-## 11 Submission
-
-You need to submit a detailed lab report, with screenshots, to describe what you have done and what you
-have observed. You also need to provide explanation to the observations that are interesting or surprising.
-Please also list the important code snippets followed by explanation. Simply attaching code without any
-explanation will not receive credits.
+### You have successfully completed the lab
