@@ -233,6 +233,11 @@ To support stateful firewalls, we need to be able to track connections. This is 
 ```
 # conntrack -L
 ```
+
+The following figure illustrates connections tracking using `conntrack` mechanism:
+
+![iptables_rules](images/lab6-demo-4.png)
+
 &emsp; The goal of the task is to use a series of experiments to help students understand the connection concept in this tracking mechanism, especially for the ICMP and UDP protocols, because unlike TCP, they do not have connections. Please conduct the following experiments. For each experiment, please describe your observation, along with your explanation.
 
 - ICMP experiment: Run the following command and check the connection tracking information on the router. Describe your observation. How long is the ICMP connection state be kept?
