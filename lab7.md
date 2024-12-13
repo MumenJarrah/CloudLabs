@@ -133,8 +133,8 @@ root@9652715c8e0a:/#
 more convenient inside the VM than in containers, because we can use our favorite editors. In order for the
 VM and container to share files, we have created a shared folder between the VM and the container using
 the Docker volumes. If you look at the Docker Compose file, you will find out that we have added the
-following entry to some of the containers. It indicates mounting the ./volumesfolder on the host machine
-(i.e., the VM) to the /volumesfolder inside the container. We will write our code in the./volumes
+following entry to some of the containers. It indicates mounting the ./volumes folder on the host machine
+(i.e., the VM) to the /volumes folder inside the container. We will write our code in the./volumes
 folder (on the VM), so they can be used inside the containers.
 
 ```
@@ -146,32 +146,30 @@ volumes:
 as expected, being able to look at where packets go can help us identify the problems. There are several
 different ways to do packet sniffing:
 
-- Running tcpdumpon containers. We have already installedtcpdumpon each container. To sniff
+- Running tcpdumpon containers. We have already installed tcpdump on each container. To sniff
     the packets going through a particular interface, we just need to find out the interface name, and then
-    do the following (assume that the interface name iseth0):
+    do the following (assume that the interface name is eth0):
   ```
     # tcpdump -i eth0 -n
   ```
   
-It should be noted that inside containers, due to the isolation created by Docker, when we run
-tcpdumpinside a container, we can only sniff the packets going in and out of this container. We won’t be able to sniff the packets between other containers. However, if a container uses thehost
-mode in its network setup, it can sniff other containers’ packets.
+It should be noted that inside containers, due to the isolation created by Docker, when we run tcpdump inside a container, we can only sniff the packets going in and out of this container. We won’t be able to sniff the packets between other containers. However, if a container uses thehost mode in its network setup, it can sniff other containers’ packets.
 
 - Runningtcpdumpon the VM. If we runtcpdumpon the VM, we do not have the restriction on the
     containers, and we can sniff all the packets going among containers. The interface name for a network
     is different on the VM than on the container. On containers, each interface name usually starts with
-    eth; on the VM, the interface name for the network created by Docker starts withbr-, followed by
-    the ID of the network. You can always use theip addresscommand to get the interface name on
+    eth; on the VM, the interface name for the network created by Docker starts with br-, followed by
+    the ID of the network. You can always use the ip address command to get the interface name on
     the VM and containers.
-- We can also run Wireshark on the VM to sniff packets. Similar totcpdump, we need to select what
+- We can also run Wireshark on the VM to sniff packets. Similar to tcpdump, we need to select what
     interface we want Wireshark to sniff on.
 
 **Testing**. Please conduct the following testings to ensure that the lab environment is set up correctly:
 
-- HostUcan communicate with VPN Server.
+- HostU can communicate with VPN Server.
 - VPN Server can communicate with HostV.
-- HostUshould not be able to communicate with HostV.
-- Runtcpdumpon the router, and sniff the traffic on each of the network. Show that you can capture
+- HostU should not be able to communicate with HostV.
+- Run tcpdump on the router, and sniff the traffic on each of the network. Show that you can capture
     packets.
 
 ## 3 Task 2: Create and Configure TUN Interface
@@ -189,7 +187,7 @@ the virtual network interface.
 When a program is attached to a TUN/TAP interface, IP packets sent by the kernel to this interface will
 be piped into the program. On the other hand, IP packets written to the interface by the program will be
 piped into the kernel, as if they came from the outside through this virtual network interface. The program
-can use the standardread()andwrite()system calls to receive packets from or send packets to the
+can use the standardread() and write() system calls to receive packets from or send packets to the
 virtual interface.
 The objective of this task is to get familiar with the TUN/TAP technology. We will conduct several
 experiments to learn the technical details of the TUN/TAP interface. We will use the following Python
@@ -229,7 +227,7 @@ while True:
 
 ### 3.1 Task 2.a: Name of the Interface
 
-We will run thetun.pyprogram on HostU. Make the abovetun.pyprogram executable, and run it using
+We will run the tun.py program on HostU. Make the above tun.py program executable, and run it using
 the root privilege. See the following commands:
 
 ```
@@ -278,7 +276,7 @@ os.system("ip addr add 192.168.53.99/24 dev {}".format(ifname))
 os.system("ip link set dev {} up".format(ifname))
 ```
 
-After running the two commands above, run the"ip address"command again, and report your
+After running the two commands above, run the "ip address" command again, and report your
 observation. How is it different from that before running the configuration commands?
 
 ### 3.3 Task 2.c: Read from the TUN Interface
