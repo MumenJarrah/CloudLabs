@@ -234,7 +234,7 @@ following command:
 ```
 # ip address
 ```
-![tun](images/lab7-1.png)
+![tun](images/lab7-1_2.png)
 
 You should be able to find an interface called tun0. Your job in this task is to change thetun.py
 program, so instead of usingtunas the prefix of the interface name, use your last name as the prefix. For
