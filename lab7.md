@@ -68,7 +68,7 @@ private network) want to communicate with HostVvia the VPN tunnel. To simulate t
 HostVto VPN Server (also serving as a gateway). In such a setup, HostVis not directly accessible from
 the Internet; nor is it directly accessible from HostU.
 
-Lab setup. Please download theLabsetup.zipfile to your VM from the lab’s website, unzip it, enter
+"Lab setup". Please download theLabsetup.zipfile to your VM from the lab’s website, unzip it, enter
 theLabsetupfolder, and use thedocker-compose.ymlfile to set up the lab environment. Detailed
 explanation of the content in this file and all the involved `Dockerfile` can be found from the user manual,
 which is linked to the website of this lab. If this is the first time you set up a SEED lab environment using
