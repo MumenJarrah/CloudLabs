@@ -38,7 +38,7 @@ its tunnel. We have a separate lab, called VPN Lab, which is a comprehensive lab
 and the protection part. Students can work on this tunneling lab first. After learning the PKI and TLS, they
 can then move on to the comprehensive VPN lab.
 
-Lab environment. This lab has been tested on the SEED Ubuntu 20.04 VM. You can download a pre-built
+**Lab environment**. This lab has been tested on the SEED Ubuntu 20.04 VM. You can download a pre-built
 image from the SEED website, and run the SEED VM on your own computer. However, most of the SEED
 labs can be conducted on the cloud, and you can follow our instruction to create a SEED VM on the cloud.
 
@@ -68,7 +68,7 @@ private network) want to communicate with HostVvia the VPN tunnel. To simulate t
 HostVto VPN Server (also serving as a gateway). In such a setup, HostVis not directly accessible from
 the Internet; nor is it directly accessible from HostU.
 
-"Lab setup". Please download theLabsetup.zipfile to your VM from the lab’s website, unzip it, enter
+**Lab setup**. Please download theLabsetup.zipfile to your VM from the lab’s website, unzip it, enter
 theLabsetupfolder, and use thedocker-compose.ymlfile to set up the lab environment. Detailed
 explanation of the content in this file and all the involved `Dockerfile` can be found from the user manual,
 which is linked to the website of this lab. If this is the first time you set up a SEED lab environment using
@@ -116,7 +116,7 @@ root@9652715c8e0a:/#
 If you encounter problems when setting up the lab environment, please read the “Common Problems”
 section of the manual for potential solutions.
 
-Shared folder. In this lab, we need to write our own code and run it inside containers. Code editing is
+**Shared folder**. In this lab, we need to write our own code and run it inside containers. Code editing is
 more convenient inside the VM than in containers, because we can use our favorite editors. In order for the
 VM and container to share files, we have created a shared folder between the VM and the container using
 the Docker volumes. If you look at the Docker Compose file, you will find out that we have added the
@@ -129,7 +129,7 @@ volumes:
     - ./volumes:/volumes
 ```
 
-Packet sniffing. Being able to sniffing packets is very important in this lab, because if things do not go
+**Packet sniffing**. Being able to sniffing packets is very important in this lab, because if things do not go
 as expected, being able to look at where packets go can help us identify the problems. There are several
 different ways to do packet sniffing:
 
@@ -153,7 +153,7 @@ mode in its network setup, it can sniff other containers’ packets.
 - We can also run Wireshark on the VM to sniff packets. Similar totcpdump, we need to select what
     interface we want Wireshark to sniff on.
 
-Testing. Please conduct the following testings to ensure that the lab environment is set up correctly:
+**Testing**. Please conduct the following testings to ensure that the lab environment is set up correctly:
 
 - HostUcan communicate with VPN Server.
 - VPN Server can communicate with HostV.
