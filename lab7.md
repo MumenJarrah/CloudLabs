@@ -25,30 +25,15 @@ another more comprehensive VPN lab that includes the encryption part. The lab co
 - IP tunneling
 - Routing
 
-Readings and videos. Detailed coverage of the TUN/TAP virtual interface and how VPN works can be
-found in the following:
-
-- Chapter 19 of the SEED Book,Computer & Internet Security: A Hands-on Approach, 2nd Edition,
-    by Wenliang Du. See details at https://www.handsonsecurity.net.
-- Section 8 of the SEED Lecture,Internet Security: A Hands-on Approach, by Wenliang Du. See details
-    at https://www.handsonsecurity.net/video.html.
-
-Related lab. This lab only covers the tunneling part of a VPN, while a complete VPN also needs to protect
-its tunnel. We have a separate lab, called VPN Lab, which is a comprehensive lab, covering both tunneling
-and the protection part. Students can work on this tunneling lab first. After learning the PKI and TLS, they
-can then move on to the comprehensive VPN lab.
-
-**Lab environment**. This lab has been tested on the SEED Ubuntu 20.04 VM. You can download a pre-built
-image from the SEED website, and run the SEED VM on your own computer. However, most of the SEED
-labs can be conducted on the cloud, and you can follow our instruction to create a SEED VM on the cloud.
-
-Files needed for this lab are included in Labsetup.zip, which can be fetched by running the following commands.
+**Lab environment**. Files needed for this lab are included in Labsetup.zip, which can be fetched by running the following commands.
 
 ```
-sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/VPN_Tunnel/Labsetup.zip
-sudo unzip Labsetup.zip
-```
+# Download the lab setup files
+$ sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/VPN_Tunnel/Labsetup.zip
 
+# Unzip the lab setup files
+$ sudo unzip Labsetup.zip
+```
 
 ## 2 Task 1: Network Setup
 
@@ -63,58 +48,86 @@ depicted in Figure 1.
 
 In practice, the VPN client and VPN server are connected via the Internet. For the sake of simplicity,
 we directly connect these two machines to the same LAN in this lab, i.e., this LAN simulates the Internet.
-The third machine, HostV, is a computer inside the private network. Users on HostU(outside of the
-private network) want to communicate with HostVvia the VPN tunnel. To simulate this setup, we connect
-HostVto VPN Server (also serving as a gateway). In such a setup, HostVis not directly accessible from
+The third machine, HostV, is a computer inside the private network. Users on HostU (outside of the
+private network) want to communicate with HostV via the VPN tunnel. To simulate this setup, we connect
+HostV to VPN Server (also serving as a gateway). In such a setup, HostV is not directly accessible from
 the Internet; nor is it directly accessible from HostU.
 
-**Lab setup**. Please download theLabsetup.zipfile to your VM from the lab’s website, unzip it, enter
-theLabsetupfolder, and use thedocker-compose.ymlfile to set up the lab environment. Detailed
+**Lab setup**. Please download the Labsetup.zip file to your VM from the lab’s website, unzip it, enter
+the Labsetup folder, and use the docker-compose.yml file to set up the lab environment. Detailed
 explanation of the content in this file and all the involved `Dockerfile` can be found from the user manual,
-which is linked to the website of this lab. If this is the first time you set up a SEED lab environment using
-containers, it is very important that you read the user manual.
+which is linked to the website of this lab. 
+
 In the following, we list some of the commonly used commands related to Docker and Compose. Since
 we are going to use these commands very frequently, we have created aliases for them in the .bashrc file
 (in our provided SEEDUbuntu 20.04 VM).
 
+**Build the Docker Container**. Use Docker Compose to build the container image. This step prepares the environment for running your web server with the required configurations.
+
 ```
-$ docker-compose build # Build the container image
-$ docker-compose up # Start the container
-$ docker-compose down # Shut down the container
+# Build the Docker container
+$ docker-compose build
 
-// Aliases for the Compose commands above
-$ dcbuild # Alias for: docker-compose build
-
-
-$ dcup # Alias for: docker-compose up
-$ dcdown # Alias for: docker-compose down
+# OR use the alias
+$ dcbuild
 ```
 
+**Start the Docker Container**. This command initializes and runs the container based on the configurations specified in the docker-compose.yml file.
+
+```
+# Start the Docker container
+$ docker-compose up
+
+# OR use the alias
+$ dcup
+```
+
+**Stop and Shut Down the Docker Container**. When you’re finished or need to reset the environment, shut down the running container to release resources.
+
+```
+# Stop and shut down the Docker container
+$ docker-compose down
+
+# OR use the alias
+$ dcdown
+```
+ 
 All the containers will be running in the background. To run commands on a container, we often need
-to get a shell on that container. We first need to use the"docker ps"command to find out the ID of
-the container, and then use"docker exec"to start a shell on that container. We have created aliases for
+to get a shell on that container. We first need to use the `"docker ps"` command to find out the ID of
+the container, and then use `"docker exec"` to start a shell on that container. We have created aliases for
 them in the `.bashrc` file.
 
-```
-$ dockps // Alias for: docker ps --format "{{.ID}} {{.Names}}"
-$ docksh <id> // Alias for: docker exec -it <id> /bin/bash
+**List Running Docker Containers**. Use the alias dockps to view a list of running containers, displaying each container's ID and name in a simplified format.
 
-// The following example shows how to get a shell inside hostC
+```
 $ dockps
-b1004832e275 hostA-10.9.0.
-0af4ea7a3e2e hostB-10.9.0.
-9652715c8e0a hostC-10.9.0.
-
-$ docksh 96
-root@9652715c8e0a:/#
-
-// Note: If a docker command requires a container ID, you do not need to
-// type the entire ID string. Typing the first few characters will
-// be sufficient, as long as they are unique among all the containers.
 ```
 
-If you encounter problems when setting up the lab environment, please read the “Common Problems”
-section of the manual for potential solutions.
+#### Output
+The output will list all running Docker containers, each with its unique ID and assigned name. An example output might look like this:
+
+```
+b1004832e275 hostA-10.9.0.5
+0af4ea7a3e2e hostB-10.9.0.6
+9652715c8e0a hostC-10.9.0.7
+```
+Each line includes the container ID and its corresponding name (in this case, hostA, hostB, and hostC), along with their assigned IP addresses.
+
+**Access a Specific Container’s Shell**. To open a shell inside a specific container, use the alias docksh followed by the first few characters of the container's ID. For example, to access hostC, use the ID prefix 96 (from the third line in the previous output).
+
+```
+$ docksh 96
+```
+
+#### Output
+You will be logged into a shell session inside the specified container. The prompt will change to show the container ID, indicating that you are now inside the container:
+
+```
+root@9652715c8e0a:/#
+```
+
+#### Note: If a Docker command requires the container ID, you only need to type the first few characters, as long as they are unique among all running containers.
+
 
 **Shared folder**. In this lab, we need to write our own code and run it inside containers. Code editing is
 more convenient inside the VM than in containers, because we can use our favorite editors. In order for the
