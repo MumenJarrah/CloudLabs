@@ -28,7 +28,7 @@ $ sudo unzip Labsetup.zip
 Move into the extracted Labsetup folder, where you will find the docker-compose.yml file and other necessary files. Figure 1 shows the lab setup.
 
 ![Lab setup](images/net-sec-firewall-exploration-lab-setup.png)
-&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Figure 1: Lab setup
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Figure 1: Firewall Lab setup.
 
 <Br>
 &emsp; 
