@@ -161,7 +161,7 @@ The following figure shows all the rules in a table (with line number):
 
 ### 3.3 Task 1.A: Protecting the Router
 
-In this task, we will set up rules to prevent outside machines from accessing the router machine, except ping. Please execute the follow `ingiptables` command on the router container, and then try to access it from `10.9.0.5`. (1) Can you ping the router? (2) Can you telnet into the router (a telnet server is running on all the containers; an account called `seed` was created on them with a password `dees`). Please report your
+In this task, we will set up rules to prevent outside machines from accessing the router machine, except ping. Please execute the following `iptables` command on the router container, and then try to access it from `10.9.0.5`. (1) Can you ping the router? (2) Can you telnet into the router (a telnet server is running on all the containers; an account called `seed` was created on them with a password `dees`). Please report your
 observation and explain the purpose for each rule.
 
 <pre>
