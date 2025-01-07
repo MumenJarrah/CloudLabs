@@ -139,7 +139,7 @@ iptables -t <table> -<operation> <chain>  <rule>  -j <target>
          ----------  -------------------- ------- -----------
            Table       Chain               Rule     Action
 ```
-&emsp; The rule is the most complicated part of theiptablescommand. We will provide additional information later when we use specific rules. In the following, we list some commonly used commands:
+&emsp; The rule is the most complicated part of the iptables command. We will provide additional information later when we use specific rules. In the following, we list some commonly used commands:
 ```
 // List all the rules in a table (without line number)
 iptables -t nat -L -n
