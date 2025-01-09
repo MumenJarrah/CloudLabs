@@ -33,6 +33,19 @@ Move into the extracted Labsetup folder, where you will find the docker-compose.
 <Br>
 &emsp; 
 
+The network topology can be described as the following:
+
+* Router:
+   - External interface: eth0 (10.9.0.11/24) connected to the external network (10.9.0.0/24).
+   - Internal interface: eth1 (192.168.60.11/24) connected to the internal network (192.168.60.0/24).
+* Hosts:
+   - Attacker: 10.9.0.1 (external network).
+   - External host: 10.9.0.5 (external network).
+   - Internal hosts:
+     Host 1: 192.168.60.5.
+     Host 2: 192.168.60.6.
+     Host 3: 192.168.60.7.
+
 ```
 # Enter the Labsetup folder
 $ cd Labsetup
@@ -208,6 +221,31 @@ In this task, we will set up firewall rules on the router to protect the interna
 ```
 iptables -A FORWARD -p icmp --icmp-type echo-request -j DROP
 ```
+To implement the Firewall rules, you need to run the following commands on the router to configure the firwall using ipatables.
+
+**Rule 1:** Block ICMP echo requests from external hosts to internal hosts:
+```
+iptables -A FORWARD -p icmp --icmp-type echo-request -i eth0 -o eth1 -j DROP
+```
+
+**Rule 2:** Allow external hosts to ping the router's external interface:
+```
+iptables -A INPUT -p icmp --icmp-type echo-request -i eth0 -j ACCEPT
+iptables -A OUTPUT -p icmp --icmp-type echo-reply -o eth0 -j ACCEPT
+```
+
+**Rule 3:** Allow internal hosts to ping external hosts:
+```
+iptables -A FORWARD -p icmp --icmp-type echo-request -i eth1 -o eth0 -j ACCEPT
+iptables -A FORWARD -p icmp --icmp-type echo-reply -i eth0 -o eth1 -j ACCEPT
+```
+
+**Rule 4:** Block all other traffic between internal and external networks:
+```
+iptables -A FORWARD -i eth0 -o eth1 -j DROP
+iptables -A FORWARD -i eth1 -o eth0 -j DROP
+```
+
 &emsp; In your lab report, please include your rules and screenshots to demonstrate that your firewall works as expected. When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
 ### 3.5 Task 1.C: Protecting Internal Servers
