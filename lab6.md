@@ -175,11 +175,11 @@ After running `ping` and `telnet` commands, you can see the following outputs:
 
 **ping**
 
-![iptables_rules](images/lab6-2-ping.png)
+![iptables_rules](images/lab6-2-ping-u.png)
 
 **telnet**
 
-![iptables_rules](images/lab6-3-telnet.png)
+![iptables_rules](images/lab6-2-telnet.png)
 
 **Cleanup.** Before moving on to the next task, please restore the `filter` table to its original state by running the following commands:
 ```
