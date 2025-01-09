@@ -173,9 +173,13 @@ iptables -P INPUT  DROP <b>  <---- Set default rule for INPUT </b>
 
 After running `ping` and `telent` commands, you can see the following outputs:
 
-![iptables_rules](images/lab6-demo-3.png)
+**ping**
 
-![iptables_rules](images/lab6-demo-2.png)
+![iptables_rules](images/lab6-2-ping.png)
+
+**telnet**
+
+![iptables_rules](images/lab6-3-telnet.png)
 
 **Cleanup.** Before moving on to the next task, please restore the `filter` table to its original state by running the following commands:
 ```
