@@ -298,7 +298,54 @@ iptables -A FORWARD -i eth0 -o eth1 -p tcp --dport 23 -j DROP
 ```
 This command blocks external hosts from accessing Telnet servers on any other internal host (192.168.60.6 or 192.168.60.7).
 
+3. Block external access to all other internal servers
+```
+iptables -A FORWARD -i eth0 -o eth1 -p tcp -j DROP
+```
+This ensures that external hosts cannot access any other TCP services (apart from the allowed Telnet server) in the internal network.
 
+4. Allow internal hosts to access all internal servers
+```
+iptables -A FORWARD -i eth1 -o eth1 -j ACCEPT
+```
+This allows internal hosts to communicate with each other without restrictions.
+
+5. Block internal hosts from accessing external servers
+```
+iptables -A FORWARD -i eth1 -o eth0 -j DROP
+```
+This prevents internal hosts from accessing any servers in the external network.
+
+**Testing.**
+In this section, there are some examples for some outputs:
+
+1. From an internal host (e.g., 192.168.60.6):
+   - Access Telnet on any internal server:
+   ```
+   telnet 192.168.60.5
+   ```
+   
+   ![rule1](images/lab6-5-u.png)
+   
+2. From an internal host (e.g., 192.168.60.5):
+   - Access external host Telnet server:
+   ```
+   telnet 10.9.0.1
+   ```
+   
+   ![rule1](images/lab6-6-u.png)
+ 
+
+You can list your active rules on the router using the following command:
+```
+iptables -L -v -n
+```
+![rule1](images/lab6-7-u.png)
+
+
+Here are some examples for some outputs:
+
+1. 
 
 &emsp; When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
