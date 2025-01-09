@@ -171,7 +171,7 @@ iptables -P OUTPUT DROP <b>  <---- Set default rule for OUTPUT </b>
 iptables -P INPUT  DROP <b>  <---- Set default rule for INPUT </b>
 </pre>
 
-After running `ping` and `telent` commands, you can see the following outputs:
+After running `ping` and `telnet` commands, you can see the following outputs:
 
 **ping**
 
