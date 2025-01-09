@@ -32,7 +32,6 @@ Move into the extracted Labsetup folder, where you will find the docker-compose.
 
 <Br>
 &emsp; 
-
 The network topology can be described as the following:
 
 * Router:
