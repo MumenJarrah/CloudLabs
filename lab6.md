@@ -261,6 +261,27 @@ iptables -A FORWARD -i eth1 -o eth0 -j DROP
 
    ![rule1](images/lab6-3-r1_2.png)
 
+2. From an internal host (e.g., 192.168.60.5):
+   - Ping an external host (10.9.0.5):
+   ```
+   ping 10.9.0.5
+   ```
+   
+   ![rule1](images/lab6-3-r2_1.png)
+
+   - Ping the router's internal IP (192.168.60.11):
+   ```
+   ping 192.168.60.11
+   ```
+
+   ![rule1](images/lab6-3-r2_2.png)
+
+You can list your active rules on the router using the following command:
+```
+iptables -L -v -n
+```
+![rule1](images/lab6-3-4-u.png)
+
 &emsp; In your lab report, please include your rules and screenshots to demonstrate that your firewall works as expected. When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
 ### 3.5 Task 1.C: Protecting Internal Servers
