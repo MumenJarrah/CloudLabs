@@ -252,14 +252,14 @@ iptables -A FORWARD -i eth1 -o eth0 -j DROP
    ping 10.9.0.11
    ```
    
-![rule1](images/lab6-3-r1_1.png)
+   ![rule1](images/lab6-3-r1_1.png)
 
    - Ping an internal host (192.168.60.5):
    ```
    ping 192.168.60.5
    ```
 
-![rule1](images/lab6-3-r1_2.png)
+   ![rule1](images/lab6-3-r1_2.png)
 
 &emsp; In your lab report, please include your rules and screenshots to demonstrate that your firewall works as expected. When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
