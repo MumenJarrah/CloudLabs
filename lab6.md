@@ -280,7 +280,7 @@ You can list your active rules on the router using the following command:
 ```
 iptables -L -v -n
 ```
-![rule1](images/lab6-3-4-u.png)
+![rule1](images/lab6-4-u.png)
 
 &emsp; In your lab report, please include your rules and screenshots to demonstrate that your firewall works as expected. When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
