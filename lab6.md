@@ -220,7 +220,7 @@ In this task, we will set up firewall rules on the router to protect the interna
 ```
 iptables -A FORWARD -p icmp --icmp-type echo-request -j DROP
 ```
-To implement the Firewall rules, you need to run the following commands on the router to configure the firwall using ipatables.
+To implement the Firewall rules, you need to run the following commands on the router to configure the firwall using iptables.
 
 **Rule 1:** Block ICMP echo requests from external hosts to internal hosts:
 ```
@@ -244,6 +244,22 @@ iptables -A FORWARD -p icmp --icmp-type echo-reply -i eth0 -o eth1 -j ACCEPT
 iptables -A FORWARD -i eth0 -o eth1 -j DROP
 iptables -A FORWARD -i eth1 -o eth0 -j DROP
 ```
+
+**Testing.**
+1. From an external host (e.g., 10.9.0.1 or 10.9.0.5):
+   - Ping the router's external IP (10.9.0.11):
+   ```
+   ping 10.9.0.11
+   ```
+   
+![rule1](images/lab6-3-r1_1.png)
+
+   - Ping an internal host (192.168.60.5):
+   ```
+   ping 192.168.60.5
+   ```
+
+![rule1](images/lab6-3-r1_2.png)
 
 &emsp; In your lab report, please include your rules and screenshots to demonstrate that your firewall works as expected. When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
