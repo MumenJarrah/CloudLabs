@@ -220,7 +220,7 @@ In this task, we will set up firewall rules on the router to protect the interna
 ```
 iptables -A FORWARD -p icmp --icmp-type echo-request -j DROP
 ```
-To implement the Firewall rules, you need to run the following commands on the router to configure the firwall using iptables.
+To configure the required rules for this task, you need to run the following commands on the router:
 
 **Rule 1:** Block ICMP echo requests from external hosts to internal hosts:
 ```
@@ -283,6 +283,23 @@ In this task, we want to protect the TCP servers inside the internal network ( `
 ```
 iptables -A FORWARD -i eth0 -p tcp --sport 5000 -j ACCEPT
 ```
+
+To configure the required rules for this task, you need to run the following commands on the router:
+
+1. Allow external access to Telnet server on 192.168.60.5
+```
+   iptables -A FORWARD -i eth0 -o eth1 -p tcp --dport 23 -d 192.168.60.5 -j ACCEPT
+```
+This command allows external hosts to connect to the Telnet server on 192.168.60.5 (port 23) through the router.
+
+2. Block external access to other internal servers
+```
+iptables -A FORWARD -i eth0 -o eth1 -p tcp --dport 23 -j DROP
+```
+This command blocks external hosts from accessing Telnet servers on any other internal host (192.168.60.6 or 192.168.60.7).
+
+
+
 &emsp; When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
 ## 4. Task 2: Connection Tracking and Stateful Firewall
