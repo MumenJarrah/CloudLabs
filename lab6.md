@@ -343,10 +343,6 @@ iptables -L -v -n
 ![rule1](images/lab6-7-u.png)
 
 
-Here are some examples for some outputs:
-
-1. 
-
 &emsp; When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
 ## 4. Task 2: Connection Tracking and Stateful Firewall
