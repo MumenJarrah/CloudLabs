@@ -406,7 +406,7 @@ iptables -A FORWARD -p tcp -i eth0 --dport 8080 --syn     \
 ```
 iptables -P FORWARD DROP
 ```
-&emsp; Please rewrite the firewall rules in Task 2.C, but this time, **we will add a rule allowing internal hosts to visit any external server** (this was not allowed in Task 2.C). After you write the rules using the connection tracking mechanism, think about how to do it without using the connection tracking mechanism (you do not need to actually implement them). Based on these two sets of rules, compare these two different approaches, and explain the advantage and disadvantage of each approach. When you are done with this task, remember to clear all the rules.
+&emsp; Please rewrite the firewall rules in Task 1.C, but this time, **we will add a rule allowing internal hosts to visit any external server** (this was not allowed in Task 1.C). After you write the rules using the connection tracking mechanism, think about how to do it without using the connection tracking mechanism (you do not need to actually implement them). Based on these two sets of rules, compare these two different approaches, and explain the advantage and disadvantage of each approach. When you are done with this task, remember to clear all the rules.
 
 
 ## 5. Task 3: Limiting Network Traffic
