@@ -429,9 +429,12 @@ iptables -A FORWARD -s 10.9.0.5 -j DROP
 ```
 
 In these figures, you can see the difference with the second rule (DROP) and without it.
-
+- ```iptables -A FORWARD -s 10.9.0.5 -m limit --limit 10/minute --limit-burst 5 -j ACCEPT```
    ![rule1](images/lab6-12-u.png)
 
+-```iptables -A FORWARD -s 10.9.0.5 -m limit --limit 10/minute --limit-burst 5 -j ACCEPT
+iptables -A FORWARD -s 10.9.0.5 -j DROP
+```
    ![rule1](images/lab6-13-u.png)
 
 ## 6. Task 4: Load Balancing
