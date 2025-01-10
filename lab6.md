@@ -357,10 +357,6 @@ To support stateful firewalls, we need to be able to track connections. This is 
 # conntrack -L
 ```
 
-The following figure illustrates connections tracking using `conntrack` mechanism:
-
-![iptables_rules](images/lab6-demo-4.png)
-
 &emsp; The goal of the task is to use a series of experiments to help students understand the connection concept in this tracking mechanism, especially for the ICMP and UDP protocols, because unlike TCP, they do not have connections. Please conduct the following experiments. For each experiment, please describe your observation, along with your explanation.
 
 - ICMP experiment: Run the following command and check the connection tracking information on the router. Describe your observation. How long is the ICMP connection state be kept?
@@ -368,6 +364,7 @@ The following figure illustrates connections tracking using `conntrack` mechanis
     // On 10.9.0.5, send out ICMP packets
     # ping 192.168.60.5
     ```
+   ![rule1](images/lab6-9-u.png)
 
 - UDP experiment: Run the following command and check the connection tracking information on the router. Describe your observation. How long is the UDP connection state be kept?
     ```
@@ -379,6 +376,8 @@ The following figure illustrates connections tracking using `conntrack` mechanis
     <type something, then hit return>
     ```
 
+    ![rule1](images/lab6-10-u.png)
+
 - TCP experiment: Run the following command and check the connection tracking information on the router. Describe your observation. How long is the TCP connection state be kept?
     ```
     // On 192.168.60.5, start a netcat TCP server
@@ -388,7 +387,9 @@ The following figure illustrates connections tracking using `conntrack` mechanis
     # nc 192.168.60.5 9090
     <type something, then hit return>
     ```
-
+    
+   ![rule1](images/lab6-11-u.png)
+  
 ### 4.2 Task 2.B: Setting Up a Stateful Firewall
 
 Now we are ready to set up firewall rules based on connections. In the following example, the "`-m conntrack`" option indicates that we are using the `conntrack` module, which is a very important module for `iptables`; it tracks connections, and `iptables` replies on the tracking information to build stateful firewalls. The `--ctsate ESTABLISHED,RELATED` indicates that whether a packet belongs to an `ESTABLISHED` or `RELATED` connection. The rule allows TCP packets belonging to an existing connection to pass through.
