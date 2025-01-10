@@ -471,8 +471,6 @@ iptables -t nat -A PREROUTING -p udp --dport 8080 \
 -m statistic --mode random --probability P \
 -j DNAT --to-destination 192.168.60.5:8080
 ```
-![rule1](images/lab6-15-u.png)
-
 &emsp; Please use this mode to implement your load balancing rules, so each internal server get roughly the same amount of traffic (it may not be exactly the same, but should be close when the total number of packets is large). Please provide some explanation for the rules.
 
 ### You have successfully completed the lab
