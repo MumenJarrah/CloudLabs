@@ -461,19 +461,19 @@ iptables -t nat -A PREROUTING -p udp --dport 8080 \
 echo hello | nc -u 10.9.0.11 8080
 <hit Ctrl-C>
 ```
+![rule1](images/lab6-14-u.png)
+
 &emsp; Please add more rules to the router container, so all the three internal hosts get the equal number of packets. Please provide some explanation for the rules.
 
-**Using the random mode.** Let’s use a different mode to achieve the load balancing. The following rule will select a matching packet with the probability `P`. You need to replace `P` with a probability number.
+**Using the random mode.** Let’s use a different mode to achieve the load balancing. The following rule will select a matching packet with the probability `P`. **You need to replace `P` with a probability number.**
 ```
 iptables -t nat -A PREROUTING -p udp --dport 8080 \
 -m statistic --mode random --probability P \
 -j DNAT --to-destination 192.168.60.5:8080
 ```
+![rule1](images/lab6-15-u.png)
+
 &emsp; Please use this mode to implement your load balancing rules, so each internal server get roughly the same amount of traffic (it may not be exactly the same, but should be close when the total number of packets is large). Please provide some explanation for the rules.
-
-It is expecting to see something like this:
-
-![iptables_rules](images/lab6-demo-5.png)
 
 ### You have successfully completed the lab
 
