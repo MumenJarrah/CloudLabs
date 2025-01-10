@@ -427,6 +427,13 @@ iptables -A FORWARD -s 10.9.0.5 -m limit \
 
 iptables -A FORWARD -s 10.9.0.5 -j DROP
 ```
+
+In these figures, you can see the difference with the second rule (DROP) and without it.
+
+   ![rule1](images/lab6-12-u.png)
+
+   ![rule1](images/lab6-13-u.png)
+
 ## 6. Task 4: Load Balancing
 
 The `iptables` is very powerful. In addition to firewalls, it has many other applications. We will not be able to cover all its applications in this lab, but we will experimenting with one of the applications, load balancing. In this task, we will use it to load balance three UDP servers running in the internal network. Let’s first start the server on each of the hosts: `192.168.60.5,192.168.60.6`, and `192.168.60.7`. (the `-k` option indicates that the server can receive UDP datagrams from multiple hosts):
