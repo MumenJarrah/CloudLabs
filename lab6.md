@@ -427,7 +427,9 @@ iptables -A FORWARD -s 10.9.0.5 -j DROP
 ```
 
 In these figures, you can see the difference with the second rule (DROP) and without it.
+- This one without the DROP rule.
    ![rule1](images/lab6-12-u.png)
+- This one with the DROP rule.
    ![rule1](images/lab6-13-u.png)
 
 ## 6. Task 4: Load Balancing
