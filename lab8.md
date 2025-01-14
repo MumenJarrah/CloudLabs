@@ -97,31 +97,29 @@ The netstat command can be used without parameters to display active network con
 netstat
 ```
 
-![](images/lab8-1.png)
+![](images/lab8-2.png)
 
 The output displays details of active internet connections across six columns:
+- Proto: Protocol of the connection (e.g., TCP, UDP).
+- Recv-Q: Number of bytes received and waiting in the queue to be processed.
+- Send-Q: Number of bytes waiting in the queue to be sent.
+- Local address: Local address and port of the connection. An asterisk (*) in the host indicates that the server is listening on all available interfaces, and a port may not yet be established.
+- Foreign address: Remote address and port of the connection. An asterisk (*) appears if a connection is not yet established.
+- State: State of the local socket. Values include ESTABLISHED, LISTENING, CLOSED, or blank.
 
-Proto: Protocol of the connection (e.g., TCP, UDP).
-Recv-Q: Number of bytes received and waiting in the queue to be processed.
-Send-Q: Number of bytes waiting in the queue to be sent.
-Local address: Local address and port of the connection. An asterisk (*) in the host indicates that the server is listening on all available interfaces, and a port may not yet be established.
-Foreign address: Remote address and port of the connection. An asterisk (*) appears if a connection is not yet established.
-State: State of the local socket. Values include ESTABLISHED, LISTENING, CLOSED, or blank.
 The second list shows all active Unix Domain open sockets with the following details:
-
-Proto: Protocol used by the socket (always unix).
-RefCnt: Reference count of the number of processes attached to this socket.
-Flags: Flags associated with the socket, usually ACC or blank.
-Type: The socket type.
-State: State of the socket, most often CONNECTED, LISTENING, or blank.
-I-Node: File system inode (index node) associated with this socket.
-Path: File system path to the socket.
+- Proto: Protocol used by the socket (always unix).
+- RefCnt: Reference count of the number of processes attached to this socket.
+- Flags: Flags associated with the socket, usually ACC or blank.
+- Type: The socket type.
+- State: State of the socket, most often CONNECTED, LISTENING, or blank.
+- I-Node: File system inode (index node) associated with this socket.
+- Path: File system path to the socket.
+  
 You can expand the netstat command with options to filter or customize output:
-
-bash
-Copy code
+```
 netstat [option]
-netstat Command Options
+```
 
 OPTION	DESCRIPTION
 -a	Display all active TCP and UDP connections and listening ports.
@@ -134,23 +132,26 @@ OPTION	DESCRIPTION
 -s	Provide summary statistics for each protocol.
 -c	Continuously update the output every second.
 -e	Display extended information, including timers and user IDs.
-Another command that can display connection information is the ss command.
 
-Use the ss command without arguments to list all connections on a machine:
+Another command that can display connection information is the `ss` command.
 
-bash
-Copy code
+Use the `ss` command without arguments to list all connections on a machine:
+
+```
 ss
-As with netstat, you can expand the ss command with options to filter or customize output.
+```
 
-Checking Network Operations
-ping is the primary command used to troubleshoot connectivity, reachability, and name resolution. It allows admins to test if the network stack works properly, if the network is up, and if a certain destination is reachable. ping sends Internet Control Message Protocol (ICMP) echo request messages to a given destination. The destination will echo back the message to the sender. The tool measures the time and displays the round-trip times.
+As with netstat, you can expand the `ss` command with options to filter or customize output.
+
+-----Checking Network Operations
+
+`ping` is the primary command used to troubleshoot connectivity, reachability, and name resolution. It allows admins to test if the network stack works properly, if the network is up, and if a certain destination is reachable. `ping` sends Internet Control Message Protocol (ICMP) echo request messages to a given destination. The destination will echo back the message to the sender. The tool measures the time and displays the round-trip times.
 
 For instance, to check the connectivity to facebook.com, use the following command:
 
-bash
-Copy code
+```
 ping www.facebook.com
+```
 The output shows the Facebook server contacted for the ping (FILL) and its IP address (IP). It also shows multiple trials for ping and their round-trip times. At the end of the command, it shows stats about all trials and the average round-trip time.
 
 Another command helpful for checking and debugging connectivity is traceroute. traceroute is a command-line utility that you can use to trace the path that an Internet Protocol (IP) packet takes to its destination. This tool helps debug connectivity issues and detect any anomalies in the path. It can also be used to detect if a malicious entity has hacked the network to change the path to go through untrusted networks.
