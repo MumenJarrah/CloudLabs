@@ -175,7 +175,7 @@ For the `index.txt file`, simply create an empty file. For the `serial` file, pu
 string format (e.g. 1000) in the file. Once you have set up the configuration file `openssl.cnf`, you can
 create and issue certificates.
 
-Certificate Authority (CA). As we described before, we need to generate a self-signed certificate for our
+**Certificate Authority (CA).** As we described before, we need to generate a self-signed certificate for our
 CA. This means that this CA is totally trusted, and its certificate will serve as the root certificate. You can
 run the following command to generate the self-signed certificate for the CA:
 
@@ -189,7 +189,11 @@ passphrase each time you want to use this CA to sign certificates for others. Yo
 the subject information, such as the Country Name, Common Name, etc. The output of the command are stored in two files: `ca.key` and `ca.crt`. The file `ca.key` contains the CA’s private key, while `ca.crt`
 contains the public-key certificate.
 You can also specify the subject information and password in the command line, so you will not be
-prompted for any additional information. In the following command, we use  `-subj` to set the subject
+prompted for any additional information. 
+
+![](images/lab5-11-u.png)
+
+In the following command, we use  `-subj` to set the subject
 information and we use `-passout pass:dees` to set the password to `dees`.
 
 ```
