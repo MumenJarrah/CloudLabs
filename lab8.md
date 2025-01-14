@@ -159,29 +159,29 @@ ping www.facebook.com
 
 The output shows the Facebook server contacted for the ping (FILL) and its IP address (IP). It also shows multiple trials for ping and their round-trip times. At the end of the command, it shows stats about all trials and the average round-trip time.
 
-Another command helpful for checking and debugging connectivity is traceroute. traceroute is a command-line utility that you can use to trace the path that an Internet Protocol (IP) packet takes to its destination. This tool helps debug connectivity issues and detect any anomalies in the path. It can also be used to detect if a malicious entity has hacked the network to change the path to go through untrusted networks.
+Another command helpful for checking and debugging connectivity is `traceroute`. `traceroute` is a command-line utility that you can use to trace the path that an Internet Protocol (IP) packet takes to its destination. This tool helps debug connectivity issues and detect any anomalies in the path. It can also be used to detect if a malicious entity has hacked the network to change the path to go through untrusted networks.
 
-traceroute determines the route to a destination by sending ICMP echo packets to the destination. In these packets, traceroute uses varying IP Time-To-Live (TTL) values. Because each router along the path is required to decrease the packet's TTL by at least 1 before forwarding the packet, the TTL is effectively a hop counter. When the TTL on a packet reaches zero (0), the router sends an ICMP "Time Exceeded" message back to the source computer.
+`traceroute` determines the route to a destination by sending ICMP echo packets to the destination. In these packets, `traceroute` uses varying IP Time-To-Live (TTL) values. Because each router along the path is required to decrease the packet's TTL by at least 1 before forwarding the packet, the TTL is effectively a hop counter. When the TTL on a packet reaches zero (0), the router sends an ICMP "Time Exceeded" message back to the source computer.
 
-traceroute sends the first echo packet with a TTL of 1 and increments the TTL by 1 on each subsequent transmission, until the destination responds or until the maximum TTL is reached. The ICMP "Time Exceeded" messages that intermediate routers send back show the route. Note, however, that some routers silently drop packets that have expired TTLs, and these packets are invisible to traceroute.
+`traceroute` sends the first echo packet with a TTL of 1 and increments the TTL by 1 on each subsequent transmission, until the destination responds or until the maximum TTL is reached. The ICMP "Time Exceeded" messages that intermediate routers send back show the route. Note, however, that some routers silently drop packets that have expired TTLs, and these packets are invisible to `traceroute`.
 
-traceroute prints out an ordered list of the intermediate routers that return ICMP "Time Exceeded" messages. Using the -d option with the traceroute command instructs traceroute not to perform a DNS lookup on each IP address, so that traceroute reports the IP address of the near-side interface of the routers.
+`traceroute` prints out an ordered list of the intermediate routers that return ICMP "Time Exceeded" messages. Using the -d option with the traceroute command instructs traceroute not to perform a DNS lookup on each IP address, so that traceroute reports the IP address of the near-side interface of the routers.
 
 Compared to ping, the primary difference between ping and traceroute is that while ping simply tells you if a server is reachable and the time it takes to transmit and receive data, traceroute details the precise route info, router by router, as well as the time it took for each hop.
 
 To check the path to facebook.com, use the following command:
 
-bash
-Copy code
+```
 traceroute www.facebook.com
-Inspecting the Network Communication
-Tcpdump
-Tshark/Wireshark
-Network Exploration
-nmap
-Copy code
+```
+
+----Inspecting the Network Communication
+
+### `tcpdump`
 
 
+### Tshark/Wireshark
 
 
-
+### `nmap`
+-  To run `nmap`. We need to run the docker container and test some 
