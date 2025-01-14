@@ -154,6 +154,9 @@ For instance, to check the connectivity to facebook.com, use the following comma
 ```
 ping www.facebook.com
 ```
+
+![](images/lab8-4.png)
+
 The output shows the Facebook server contacted for the ping (FILL) and its IP address (IP). It also shows multiple trials for ping and their round-trip times. At the end of the command, it shows stats about all trials and the average round-trip time.
 
 Another command helpful for checking and debugging connectivity is traceroute. traceroute is a command-line utility that you can use to trace the path that an Internet Protocol (IP) packet takes to its destination. This tool helps debug connectivity issues and detect any anomalies in the path. It can also be used to detect if a malicious entity has hacked the network to change the path to go through untrusted networks.
