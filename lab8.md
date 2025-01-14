@@ -89,6 +89,8 @@ This shows the states on the transmission and reception side, including the numb
 
 ---- Checking the Status of the Connections on a Machine
 
+### `netstat`
+
 The `netstat` command, as the name suggests, displays an overview of all the network connections in the device. The table shows details about the connection protocol, address, and the current state of the network.
 
 The netstat command can be used without parameters to display active network connections:
@@ -133,6 +135,8 @@ OPTION	DESCRIPTION
 - -c	Continuously update the output every second.
 - -e	Display extended information, including timers and user IDs.
 
+### `ss`
+
 Another command that can display connection information is the `ss` command.
 
 Use the `ss` command without arguments to list all connections on a machine:
@@ -147,6 +151,8 @@ As with netstat, you can expand the `ss` command with options to filter or custo
 
 -----Checking Network Operations
 
+### `ping`
+
 `ping` is the primary command used to troubleshoot connectivity, reachability, and name resolution. It allows admins to test if the network stack works properly, if the network is up, and if a certain destination is reachable. `ping` sends Internet Control Message Protocol (ICMP) echo request messages to a given destination. The destination will echo back the message to the sender. The tool measures the time and displays the round-trip times.
 
 For instance, to check the connectivity to facebook.com, use the following command:
@@ -158,6 +164,8 @@ ping www.facebook.com
 ![](images/lab8-4-u.png)
 
 The output shows the Facebook server contacted for the ping (FILL) and its IP address (IP). It also shows multiple trials for ping and their round-trip times. At the end of the command, it shows stats about all trials and the average round-trip time.
+
+### `traceroute`
 
 Another command helpful for checking and debugging connectivity is `traceroute`. `traceroute` is a command-line utility that you can use to trace the path that an Internet Protocol (IP) packet takes to its destination. This tool helps debug connectivity issues and detect any anomalies in the path. It can also be used to detect if a malicious entity has hacked the network to change the path to go through untrusted networks.
 
