@@ -1,4 +1,4 @@
-# Lab Networking
+# Lab 8: Networking Lab
 
 To debug network and security problems, network administrators need to examine the configuration and status of the network on cluster nodes. There are a set of tools that enable inspecting and changing the configuration of the network devices and software stack. This lab will introduce students to a set of these tools. In particular, students will learn commands related to:
 
