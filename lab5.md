@@ -401,6 +401,9 @@ add a certificate to the Firefox browser, type the following URL in the address 
 about:preferences#privacy
 ```
 
+- After scrolling down, you will see this:
+  ![](images/lab5-77.png)
+
 In the `Authorities` tab, you will see a list of certificates that are already accepted by Firefox. From
 here, we can import our own certificates. After choosing the certificate file, please select the following
 option: “Trust this CA to identify web sites”. You will see that our certificate is now in Firefox’s list of
