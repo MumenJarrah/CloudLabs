@@ -163,7 +163,7 @@ ping www.facebook.com
 
 ![](images/lab8-4-u.png)
 
-The output shows the Facebook server contacted for the ping (FILL) and its IP address (IP). It also shows multiple trials for ping and their round-trip times. At the end of the command, it shows stats about all trials and the average round-trip time.
+The output shows the Facebook server contacted for the ping (star-mini.c10r.facebook.com) and its IP address (157.240.229.35). It also shows multiple trials for ping and their round-trip times. At the end of the command, it shows stats about all trials and the average round-trip time.
 
 ### `traceroute`
 
@@ -186,6 +186,9 @@ traceroute www.facebook.com
 ----Inspecting the Network Communication
 
 ### `tcpdump`
+
+`tcpdump` is a command-line tool used to capture and examine network traffic on your system. It's commonly used for troubleshooting network problems and as a security tool. `tcpdump` is very flexible, with many options and filters to suit different needs. Since it runs in the command line, it's perfect for use on remote servers or devices without a graphical interface. You can also run it in the background or schedule it with tools like cron to collect data for later analysis.
+
 
 
 ### `Tshark/Wireshark`
