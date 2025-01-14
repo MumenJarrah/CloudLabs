@@ -163,7 +163,7 @@ ping www.facebook.com
 
 ![](images/lab8-4-u.png)
 
-The output shows the Facebook server contacted for the ping (star-mini.c10r.facebook.com) and its IP address (157.240.229.35). It also shows multiple trials for ping and their round-trip times. At the end of the command, it shows stats about all trials and the average round-trip time.
+The output shows the Facebook server contacted for the ping (star-mini.c10r.facebook.com) and its IP address (31.13.66.35). It also shows multiple trials for ping and their round-trip times. At the end of the command, it shows stats about all trials and the average round-trip time.
 
 ### `traceroute`
 
