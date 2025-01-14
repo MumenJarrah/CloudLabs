@@ -143,12 +143,14 @@ CA’s certificates are unconditionally trusted.
 The Configuration File `openssl.conf`. In order to use `OpenSSL` to create certificates, you have to
 have a configuration file. The configuration file usually has an extension .cnf. It is used by three `OpenSSL`
 commands: `ca,req` and `x509`. The manual page of openssl.conf can be found from online resources.
-By default, OpenSSL use the configuration file from `/usr/lib/ssl/openssl.cnf`. Since we need
+By default, OpenSSL use the configuration file from `/usr/lib/ssl/openssl.cnf`. You can access the openssl.cnf file as shown in the figure below. Since we need
 to make changes to this file, we will copy it into our current directory, and instruct `OpenSSL` to use this
 copy instead.
 The `[CAdefault]` section of the configuration file shows the default setting that we need to prepare.
 We need to create several sub-directories. Please uncomment the `uniquesubject` line (by removing the sign (#) in the CA_default settings) to allow creation
 of certifications with the same subject, because it is very likely that we will do that in the lab.
+
+![](images/lab5-00-u.png)
 
 Listing 1: Default CA setting
 
