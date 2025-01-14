@@ -152,6 +152,11 @@ of certifications with the same subject, because it is very likely that we will 
 
 ![](images/lab5-00-u.png)
 
+- Copy the default OpenSSL configuration file using the following command:
+```
+cp /usr/lib/ssl/openssl.cnf ./myCA_openssl.cnf
+```
+
 Listing 1: Default CA setting
 
 ```
