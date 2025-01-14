@@ -152,11 +152,6 @@ of certifications with the same subject, because it is very likely that we will 
 
 ![](images/lab5-00-u.png)
 
-- Copy the default OpenSSL configuration file using the following command:
-```
-cp /usr/lib/ssl/openssl.cnf ./myCA_openssl.cnf
-```
-
 Listing 1: Default CA setting
 
 ```
@@ -170,6 +165,13 @@ database = $dir/index.txt # database index file.
 new_certs_dir = $dir/newcerts # default place for new certs.
 serial = $dir/serial # The current serial number
 ```
+
+- Copy the default OpenSSL configuration file using the following command:
+```
+cp /usr/lib/ssl/openssl.cnf ./myCA_openssl.cnf
+```
+
+- Modify `myCA_openssl.cnf` by locating the [CA_default] and uncomment `unique_subject` and set it to no.
 
 For the `index.txt file`, simply create an empty file. For the `serial` file, put a single number in
 string format (e.g. 1000) in the file. Once you have set up the configuration file `openssl.cnf`, you can
