@@ -234,16 +234,16 @@ Please run the above commands. From the output, please identify the followings:
   By running this command `openssl rsa -in ca.key -text -noout`, we can examine the private key content and look at the following elements:
   
     - Public Exponent (e): This is usually a small value like `65537`. Look for the line starting with `publicExponent` in        the key output
-      ![](images/lab5-44-u.png)
+      ![](images/lab5-pub.png)
       
     - Private Exponent (d): This is the value of the private key's exponent, found in the line labeled `privateExponent`.
-      ![](images/lab5-55-u.png)
+      ![](images/lab5-priv.png)
       
     - Modulus (n): This is the large number calculated as `n = p * q`, found in the line labeled modulus.
-      ![](images/lab5-66-u.png)
+      ![](images/lab5-mod.png)
       
     - Prime Numbers (p and q): These are the two large prime numbers used to calculate `n`. Look for the lines labeled prime1       and prime2.
-      ![](images/lab5-77-u.png)
+      ![](images/lab5-pre.png)
       
 
 ### 3.2 Task 2: Generating a Certificate Request for Your Web Server
