@@ -220,6 +220,10 @@ Please run the above commands. From the output, please identify the followings:
     numbers p and q , such that n = pq. Please identify the values for these elements in your certificate
     and key files.
 
+By runnung this command `openssl x509 -in ca.crt -text -noout`, we can examine the certificate content. The following figure highlights that the certificate is issued for a Certificate Authority (CA).
+
+
+
 ### 3.2 Task 2: Generating a Certificate Request for Your Web Server
 
 A company called `bank32.com` wants to get a public-
