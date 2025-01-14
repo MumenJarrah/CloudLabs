@@ -122,16 +122,16 @@ netstat [option]
 ```
 
 OPTION	DESCRIPTION
--a	Display all active TCP and UDP connections and listening ports.
--t	Display only TCP connections.
--u	Display only UDP connections.
--l	Show only sockets that are actively listening for incoming connections.
--p	Display the Process ID (PID) and program name associated with each socket.
--n	Display addresses and port numbers in numeric format without resolving names.
--r	Display the kernel routing table.
--s	Provide summary statistics for each protocol.
--c	Continuously update the output every second.
--e	Display extended information, including timers and user IDs.
+- -a	Display all active TCP and UDP connections and listening ports.
+- -t	Display only TCP connections.
+- -u	Display only UDP connections.
+- -l	Show only sockets that are actively listening for incoming connections.
+- -p	Display the Process ID (PID) and program name associated with each socket.
+- -n	Display addresses and port numbers in numeric format without resolving names.
+- -r	Display the kernel routing table.
+- -s	Provide summary statistics for each protocol.
+- -c	Continuously update the output every second.
+- -e	Display extended information, including timers and user IDs.
 
 Another command that can display connection information is the `ss` command.
 
