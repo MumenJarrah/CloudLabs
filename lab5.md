@@ -403,8 +403,11 @@ In the `Authorities` tab, you will see a list of certificates that are already a
 
  ![](images/lab5-99-u.png)
 
-After choosing the certificate file, please select the following option: “Trust this CA to identify web sites”. You will see that our certificate is now in Firefox’s list of
-accepted certificates.
+After choosing the certificate file, please select the following option: “Trust this CA to identify web sites”.
+
+  ![](images/lab5-10-u.png)
+
+You will see that our certificate is now in Firefox’s list of accepted certificates.
 
 ### 3.5 Task 5: Launching a Man-In-The-Middle Attack
 
