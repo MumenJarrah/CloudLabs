@@ -130,8 +130,7 @@ The bank32.com server name will be recognized within the container setup as spec
 
 ### 3.1 Task 1: Becoming a Certificate Authority (CA)
 
-A Certificate Authority (CA) is a trusted entity that issues digital certificates. The digital certificate certi-
-fies the ownership of a public key by the named subject of the certificate. A number of commercial CAs
+A Certificate Authority (CA) is a trusted entity that issues digital certificates. The digital certificate certifies the ownership of a public key by the named subject of the certificate. A number of commercial CAs
 are treated as root CAs; VeriSign is the largest CA at the time of writing. Users who want to get digital
 certificates issued by the commercial CAs need to pay those CAs.
 In this lab, we need to create digital certificates, but we are not going to pay any commercial CA. We
