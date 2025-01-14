@@ -25,7 +25,12 @@ One of the common tools is `ifconfig`. `ifconfig` is a legacy command and is slo
 
 ```bash
 ifconfig
+```
+
 Output
+```
+
+```
 The output shows crucial data about the network interfaces, like:
 
 The names of the active network interfaces (e.g., enp0s3 and lo, the loopback interface).
