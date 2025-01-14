@@ -17,8 +17,7 @@ The objective of this lab is to help students understand how VPN works. We focus
 VPN (the most common type), which is built on top of the transport layer. We will build a very simple VPN
 from the scratch, and use the process to illustrate how each piece of the VPN technology works. A real VPN
 program has two essential pieces, tunneling and encryption. This lab only focuses on the tunneling part,
-helping students understand the tunneling technology, so the tunnel in this lab is not encrypted. There is
-another more comprehensive VPN lab that includes the encryption part. The lab covers the following topics:
+helping students understand the tunneling technology, so the tunnel in this lab is not encrypted. The lab covers the following topics:
 
 - Virtual Private Network
 - The TUN/TAP virtual interface
@@ -378,7 +377,7 @@ while True:
 ```
 
 Testing. Run thetunserver.pyprogram on VPN Server, and then runtunclient.pyon Host
-U. To test whether the tunnel works or not,pingany IP address belonging to the 192.168.53.0/
+U. To test whether the tunnel works or not,ping any IP address belonging to the 192.168.53.0/
 network. What is printed out on VPN Server? Why?
 Our ultimate goal is to access the hosts inside the private network 192.168.60.0/24 using the
 tunnel. Let usping HostV, and see whether the ICMP packet is sent to VPN Server through the tunnel.
@@ -391,7 +390,7 @@ shows how to add an entry to the routing table:
 # ip route add <network> dev <interface> via <router ip>
 ```
 
-Please provide proofs to demonstrate that when youpingan IP address in the192.168.60.0/
+Please demonstrate that when you ping an IP address in the192.168.60.0/
 network, the ICMP packets are received bytunserver.pythrough the tunnel.
 
 ## 5 Task 4: Set Up the VPN Server
