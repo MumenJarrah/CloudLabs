@@ -155,7 +155,7 @@ For instance, to check the connectivity to facebook.com, use the following comma
 ping www.facebook.com
 ```
 
-![](images/lab8-4.png)
+![](images/lab8-4-u.png)
 
 The output shows the Facebook server contacted for the ping (FILL) and its IP address (IP). It also shows multiple trials for ping and their round-trip times. At the end of the command, it shows stats about all trials and the average round-trip time.
 
