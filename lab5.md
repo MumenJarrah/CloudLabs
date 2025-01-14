@@ -390,6 +390,7 @@ inside of the running container.
 ### Browsing the website. 
 Now, point the browser to your web server (note: you should put `https` at the
 beginning of your URL, instead of using `http`). Most likely, you will see a warning or error message as shown in the figure below. This is because the browser does not recognize your self-signed certificate as a trusted certificate because it is not issued by a well-known Certificate Authority (CA). Browsers only trust certificates from established, pre-configured CAs.
+
   ![](images/lab5-88-u.png)
 
 To resolve the issue, you need to manually add your self-signed certificate as a trusted authority in the browser. You have to ensure that you have the `ca.crt` file generated earlier. Then, in Firefox, type `about:preferences#privacy` in the address bar and scroll down to the `Certificates` section and click `View Certificates` as shown in the figure below.
@@ -398,9 +399,11 @@ about:preferences#privacy
 ```
  ![](images/lab5-77-u.png)
 
-In the `Authorities` tab, you will see a list of certificates that are already accepted by Firefox. From
-here, we can import our own certificates. After choosing the certificate file, please select the following
-option: “Trust this CA to identify web sites”. You will see that our certificate is now in Firefox’s list of
+In the `Authorities` tab, you will see a list of certificates that are already accepted by Firefox. From here, we can import our own certificates. 
+
+ ![](images/lab5-99-u.png)
+
+After choosing the certificate file, please select the following option: “Trust this CA to identify web sites”. You will see that our certificate is now in Firefox’s list of
 accepted certificates.
 
 ### 3.5 Task 5: Launching a Man-In-The-Middle Attack
