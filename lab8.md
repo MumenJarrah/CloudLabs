@@ -27,23 +27,27 @@ One of the common tools is `ifconfig`. `ifconfig` is a legacy command and is slo
 ifconfig
 ```
 
-Output
-```
+![](images/lab8-1.png)
 
-```
 The output shows crucial data about the network interfaces, like:
 
-The names of the active network interfaces (e.g., enp0s3 and lo, the loopback interface).
-The hardware MAC address.
-The IP address (inet), netmask, and broadcast address.
-The MTU (Maximum Transmission Unit) value.
+- The names of the active network interfaces (e.g., eth0, enp0s3 and lo, the loopback interface).
+- The hardware MAC address.
+- The IP address (inet), netmask, and broadcast address.
+- The MTU (Maximum Transmission Unit) value.
 • Display more details with ifconfig
 
 The verbose option (-v) prints a more detailed output. Depending on the system, the outcome is either the same as ifconfig without arguments or slightly more in-depth.
 
-bash
-Copy code
+```bash
 ifconfig -v
+```
+
+Output
+```
+
+```
+
 The output of the command shows additional stats about each interface, including the number of packets transmitted (TX) or received (RX) and stats about all transmission errors.
 
 Controlling Interfaces
