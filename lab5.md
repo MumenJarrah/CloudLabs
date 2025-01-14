@@ -13,8 +13,7 @@ middle attacks when one side of communication sends its public key to the other 
 problem is that there is no easy way to verify the ownership of a public key, i.e., given a public key and its
 claimed owner information, how do we ensure that the public key is indeed owned by the claimed owner?
 The Public Key Infrastructure (PKI) is a practical solution to this problem.
-The learning objective of this lab is for students to gain the first-hand experience on PKI. SEED labs
-have a series of labs focusing on the public-key cryptography, and this one focuses on PKI. By doing the
+The learning objective of this lab is for students to gain the first-hand experience on PKI. By doing the
 tasks in this lab, students should be able to gain a better understanding of how PKI works, how PKI is used
 to protect the Web, and how Man-in-the-middle attacks can be defeated by PKI. Moreover, students will be
 able to understand the root of the trust in the public-key infrastructure, and what problems will arise if the
@@ -103,7 +102,7 @@ b1004832e275 hostA-10.9.0.5
 Each line includes the container ID and its corresponding name (in this case, hostA, hostB, and hostC), along with their assigned IP addresses.
 
 #### 2. Access a Specific Container’s Shell
-To open a shell inside a specific container, use the alias docksh followed by the first few characters of the container's ID. For example, to access hostC, use the ID prefix 96 (from the third line in the previous output).
+To open a shell inside a specific container, use the alias docksh followed by the first few characters of the container's ID. For example, to access hostC-10.9.0.7, use the ID prefix 96 (from the third line in the previous output).
 
 ```
 $ docksh 96
@@ -243,8 +242,7 @@ To allow a certificate to have multiple names, the X.509 specification defines e
 to a certificate. This extension is called Subject Alternative Name (SAN). Using the SAN extension, it’s
 possible to specify several hostnames in the `subjectAltName` field of a certificate.
 To generate a certificate signing request with such a field, we can put all the necessary information
-in a configuration file or at the command line. We will use the command-line approach in this task (the
-configuration file approach is used in another SEED lab, the TLS lab). We can add the following option to
+in a configuration file or at the command line. We will use the command-line approach in this task. We can add the following option to
 the `"openssl req"` command. It should be noted that the `subjectAltName` extension field must also
 include the one from the common name field; otherwise, the common name will not be accepted as a valid
 name.
@@ -346,9 +344,6 @@ $ service apache2 restart
 When Apache starts, it needs to load the private key for each HTTPS site. Our private key is encrypted,
 so Apache will ask us to type the password for decryption. Inside the container, the password used for `bank32` is `dees`. Once everything is set up properly, we can browse the web site, and all the traffic
 between the browser and the server will be encrypted.
-Please use the above example as a guidance to set up an HTTPS server for your website. Please describe
-the steps that you have taken, the contents that you add to Apache’s configuration file, and the screenshots
-of the final outcome showing that you can successfully browse the HTTPS site.
 
 Shared folder between the VM and container. In this task, we need to copy files from the VM to the
 container. To avoid repeatedly recreating containers, we have created a shared folder between the VM and
@@ -392,7 +387,7 @@ meaningful, students should pick a popular website, such as a banking site and s
 
 #### Step 1: Setting up the malicious website. 
 In Task 4, we have already set up an HTTPS website. We
-will use the same Apache server to impersonate `www.example.com` (or the site chosen by students).
+will use the same Apache server to impersonate `www.example.com`.
 To achieve that, we will follow the instruction in Task 4 to add a `VirtualHost` entry to Apache’s SSL
 configuration file: the `ServerName` should be `www.example.com`, but the rest of the configuration can
 
@@ -423,7 +418,7 @@ our malicious web server.
 
 #### Step 3: Browse the target website. 
 With everything set up, now visit the target real website, and see what
-your browser would say. Please explain what you have observed.
+your browser would say. As shown in the screen shots below, the browser will display a warning.
 
 Figure 2 shows the Apache2 Ubuntu Default Page displayed when accessing http://www.example.com. This indicates that the browser request is being directed to our server, confirming the DNS redirection is working.
 
