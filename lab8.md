@@ -141,6 +141,8 @@ Use the `ss` command without arguments to list all connections on a machine:
 ss
 ```
 
+![](images/lab8-3.png)
+
 As with netstat, you can expand the `ss` command with options to filter or customize output.
 
 -----Checking Network Operations
