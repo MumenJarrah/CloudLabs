@@ -9,11 +9,11 @@ All the commands will be run using the command line interface (CLI). The CLI is 
 
 First, open a terminal application. Click on the terminal application on the desktop.
 
-![Figure: Desktop with terminal application highlighted](image_placeholder)
+![](images/lab1_fig1.png)
 
 The terminal opens showing the shell prompt as shown in the figure. The shell allows running commands and applications.
 
-![Figure showing the terminal](image_placeholder)
+![](images/lab1_fig2.png)
 
 ## 1. Check Local Machine Network with `ifconfig`
 
