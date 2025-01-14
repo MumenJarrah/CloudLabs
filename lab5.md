@@ -220,9 +220,13 @@ Please run the above commands. From the output, please identify the followings:
     numbers p and q , such that n = pq. Please identify the values for these elements in your certificate
     and key files.
 
-By runnung this command `openssl x509 -in ca.crt -text -noout`, we can examine the certificate content. The following figure highlights that the certificate is issued for a Certificate Authority (CA).
+By runnung this command `openssl x509 -in ca.crt -text -noout`, we can examine the certificate content. 
 
+The following figure highlights that the certificate is issued for a Certificate Authority (CA). CA:TRUE indicates that the certificate is issued for a Certificate Authority (CA).
+![](images/lab5-22-u.png)
 
+Also, this figure indicates that the certificate isself-signed, since the Issuer and Subject fields are identical.
+![](images/lab5-33-u.png)
 
 ### 3.2 Task 2: Generating a Certificate Request for Your Web Server
 
