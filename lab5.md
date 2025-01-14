@@ -215,19 +215,36 @@ openssl rsa -in ca.key -text -noout
 Please run the above commands. From the output, please identify the followings:
 
 - What part of the certificate indicates this is a CA’s certificate?
+  By runnung this command `openssl x509 -in ca.crt -text -noout`, we can examine the certificate content. 
+
+  - The following figure indicates that the certificate is issued for a Certificate Authority (CA) `CA:TRUE`. By locating the Basic Constraints section in the certificate output, it should contain:
+  `X509v3 Basic Constraints:
+    CA:TRUE`
+
+  ![](images/lab5-22-u.png)
+  
 - What part of the certificate indicates this is a self-signed certificate?
-- In the RSA algorithm, we have a public exponente, a private exponentd, a modulusn, and two secret
-    numbers p and q , such that n = pq. Please identify the values for these elements in your certificate
+  - This figure indicates that the certificate is self-signed. By looking at the Issuer and Subject fields. If they are identical, it means the certificate is self-signed.
+
+  ![](images/lab5-33-u.png)
+  
+- In the RSA algorithm, we have a public exponent (e), a private exponent (d), a modulus (n), and two secret
+    numbers (p) and (q) , such that n = p*q. Please identify the values for these elements in your certificate
     and key files.
-
-By runnung this command `openssl x509 -in ca.crt -text -noout`, we can examine the certificate content. 
-
-The following figure highlights that the certificate is issued for a Certificate Authority (CA) `CA:TRUE`.
-![](images/lab5-22-u.png)
-
-Also, this figure indicates that the certificate is self-signed, since the Issuer and Subject fields are identical.
-
-![](images/lab5-33-u.png)
+  By running this command `openssl rsa -in ca.key -text -noout`, we can examine the private key content and look at the following elements:
+  
+    - Public Exponent (e): This is usually a small value like `65537`. Look for the line starting with `publicExponent` in        the key output
+      ![](images/lab5-44-u.png)
+      
+    - Private Exponent (d): This is the value of the private key's exponent, found in the line labeled `privateExponent`.
+      ![](images/lab5-55-u.png)
+      
+    - Modulus (n): This is the large number calculated as `n = p * q`, found in the line labeled modulus.
+      ![](images/lab5-66-u.png)
+      
+    - Prime Numbers (p and q): These are the two large prime numbers used to calculate `n`. Look for the lines labeled prime1       and prime2.
+      ![](images/lab5-77-u.png)
+      
 
 ### 3.2 Task 2: Generating a Certificate Request for Your Web Server
 
