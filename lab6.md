@@ -173,8 +173,7 @@ The following figure shows all the rules in a table (with line number):
 
 ### 3.3 Task 1.A: Protecting the Router
 
-In this task, we will set up rules to prevent outside machines from accessing the router machine, except ping. Please execute the following `iptables` command on the router container, and then try to access it from `10.9.0.5`. (1) Can you ping the router? (2) Can you telnet into the router (a telnet server is running on all the containers; an account called `seed` was created on them with a password `dees`). Please report your
-observation and explain the purpose for each rule.
+In this task, we will set up rules to prevent outside machines from accessing the router machine, except ping. This set of iptables rules focuses on protecting the router by controlling ICMP traffic and setting default DROP policies for both the INPUT and OUTPUT chains. Please execute the following `iptables` command on the router container, and then try to access it from `10.9.0.5`. (1) Can you ping the router? (2) Can you telnet into the router (a telnet server is running on all the containers; an account called `seed` was created on them with a password `dees`). Please report your observation and explain the purpose for each rule.
 
 <pre>
 iptables -A INPUT  -p icmp --icmp-type echo-request -j ACCEPT
@@ -182,6 +181,10 @@ iptables -A OUTPUT -p icmp --icmp-type echo-reply   -j ACCEPT
 iptables -P OUTPUT DROP <b>  <---- Set default rule for OUTPUT </b>
 iptables -P INPUT  DROP <b>  <---- Set default rule for INPUT </b>
 </pre>
+
+The first rule, `iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT`, allows incoming ICMP echo-request packets, which are commonly used for ping requests. This ensures that the router will respond to pings, enabling basic network diagnostics. The second rule, `iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT`, permits outgoing ICMP echo-reply packets, which are the responses sent when the router replies to an incoming ping. These two rules allow the router to participate in ping operations, both receiving and sending replies.
+
+The third rule, `iptables -P OUTPUT DROP`, sets the default policy for the OUTPUT chain to drop, meaning that unless explicitly allowed by another rule, the router will not send any outbound traffic. Similarly, the fourth rule, `iptables -P INPUT DROP`, sets the default policy for the INPUT chain to drop, blocking all incoming traffic by default unless it matches a specific rule. These default drop policies are part of a restrictive security setup to prevent unauthorized communication, allowing only explicitly permitted traffic like ping requests and replies.
 
 After running `ping` and `telnet` commands, you can see the following outputs:
 
