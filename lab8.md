@@ -43,61 +43,62 @@ The verbose option (-v) prints a more detailed output. Depending on the system, 
 ifconfig -v
 ```
 
-Output
-```
-
-```
-
 The output of the command shows additional stats about each interface, including the number of packets transmitted (TX) or received (RX) and stats about all transmission errors.
 
-Controlling Interfaces
-ifconfig can also be used to disable or enable an interface.
+**Controlling Interfaces.** ifconfig can also be used to disable or enable an interface.
 
-To disable the enp0s3 interface, you can use the following command:
+To disable the `enp0s3` interface, you can use the following command:
 
-bash
-Copy code
+```
 sudo ifconfig enp0s3 down
+```
+
 Use ifconfig to verify that the interface is down.
 
 To bring an interface up again, you can use the following command:
 
-bash
-Copy code
+```
 sudo ifconfig enp0s3 up
+```
 Verify it with ifconfig.
 
-2. Check Local Machine Network with ip
-The ip command is the replacement for ifconfig and can do the same functionality and more. To list all the devices on a machine, use the following command:
+## 2. Check Local Machine Network with `ip`
+The `ip` command is the replacement for `ifconfig` and can do the same functionality and more. To list all the devices on a machine, use the following command:
 
-bash
-Copy code
+```
 ip link show
+```
+
 The output shows each interface.
 
 To view the IP addresses as well, use the following command:
 
-bash
-Copy code
+```
 ip addr
+```
+
 The output shows the IPv4 and/or IPv6 addresses.
 
-To check the stats for the interface, use the -s option:
+To check the stats for the interface, use the "-s" option:
 
-bash
-Copy code
+```
 ip -s -s link show
+```
+
 This shows the states on the transmission and reception side, including the number of packets processed and errors experienced.
 
-Checking the Status of the Connections on a Machine
-The netstat command, as the name suggests, displays an overview of all the network connections in the device. The table shows details about the connection protocol, address, and the current state of the network.
+---- Checking the Status of the Connections on a Machine
+
+The `netstat` command, as the name suggests, displays an overview of all the network connections in the device. The table shows details about the connection protocol, address, and the current state of the network.
 
 The netstat command can be used without parameters to display active network connections:
 
-bash
-Copy code
+```
 netstat
-Output
+```
+
+![](images/lab8-1.png)
+
 The output displays details of active internet connections across six columns:
 
 Proto: Protocol of the connection (e.g., TCP, UDP).
@@ -121,6 +122,7 @@ bash
 Copy code
 netstat [option]
 netstat Command Options
+
 OPTION	DESCRIPTION
 -a	Display all active TCP and UDP connections and listening ports.
 -t	Display only TCP connections.
