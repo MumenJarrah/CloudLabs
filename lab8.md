@@ -191,9 +191,35 @@ traceroute www.facebook.com
 
 ### `tcpdump`
 
-`tcpdump` is a command-line tool used to capture and examine network traffic on your system. It's commonly used for troubleshooting network problems and as a security tool. `tcpdump` is very flexible, with many options and filters to suit different needs. Since it runs in the command line, it's perfect for use on remote servers or devices without a graphical interface. You can also run it in the background or schedule it with tools like cron to collect data for later analysis.
+`tcpdump` is a command-line tool used to capture and examine network traffic on your system. It's commonly used for troubleshooting network problems and as a security tool. `tcpdump` is very flexible, with many options and filters to suit different needs. Since it runs in the command line, it's perfect for use on remote servers or devices without a graphical interface.
 
+To use `tcpdump`, we need to determine which netwrok interface is active using `ifconfig` or `ip addr` as we mentioned earlier. We will use `eth0` interface to monitor network traffic. Since `tcpdump` works with IP addresses, resolve `www.facebook.com` to its IP address using the `ping` command.
 
+```
+ping www.facebook.com
+```
+
+The output is something like this:
+```
+PING star-mini.c10r.facebook.com (31.13.66.35) 56(84) bytes of data.
+```
+In this case, the IP address of `www.facebook.com` is `31.13.66.35`.
+
+You will run `tcpdump` to capture traffic to and from the resolved IP address (31.13.66.35) with the the active network interface `eth0`. Use the following command:
+
+```
+sudo tcpdump -i eth0 host 31.13.66.35
+```
+
+While `tcpdump` is running, we need to generate network traffic to `www.facebook.com` by opening it in the browser or using a tool like `curl` using this command:
+
+```
+curl www.facebook.com
+```
+
+This will send HTTP requests, and `tcpdump` will capture the packets. The output of `tcpdump` will display the captured packets as shown in the following figure:
+
+![](images/lab8-7.png)
 
 ### `Tshark/Wireshark`
 
