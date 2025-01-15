@@ -233,12 +233,16 @@ This will send HTTP requests, and `tcpdump` will capture the packets. The output
 - To filter traffic while capturing or viewing, use the filter bar at the top.
 - There are some common filters you can use like:
   - DNS Traffic: dns
-  - HTTP Traffic: http
-  - DNS or HTTP Traffic: dns || http
-    
-- In our case, we filtered the packets with the host name: www.facebook.com to see the 
 
-  ![](images/lab8-9.png)
+     ![](images/lab8-dns.png)
+    
+  - HTTP Traffic: http
+
+     ![](images/lab8-http.png)
+    
+- Also, you can filter the packets using the host name: `www.facebook.com` 
+
+      ![](images/lab8-9.png)
 
 
 ### `nmap`
