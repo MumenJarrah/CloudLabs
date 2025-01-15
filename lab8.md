@@ -222,6 +222,17 @@ This will send HTTP requests, and `tcpdump` will capture the packets. The output
 ![](images/lab8-7.png)
 
 ### `Tshark/Wireshark`
+`Wireshark` is another tool used to capture and inspect packets in real-time. It allows users to monitor network traffic, troubleshoot issues, and analyze communication between devices. `Wireshark` provides detailed insights into network protocols such as DNS, HTTP, TCP, and UDP. Its intuitive graphical interface makes it easy to filter, capture, and analyze packets, helping users identify connectivity problems, security vulnerabilities, or performance bottlenecks in networks.
+
+- Launch `Wireshark` from your desktop.
+- You will see a list of available network interfaces, choose the interface connected to the internet `eth0`.
+- Double-click the interface to start capturing packets
+
+  ![](images/lab8-8.png)
+  
+- Launch `Wireshark` from your desktop and choose `eth0` as shwon in the following figure.
+
+  ![](images/lab8-9.png)
 
 
 ### `nmap`
