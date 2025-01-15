@@ -77,6 +77,8 @@ To view the IP addresses as well, use the following command:
 ip addr
 ```
 
+![](images/lab8-5.png)
+
 The output shows the IPv4 and/or IPv6 addresses.
 
 To check the stats for the interface, use the "-s" option:
@@ -84,6 +86,8 @@ To check the stats for the interface, use the "-s" option:
 ```
 ip -s -s link show
 ```
+
+![](images/lab8-6.png)
 
 This shows the states on the transmission and reception side, including the number of packets processed and errors experienced.
 
