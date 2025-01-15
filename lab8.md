@@ -230,7 +230,13 @@ This will send HTTP requests, and `tcpdump` will capture the packets. The output
 
   ![](images/lab8-8.png)
   
-- Launch `Wireshark` from your desktop and choose `eth0` as shwon in the following figure.
+- To filter traffic while capturing or viewing, use the filter bar at the top.
+- There are some common filters you can use like:
+  - DNS Traffic: dns
+  - HTTP Traffic: http
+  - DNS or HTTP Traffic: dns || http
+    
+- In our case, we filtered the packets with the host name: www.facebook.com to see the 
 
   ![](images/lab8-9.png)
 
