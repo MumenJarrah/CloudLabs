@@ -242,7 +242,7 @@ This will send HTTP requests, and `tcpdump` will capture the packets. The output
     
 - Also, you can filter the packets using the host name: `www.facebook.com` 
 
-      ![](images/lab8-9.png)
+    ![](images/lab8-9.png)
 
 
 ### `nmap`
