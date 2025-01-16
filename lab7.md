@@ -155,7 +155,7 @@ different ways to do packet sniffing:
   
 It should be noted that inside containers, due to the isolation created by Docker, when we run tcpdump inside a container, we can only sniff the packets going in and out of this container. We won’t be able to sniff the packets between other containers. However, if a container uses thehost mode in its network setup, it can sniff other containers’ packets.
 
-- Running `tcpdump` on the VM. If we runtcpdumpon the VM, we do not have the restriction on the
+- Running `tcpdump` on the VM. If we run `tcpdump` on the VM, we do not have the restriction on the
     containers, and we can sniff all the packets going among containers. The interface name for a network
     is different on the VM than on the container. On containers, each interface name usually starts with
     eth; on the VM, the interface name for the network created by Docker starts with br-, followed by
