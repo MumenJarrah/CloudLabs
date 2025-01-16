@@ -173,21 +173,21 @@ It should be noted that inside containers, due to the isolation created by Docke
 - Run tcpdump on the router, and sniff the traffic on each of the network. Show that you can capture
     packets.
 
- - From HostU (Client), ping the VPN  Server to confirm communication using `ping 10.9.0.11`
- 
-    ![tun](images/lab7-11-u.png)
-   
- - From HostU (Client), attempt to ping HostV using `ping 192.168.60.5` to ensure it is not accessible.
- 
-    ![tun](images/lab7-22-u.png)
- 
- - From VPN Server (Router), ping HostU to verify connectivity using `ping 10.9.0.5`.
- 
-    ![tun](images/lab7-33-u.png)
-   
- - From VPN Server (Router), ping HostV to confirm access to the private network using `ping 192.168.60.5`.
- 
-    ![tun](images/lab7-44-u.png)
+     - From HostU (Client), ping the VPN  Server to confirm communication using `ping 10.9.0.11`
+     
+        ![tun](images/lab7-11-u.png)
+       
+     - From HostU (Client), attempt to ping HostV using `ping 192.168.60.5` to ensure it is not accessible.
+     
+        ![tun](images/lab7-22-u.png)
+     
+     - From VPN Server (Router), ping HostU to verify connectivity using `ping 10.9.0.5`.
+     
+        ![tun](images/lab7-33-u.png)
+       
+     - From VPN Server (Router), ping HostV to confirm access to the private network using `ping 192.168.60.5`.
+     
+        ![tun](images/lab7-44-u.png)
 
 ## 3 Task 2: Create and Configure TUN Interface
 
