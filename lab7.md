@@ -148,6 +148,7 @@ different ways to do packet sniffing:
 - Running `tcpdump` on containers. We have already installed `tcpdump` on each container. To sniff
     the packets going through a particular interface, we just need to find out the interface name, and then
     do the following (assume that the interface name is eth0):
+  
   ```
     # tcpdump -i eth0 -n
   ```
