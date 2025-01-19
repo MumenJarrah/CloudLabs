@@ -457,9 +457,9 @@ while True:
            newpkt = newip / ip.payload
            os.write(tun, bytes(newpkt))
 
-     # Write arbitrary data for testing (optional)
-     os.write(tun, b'This is a test packet')
-     print("Arbitrary data written to the TUN interface")
+    # Write arbitrary data for testing (optional)
+    os.write(tun, b'This is a test packet')
+    print("Arbitrary data written to the TUN interface")
 ```
 
 Please modify thetun.pycode according to the following requirements:
