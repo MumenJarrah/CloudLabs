@@ -335,6 +335,8 @@ while True:
 ```
 After running the two commands above and the `ip address` command again, the TUN interface changes from DOWN to UP, and it is assigned the IP address 192.168.53.99/24. This makes the interface active and ready to send or receive packets, enabling it to function as part of the VPN tunnel.
 
+  ![tun](images/lab7-10.png)
+
 ### 3.3 Task 2.c: Read from the TUN Interface
 
 In this task, we will read from the TUN interface. Whatever coming out from the TUN interface is an IP
