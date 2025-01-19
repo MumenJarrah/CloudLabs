@@ -340,8 +340,8 @@ After running the two commands above and the `ip address` command again, the TUN
 ### 3.3 Task 2.c: Read from the TUN Interface
 
 In this task, we will read from the TUN interface. Whatever coming out from the TUN interface is an IP
-packet. We can cast the data received from the interface into a ScapyIPobject, so we can print out each
-field of the IP packet. Please use the followingwhileloop to replace the one intun.py:
+packet. We can cast the data received from the interface into a Scapy IP object, so we can print out each
+field of the IP packet. Please use the following while loop to replace the one intun.py:
 
 ```
 while True:
@@ -352,13 +352,52 @@ while True:
         print(ip.summary())
 ```
 
-Please run the revisedtun.pyprogram on HostU, configure the TUN interface accordingly, and then
-conduct the following experiments. Please describe your observations:
+This is the updated code:
 
-- On HostU,pinga host in the 192.168.53.0/24 network. What are printed out by thetun.py
-    program? What has happened? Why?
-- On HostU,pinga host in the internal network 192.168.60.0/24, Doestun.pyprint out
-    anything? Why?
+```
+#!/usr/bin/env python3
+
+import fcntl
+import struct
+import os
+import time
+from scapy.all import *
+
+TUNSETIFF = 0x400454ca
+IFF_TUN   = 0x0001
+IFF_TAP   = 0x0002
+IFF_NO_PI = 0x1000
+
+# Create the tun interface
+tun = os.open("/dev/net/tun", os.O_RDWR)
+ifr = struct.pack('16sH', b'tun%d', IFF_TUN | IFF_NO_PI)
+ifname_bytes  = fcntl.ioctl(tun, TUNSETIFF, ifr)
+
+# Get the interface name
+ifname = ifname_bytes.decode('UTF-8')[:16].strip("\x00")
+print("Interface Name: {}".format(ifname))
+
+# Configure the TUN interface
+os.system("ip addr add 192.168.53.99/24 dev {}".format(ifname))
+os.system("ip link set dev {} up".format(ifname))
+
+while True:
+    # Get a packet from the tun interface
+    packet = os.read(tun, 2048)
+    if packet:
+        ip = IP(packet)
+        print(ip.summary())
+```
+
+After running the revised `tun.py` program on HostU and configure the TUN interface with the assigned IP address (192.168.53.99/24). You can notice the following:
+
+- When you ping a host in the 192.168.53.0/24 network, the tun.py program captures the ICMP echo request packets sent by the ping command. The program prints packet summaries, including the source IP, destination IP, and protocol details. This happens because packets in the 192.168.53.0/24 network are routed through the TUN interface.
+- 
+  ![tun](images/lab7-11.png)
+  
+- when you ping a host in the 192.168.60.0/24 network, the tun.py program does not capture any packets. This is because packets destined for the 192.168.60.0/24 network are not routed through the TUN interface, so the program does not process them.
+
+  ![tun](images/lab7-12.png)
 
 ### 3.4 Task 2.d: Write to the TUN Interface
 
