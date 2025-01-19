@@ -451,13 +451,13 @@ while True:
         ip = IP(packet)
         print(ip.summary())
 
-   # Send out a spoofed packet using the TUN interface
+     # Send out a spoofed packet using the TUN interface
         if ip.proto == 1:  # ICMP protocol
             newip = IP(src='1.2.3.4', dst=ip.src)
             newpkt = newip / ip.payload
             os.write(tun, bytes(newpkt))
 
-    # Write arbitrary data for testing (optional)
+     # Write arbitrary data for testing (optional)
         os.write(tun, b'This is a test packet')
         print("Arbitrary data written to the TUN interface")
 ```
