@@ -247,7 +247,7 @@ To modify and prepare `tun.py`, update the program to set a custom prefix for th
 
   ![tun](images/lab7-555.png)
 
-You need to update the following line in the program `ifr = struct.pack('16sH', b'smith%d', IFF_TUN | IFF_NO_PI)`.
+You need to update the following line in the program `ifr = struct.pack('16sH', b'tun%d', IFF_TUN | IFF_NO_PI)`.
 
   ![tun](images/lab7-666.png)
 
