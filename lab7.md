@@ -392,10 +392,10 @@ while True:
 After running the revised `tun.py` program on HostU and configure the TUN interface with the assigned IP address (192.168.53.99/24). You can notice the following:
 
 - When you ping a host in the 192.168.53.0/24 network, the tun.py program captures the ICMP echo request packets sent by the ping command. The program prints packet summaries, including the source IP, destination IP, and protocol details. This happens because packets in the 192.168.53.0/24 network are routed through the TUN interface.
-- 
+ 
   ![tun](images/lab7-11.png)
   
-- when you ping a host in the 192.168.60.0/24 network, the tun.py program does not capture any packets. This is because packets destined for the 192.168.60.0/24 network are not routed through the TUN interface, so the program does not process them.
+- When you ping a host in the 192.168.60.0/24 network, the tun.py program does not capture any packets. This is because packets destined for the 192.168.60.0/24 network are not routed through the TUN interface, so the program does not process them.
 
   ![tun](images/lab7-12.png)
 
