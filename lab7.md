@@ -333,9 +333,7 @@ os.system("ip link set dev {} up".format(ifname))
 while True:
    time.sleep(10)
 ```
-
-After running the two commands above, run the "ip address" command again, and report your
-observation. How is it different from that before running the configuration commands?
+After running the two commands above and the `ip address` command again, the TUN interface changes from DOWN to UP, and it is assigned the IP address 192.168.53.99/24. This makes the interface active and ready to send or receive packets, enabling it to function as part of the VPN tunnel.
 
 ### 3.3 Task 2.c: Read from the TUN Interface
 
