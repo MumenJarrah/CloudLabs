@@ -270,7 +270,7 @@ following command:
 ```
 # ip address
 ```
-![tun](images/lab7-1_2.png)
+  ![tun](images/lab7-999.png)
 
 You should be able to find an interface called `tun0`. Your job in this task is to change the `tun.py`
 program, so instead of using `tun` as the prefix of the interface name, use your last name as the prefix. For
