@@ -403,7 +403,7 @@ After running the revised `tun.py` program on HostU and configure the TUN interf
 
 In this task, we will write to the TUN interface. Since this is a virtual network interface, whatever is written
 to the interface by the application will appear in the kernel as an IP packet.
-We will modify thetun.pyprogram, so after getting a packet from the TUN interface, we construct a
+We will modify the `tun.py` program, so after getting a packet from the TUN interface, we construct a
 new packet based on the received packet. We then write the new packet to the TUN interface. How the new
 packet is constructed is up to students. The code in the following shows an example of how to write an IP
 packet to the TUN interface.
@@ -413,6 +413,53 @@ packet to the TUN interface.
 newip = IP(src=’1.2.3.4’, dst=ip.src)
 newpkt = newip/ip.payload
 os.write(tun, bytes(newpkt))
+```
+
+This is the modified `tun.py` code:
+
+```
+#!/usr/bin/env python3
+
+import fcntl
+import struct
+import os
+import time
+from scapy.all import *
+
+TUNSETIFF = 0x400454ca
+IFF_TUN   = 0x0001
+IFF_TAP   = 0x0002
+IFF_NO_PI = 0x1000
+
+# Create the tun interface
+tun = os.open("/dev/net/tun", os.O_RDWR)
+ifr = struct.pack('16sH', b'tun%d', IFF_TUN | IFF_NO_PI)
+ifname_bytes  = fcntl.ioctl(tun, TUNSETIFF, ifr)
+
+# Get the interface name
+ifname = ifname_bytes.decode('UTF-8')[:16].strip("\x00")
+print("Interface Name: {}".format(ifname))
+
+# Configure the TUN interface
+os.system("ip addr add 192.168.53.99/24 dev {}".format(ifname))
+os.system("ip link set dev {} up".format(ifname))
+
+while True:
+    # Get a packet from the tun interface
+    packet = os.read(tun, 2048)
+    if packet:
+        ip = IP(packet)
+        print(ip.summary())
+
+   # Send out a spoofed packet using the TUN interface
+        if ip.proto == 1:  # ICMP protocol
+            newip = IP(src='1.2.3.4', dst=ip.src)
+            newpkt = newip / ip.payload
+            os.write(tun, bytes(newpkt))
+
+    # Write arbitrary data for testing (optional)
+        os.write(tun, b'This is a test packet')
+        print("Arbitrary data written to the TUN interface")
 ```
 
 Please modify thetun.pycode according to the following requirements:
