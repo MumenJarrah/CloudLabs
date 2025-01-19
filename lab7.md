@@ -245,11 +245,11 @@ while True:
 We will run the `tun.py` program on HostU. Make the `tun.py` program executable and run it using root privileges. 
 To modify and prepare `tun.py`, update the program to set a custom prefix for the interface name, as shown in the following figure. You can access the Python file by navigate to the `tun.py` file in the shared directory `volume`, as shown in the figure.
 
-  ![tun](images/lab7-666.png)
+  ![tun](images/lab7-555.png)
 
 You need to update the following line in the program `ifr = struct.pack('16sH', b'smith%d', IFF_TUN | IFF_NO_PI)`.
 
-  ![tun](images/lab7-777.png)
+  ![tun](images/lab7-666.png)
 
 ```
 // Make the Python program executable
