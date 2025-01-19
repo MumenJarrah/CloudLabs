@@ -204,12 +204,12 @@ the virtual network interface.
 When a program is attached to a TUN/TAP interface, IP packets sent by the kernel to this interface will
 be piped into the program. On the other hand, IP packets written to the interface by the program will be
 piped into the kernel, as if they came from the outside through this virtual network interface. The program
-can use the standardread() and write() system calls to receive packets from or send packets to the
+can use the standard read() and write() system calls to receive packets from or send packets to the
 virtual interface.
 The objective of this task is to get familiar with the TUN/TAP technology. We will conduct several
 experiments to learn the technical details of the TUN/TAP interface. We will use the following Python
 program as the basis for the experiments, and we will modify this base code throughout this lab. The code
-is already included in thevolumesfolder in the zip file.
+is already included in the `volumes` folder in the zip file.
 
 `Listing 1: Creating a TUN interface (tun.py)`
 
@@ -242,8 +242,14 @@ while True:
 
 ### 3.1 Task 2.a: Name of the Interface
 
-We will run the tun.py program on HostU. Make the above tun.py program executable, and run it using
-the root privilege. See the following commands:
+We will run the `tun.py` program on HostU. Make the `tun.py` program executable and run it using root privileges. 
+To modify and prepare `tun.py`, update the program to set a custom prefix for the interface name, as shown in the following figure. You can access the Python file by navigate to the `tun.py` file in the shared directory `volume`, as shown in the figure.
+
+  ![tun](images/lab7-666.png)
+
+You need to update the following line in the program `ifr = struct.pack('16sH', b'smith%d', IFF_TUN | IFF_NO_PI)`.
+
+  ![tun](images/lab7-777.png)
 
 ```
 // Make the Python program executable
@@ -262,8 +268,8 @@ following command:
 ```
 ![tun](images/lab7-1_2.png)
 
-You should be able to find an interface called tun0. Your job in this task is to change thetun.py
-program, so instead of usingtunas the prefix of the interface name, use your last name as the prefix. For
+You should be able to find an interface called `tun0`. Your job in this task is to change the `tun.py`
+program, so instead of using `tun` as the prefix of the interface name, use your last name as the prefix. For
 example, if your last name is smith, you should use smith as the prefix. If your last name is long, you can
 use the first five characters. Please show your results.
 
