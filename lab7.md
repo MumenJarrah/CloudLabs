@@ -706,12 +706,12 @@ data become available, the process will be unblocked, and its execution will con
 waste CPU time when there is no data.
 
 The read-based blocking mechanism works well for one interface. If a process is waiting on multiple
-interfaces, it cannot block on just one of the interfaces. It has to block on all of them altogether.Linuxhas a
-system call calledselect(), which allows a program to monitor multiple file descriptors simultaneously.
+interfaces, it cannot block on just one of the interfaces. It has to block on all of them altogether. Linux has a
+system call called select(), which allows a program to monitor multiple file descriptors simultaneously.
 To useselect(), we need to store all the file descriptors to be monitored in a set, and then we give the
-set to theselect()system call, which will block the process until data are available on one of the file
+set to the select() system call, which will block the process until data are available on one of the file
 descriptors in the set. We can check which file descriptor has received data. In the following Python code
-snippet, we useselect()to monitor aTUNand a socket file descriptor.
+snippet, we use select() to monitor aTUNand a socket file descriptor.
 
 ```
 # We assume that sock and tun file descriptors have already been created.
@@ -736,13 +736,135 @@ while True:
 
 Below are the updated `tunserver.py` and `tunclient.py` programs for handling bidirectional traffic.
 
+`tunserver.py`
+
+```
+#!/usr/bin/env python3
+
+import fcntl
+import struct
+import os
+import socket
+import select
+from scapy.all import *
+
+TUNSETIFF = 0x400454ca
+IFF_TUN = 0x0001
+IFF_NO_PI = 0x1000
+
+# Create the TUN interface
+tun = os.open("/dev/net/tun", os.O_RDWR)
+ifr = struct.pack('16sH', b'tun%d', IFF_TUN | IFF_NO_PI)
+ifname_bytes = fcntl.ioctl(tun, TUNSETIFF, ifr)
+
+# Get the interface name
+ifname = ifname_bytes.decode('UTF-8')[:16].strip("\x00")
+print(f"Interface Name: {ifname}")
+
+# Configure the TUN interface
+os.system(f"ip addr add 192.168.60.1/24 dev {ifname}")
+os.system(f"ip link set dev {ifname} up")
+print(f"Configured {ifname} with IP 192.168.60.1/24 and brought UP.")
+
+# Create a UDP socket to communicate with the client
+IP_A = "0.0.0.0"
+PORT = 9090
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind((IP_A, PORT))
+print(f"Server listening on {IP_A}:{PORT}")
+
+while True:
+    # Monitor both the TUN interface and the UDP socket
+    ready, _, _ = select.select([sock, tun], [], [])
+
+    for fd in ready:
+        if fd is sock:  # Data received from the client
+            data, (ip, port) = sock.recvfrom(2048)
+            pkt = IP(data)
+            print(f"From socket <==: {pkt.src} --> {pkt.dst}")
+
+            # Write the packet to the TUN interface
+            os.write(tun, bytes(pkt))
+            print(f"Packet written to TUN interface: {pkt.src} --> {pkt.dst}")
+
+        if fd is tun:  # Data received from the TUN interface
+            packet = os.read(tun, 2048)
+            pkt = IP(packet)
+            print(f"From tun ==>: {pkt.src} --> {pkt.dst}")
+
+            # Send the packet back to the client via UDP
+            sock.sendto(packet, (ip, port))
+            print(f"Packet sent back to client: {pkt.src} --> {pkt.dst}")
+```
+
+`tunclient.py`
+
+```
+#!/usr/bin/env python3
+
+import fcntl
+import struct
+import os
+import socket
+import select
+from scapy.all import *
+
+TUNSETIFF = 0x400454ca
+IFF_TUN = 0x0001
+IFF_NO_PI = 0x1000
+
+# Create the TUN interface
+tun = os.open("/dev/net/tun", os.O_RDWR)
+ifr = struct.pack('16sH', b'tun%d', IFF_TUN | IFF_NO_PI)
+ifname_bytes = fcntl.ioctl(tun, TUNSETIFF, ifr)
+
+# Get the interface name
+ifname = ifname_bytes.decode('UTF-8')[:16].strip("\x00")
+print(f"Interface Name: {ifname}")
+
+# Configure the TUN interface
+os.system(f"ip addr add 192.168.53.99/24 dev {ifname}")
+os.system(f"ip link set dev {ifname} up")
+print(f"Configured {ifname} with IP 192.168.53.99/24 and brought UP.")
+
+# Client Configuration
+SERVER_IP = "10.9.0.11"  # Replace with the VPN Server's IP address
+SERVER_PORT = 9090
+
+# Create a UDP socket to communicate with the server
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+while True:
+    # Monitor both the TUN interface and the UDP socket
+    ready, _, _ = select.select([sock, tun], [], [])
+
+    for fd in ready:
+        if fd is tun:  # Data received from the TUN interface
+            packet = os.read(tun, 2048)
+            pkt = IP(packet)
+            print(f"From tun ==>: {pkt.src} --> {pkt.dst}")
+
+            # Send the packet to the VPN server via UDP
+            sock.sendto(packet, (SERVER_IP, SERVER_PORT))
+            print(f"Packet sent to server: {pkt.src} --> {pkt.dst}")
+
+        if fd is sock:  # Data received from the server
+            data, _ = sock.recvfrom(2048)
+            pkt = IP(data)
+            print(f"From socket <==: {pkt.src} --> {pkt.dst}")
+
+            # Write the packet to the TUN interface
+            os.write(tun, bytes(pkt))
+            print(f"Packet written to TUN interface: {pkt.src} --> {pkt.dst}")
+```
+
 <!--- Students can use the code above to replace the while loop in their TUN client and server programs.
 The code is incomplete; students are expected to complete it.
 --->
 
-Testing. Once this is done, we should be able to communicate with MachineV from MachineU, and the
-VPN tunnel (un-encrypted) is now complete. Please show your wireshark proof using aboutpingand
-telnet commands. In your proof, you need to point out how your packets flow.
+**Testing.** Once this is done, we should be able to communicate with MachineV from MachineU, and the
+VPN tunnel (un-encrypted) is now complete. You can use `wireshark` about `ping` and
+`telnet` commands.
 
  ![tun](images/lab7-16.png)
 
