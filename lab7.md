@@ -677,11 +677,15 @@ Then, On the VPN Server, execute:
 python3 tunserver.py
 ```
 
-**Testing.** If everything is set up properly, we can ping HostV from HostU. The ICMP echo request
+**Testing.** The testing process confirmed that the setup was successful. ICMP echo request packets from HostU were sent through the tunnel to the VPN Server and eventually reached HostV. Using `tcpdump` on HostV, it was verified that the ICMP packets arrived as expected, demonstrating that the VPN Server successfully forwarded the packets from the TUN interface to their destination. Although HostV responded to the ICMP echo requests with echo replies, the replies did not return to HostU because reverse tunneling has not yet been configured. This behavior aligns with the current setup, where the focus is on ensuring that packets can traverse the tunnel and reach their intended destination. The following `tcpdump` output shows that the ICMP packets were correctly delivered to HostV.
+
+<!---
+If everything is set up properly, we can ping HostV from HostU. The ICMP echo request
 packets should eventually arrive at `HostV` through the tunnel. Please show your proof. It should be noted
 that although HostV will respond to the ICMP packets, the reply will not get back to HostU, because we
 have not set up everything yet. Therefore, for this task, it is sufficient to show (using Wireshark or tcpdump)
 that the ICMP packets have arrived at HostV.
+--->
 
   ![tun](images/lab7-15.png)
 
