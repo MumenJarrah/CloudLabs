@@ -457,11 +457,13 @@ while True:
            newpkt = newip / ip.payload
            os.write(tun, bytes(newpkt))
 
-    # Write arbitrary data for testing (optional)
+    # Write arbitrary data for testing 
     print("Arbitrary data written to the TUN interface")
 ```
 
-Please modify thetun.pycode according to the following requirements:
+  ![tun](images/lab7-13.png)
+
+Please modify the `tun.py` code according to the following requirements:
 
 - After getting a packet from the TUN interface, if this packet is an ICMP echo request packet, construct
     a corresponding echo reply packet and write it to the TUN interface. Please provide evidence to show
