@@ -498,10 +498,10 @@ while True:
     print(" Inside: {} --> {}".format(pkt.src, pkt.dst))
 ```
 
-Implement the client program **tunclient.py**. First, we need to modify the TUN programtun.py.
-Let’s rename it, and call ittunclient.py. Sending data to another computer using UDP can be done
+Implement the client program **tunclient.py**. First, we need to modify the TUN program `tun.py`.
+Let’s rename it, and call it `tunclient.py`. Sending data to another computer using UDP can be done
 using the standard socket programming.
-Replace thewhileloop in the program with the following: The SERVERIP an dSERVERPORT should be replaced with the actual IP address and port number of the server program running on VPN
+Replace the while loop in the program with the following: The `SERVERIP` and `SERVERPORT` should be replaced with the actual IP address and port number of the server program running on VPN
 Server.
 
 ```
@@ -516,14 +516,60 @@ while True:
         sock.sendto(packet, (SERVER_IP, SERVER_PORT))
 ```
 
-Testing. Run thetunserver.pyprogram on VPN Server, and then runtunclient.pyon Host
-U. To test whether the tunnel works or not,ping any IP address belonging to the 192.168.53.0/
+The update `tunclient.py` code should be something like this:
+```
+#!/usr/bin/env python3
+
+import fcntl
+import struct
+import os
+import socket
+from scapy.all import *
+
+TUNSETIFF = 0x400454ca
+IFF_TUN   = 0x0001
+IFF_TAP   = 0x0002
+IFF_NO_PI = 0x1000
+
+# Create the TUN interface
+tun = os.open("/dev/net/tun", os.O_RDWR)
+ifr = struct.pack('16sH', b'tun%d', IFF_TUN | IFF_NO_PI)
+ifname_bytes = fcntl.ioctl(tun, TUNSETIFF, ifr)
+
+# Get the interface name
+ifname = ifname_bytes.decode('UTF-8')[:16].strip("\x00")
+print(f"Interface Name: {ifname}")
+
+# Configure the TUN interface
+os.system(f"ip addr add 192.168.53.99/24 dev {ifname}")
+os.system(f"ip link set dev {ifname} up")
+
+# Client Configuration
+SERVER_IP = "<VPN_SERVER_IP>"  # Replace with the VPN server's IP address
+SERVER_PORT = 9090
+
+# Create a UDP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+while True:
+    # Read a packet from the TUN interface
+    packet = os.read(tun, 2048)
+    if packet:
+        print(f"Packet read from TUN interface: {IP(packet).summary()}")
+        
+        # Send the packet to the VPN server
+        sock.sendto(packet, (SERVER_IP, SERVER_PORT))
+        print(f"Packet sent to {SERVER_IP}:{SERVER_PORT}")
+```
+
+
+**Testing.** Run the `tunserver.py` program on VPN Server, and then run `tunclient.py` on HostU. To test whether the tunnel works or not,ping any IP address belonging to the 192.168.53.0/
 network. What is printed out on VPN Server? Why?
 Our ultimate goal is to access the hosts inside the private network 192.168.60.0/24 using the
-tunnel. Let usping HostV, and see whether the ICMP packet is sent to VPN Server through the tunnel.
+tunnel. Let us ping HostV, and see whether the ICMP packet is sent to VPN Server through the tunnel.
 If not, what are the problems? You need to solve this problem, so the ping packet can be sent through
 the tunnel. This is done through routing, i.e., packets going to the 192.168.60.0/24 network should
-be routed to the TUN interface and be given to thetunclient.pyprogram. The following command
+be routed to the TUN interface and be given to the `tunclient.py` program. The following command
 shows how to add an entry to the routing table:
 
 ```
