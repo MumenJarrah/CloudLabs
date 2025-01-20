@@ -302,12 +302,9 @@ $ dockps
 #### Output
 The output will list all running Docker containers, each with its unique ID and assigned name. An example output might look like this:
 
-```
-b1004832e275 hostA-10.9.0.5
-0af4ea7a3e2e hostB-10.9.0.6
-9652715c8e0a hostC-10.9.0.7
-```
-Each line includes the container ID and its corresponding name (in this case, hostA, hostB, and hostC), along with their assigned IP addresses.
+![](images/lab8-222-u.png)
+
+Each line includes the container ID and its corresponding name, along with their assigned IP addresses.
 
 **Access a Specific Container’s Shell**. To open a shell inside a specific container, use the alias docksh followed by the first few characters of the container's ID. For example, to access hostC, use the ID prefix 96 (from the third line in the previous output).
 
