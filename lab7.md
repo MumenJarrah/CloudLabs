@@ -693,7 +693,7 @@ that the ICMP packets have arrived at HostV.
 ## 6 Task 5: Handling Traffic in Both Directions
 
 After getting to this point, one direction of your tunnel is complete, i.e., we can send packets from HostU
-to HostVvia the tunnel. If we look at the Wireshark trace on HostV, we can see that HostVhas sent out
+to HostV via the tunnel. If we look at the Wireshark trace on HostV, we can see that HostV has sent out
 the response, but the packet gets dropped somewhere. This is because our tunnel is only one directional; we
 need to set up its other direction, so returning traffic can be tunneled back to Host U.
 To achieve that, our TUN client and server programs need to read data from two interfaces, the TUN
@@ -704,6 +704,7 @@ because the process has to keep running in an idle loop when there is no data. A
 an interface. By default, read is blocking, i.e., the process will be suspended if there are no data. When
 data become available, the process will be unblocked, and its execution will continue. This way, it does not
 waste CPU time when there is no data.
+
 The read-based blocking mechanism works well for one interface. If a process is waiting on multiple
 interfaces, it cannot block on just one of the interfaces. It has to block on all of them altogether.Linuxhas a
 system call calledselect(), which allows a program to monitor multiple file descriptors simultaneously.
@@ -733,11 +734,16 @@ while True:
         ... (code needs to be added by students) ...
 ```
 
-Students can use the code above to replace thewhileloop in their TUN client and server programs.
+Below are the updated `tunserver.py` and `tunclient.py` programs for handling bidirectional traffic.
+
+<!--- Students can use the code above to replace the while loop in their TUN client and server programs.
 The code is incomplete; students are expected to complete it.
+--->
 
 Testing. Once this is done, we should be able to communicate with MachineV from MachineU, and the
 VPN tunnel (un-encrypted) is now complete. Please show your wireshark proof using aboutpingand
 telnet commands. In your proof, you need to point out how your packets flow.
+
+ ![tun](images/lab7-16.png)
 
 ### You have successfully completed the lab
