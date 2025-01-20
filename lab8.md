@@ -248,10 +248,11 @@ This will send HTTP requests, and `tcpdump` will capture the packets. The output
 ### `nmap`
 The `nmap` (Network Mapper) command is a powerful tool used for network exploration and security auditing. It allows you to discover hosts, services, and open ports on a network. In this lab, we will use Docker containers to simulate the two hosts. Files needed for this section are included in Labsetup.zip, which can be fetched by running the following commands.
 
-# Download the lab setup files
+```
+#### Download the lab setup files
 $ sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/VPN_Tunnel/Labsetup.zip
 
-# Unzip the lab setup files
+#### Unzip the lab setup files
 $ sudo unzip Labsetup.zip
 
 Build the Docker Container. Use Docker Compose to build the container image. This step prepares the environment for running your hosts with the required configurations.
