@@ -463,13 +463,7 @@ while True:
 
   ![tun](images/lab7-13.png)
 
-Please modify the `tun.py` code according to the following requirements:
-
-- After getting a packet from the TUN interface, if this packet is an ICMP echo request packet, construct
-    a corresponding echo reply packet and write it to the TUN interface. Please provide evidence to show
-    that the code works as expected.
-- Instead of writing an IP packet to the interface, write some arbitrary data to the interface, and report
-    your observation.
+The `tun.py` code was modified to handle ICMP echo requests and test the behavior of the TUN interface when invalid data is written. The program processes each packet received from the TUN interface, identifies ICMP echo requests (type 8), and constructs a corresponding ICMP echo reply (type 0). The reply packet swaps the source and destination IP addresses of the original request and retains the payload. This packet is then written back to the TUN interface. The functionality was verified by sending a ping to the TUN interface (192.168.53.1). The program logged the receipt of ICMP echo requests and the construction and transmission of echo replies. The ping command confirmed successful replies, demonstrating the program works as intended. Additionally, the program was modified to write arbitrary data to the TUN interface to observe the kernel's response. 
 
 ## 4 Task 3: Send the IP Packet to VPN Server Through a Tunnel
 
