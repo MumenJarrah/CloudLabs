@@ -458,7 +458,6 @@ while True:
            os.write(tun, bytes(newpkt))
 
     # Write arbitrary data for testing (optional)
-    os.write(tun, b'This is a test packet')
     print("Arbitrary data written to the TUN interface")
 ```
 
