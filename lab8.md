@@ -255,43 +255,69 @@ $ sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/VPN_Tunnel/Labsetup.zi
 #### Unzip the lab setup files
 $ sudo unzip Labsetup.zip
 
-Build the Docker Container. Use Docker Compose to build the container image. This step prepares the environment for running your hosts with the required configurations.
+**Build the Docker Container**. Use Docker Compose to build the container image. This step prepares the environment for running your web server with the required configurations.
 
+```
 # Build the Docker container
 $ docker-compose build
 
 # OR use the alias
 $ dcbuild
-Start the Docker Container. This command initializes and runs the container based on the configurations specified in the docker-compose.yml file.
+```
 
+**Start the Docker Container**. This command initializes and runs the container based on the configurations specified in the docker-compose.yml file.
+
+```
 # Start the Docker container
 $ docker-compose up
 
 # OR use the alias
 $ dcup
-Stop and Shut Down the Docker Container. When you’re finished or need to reset the environment, shut down the running container to release resources.
+```
 
+**Stop and Shut Down the Docker Container**. When you’re finished or need to reset the environment, shut down the running container to release resources.
+
+```
 # Stop and shut down the Docker container
 $ docker-compose down
 
 # OR use the alias
 $ dcdown
+```
+ 
+All the containers will be running in the background. To run commands on a container, we often need
+to get a shell on that container. We first need to use the `"docker ps"` command to find out the ID of
+the container, and then use `"docker exec"` to start a shell on that container. We have created aliases for
+them in the `.bashrc` file.
 
-All the containers will be running in the background. To run commands on a container, we often need to get a shell on that container. We first need to use the "docker ps" command to find out the ID of the container, and then use "docker exec" to start a shell on that container. We have created aliases for them in the .bashrc file.
+**List Running Docker Containers**. Use the alias dockps to view a list of running containers, displaying each container's ID and name in a simplified format.
 
-List Running Docker Containers. Use the alias dockps to view a list of running containers, displaying each container's ID and name in a simplified format.
-
+```
 $ dockps
+```
 
-Output
+#### Output
 The output will list all running Docker containers, each with its unique ID and assigned name. An example output might look like this:
 
+```
 b1004832e275 hostA-10.9.0.5
 0af4ea7a3e2e hostB-10.9.0.6
 9652715c8e0a hostC-10.9.0.7
-
+```
 Each line includes the container ID and its corresponding name (in this case, hostA, hostB, and hostC), along with their assigned IP addresses.
 
-Access a Specific Container’s Shell. To open a shell inside a specific container, use the alias docksh followed by the first few characters of the container's ID. For example, to access hostC, use the ID prefix 96 (from the third line in the previous output).
+**Access a Specific Container’s Shell**. To open a shell inside a specific container, use the alias docksh followed by the first few characters of the container's ID. For example, to access hostC, use the ID prefix 96 (from the third line in the previous output).
 
+```
 $ docksh 96
+```
+
+#### Output
+You will be logged into a shell session inside the specified container. The prompt will change to show the container ID, indicating that you are now inside the container:
+
+```
+root@9652715c8e0a:/#
+```
+
+#### Note: If a Docker command requires the container ID, you only need to type the first few characters, as long as they are unique among all running containers.
+
