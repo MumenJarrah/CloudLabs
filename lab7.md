@@ -563,11 +563,16 @@ while True:
 ```
 
 
-**Testing.** To test whether the tunnel works, first run the tunserver.py program on the VPN Server. The server will listen on port 9090 for incoming UDP packets. Next, run the tunclient.py program on HostU. The client will configure the TUN interface (tun0), capture packets sent to it, encapsulate them in UDP packets, and send them to the VPN Server. To test the tunnel, ping any IP address in the 192.168.53.0/24 network (e.g., 192.168.53.1) from HostU. On the VPN Server, the tunserver.py program will print logs showing the source and destination IPs of the received packets. For example, you may see output like this: 10.9.0.11:12345 --> 0.0.0.0:9090 and Inside: 192.168.53.99 --> 192.168.53.1. This confirms that the ICMP echo request packet was successfully forwarded from the TUN interface on HostU through the tunnel to the VPN Server, where it was received and processed.
+**Testing.** To test whether the tunnel works, first run the `tunserver.py` program on the VPN Server. The server will listen on port `9090` for incoming UDP packets. Next, run the `tunclient.py` program on HostU. The client will configure the TUN interface (tun0), capture packets sent to it, encapsulate them in UDP packets, and send them to the VPN Server. 
+To test the tunnel, ping any IP address in the `192.168.53.0/24` network (e.g., 192.168.53.1) from HostU. On the VPN Server, the `tunserver.py` program will print logs showing the source and destination IPs of the received packets. For example, you may see output like this: 10.9.0.11:12345 --> 0.0.0.0:9090 and Inside: 192.168.53.99 --> 192.168.53.1. This confirms that the ICMP echo request packet was successfully forwarded from the TUN interface on HostU through the tunnel to the VPN Server, where it was received and processed.
 
-To achieve the ultimate goal of accessing hosts inside the private network 192.168.60.0/24 using the tunnel, you need to route packets destined for this network to the TUN interface on HostU. This can be done by adding a route with the following command on HostU: ip route add 192.168.60.0/24 dev tun0. Once this route is added, any packets sent to the 192.168.60.0/24 network will be captured by tunclient.py, encapsulated in UDP, and sent to the VPN Server. When you ping a host in the 192.168.60.0/24 network, such as HostV (192.168.60.5), the VPN Server will log the packet details, confirming that the ICMP echo request packet was received through the tunnel.
+To achieve the ultimate goal of accessing hosts inside the private network 192.168.60.0/24 using the tunnel, you need to route packets destined for this network to the TUN interface on HostU. This can be done by adding a route with the following command on HostU: 
+```
+ip route add 192.168.60.0/24 dev tun0
+```
+Once this route is added, any packets sent to the 192.168.60.0/24 network will be captured by tunclient.py, encapsulated in UDP, and sent to the VPN Server. When you ping a host in the 192.168.60.0/24 network, such as HostV (192.168.60.5), the VPN Server will log the packet details, confirming that the ICMP echo request packet was received through the tunnel.
 
-If the ICMP packets do not appear on the VPN Server, ensure the TUN interface on HostU is up (ip link set dev tun0 up) and verify the route configuration. The output on the VPN Server will show packets received through the tunnel, demonstrating that the tunnel is correctly forwarding packets for the private network.
+If the ICMP packets do not appear on the VPN Server, ensure the TUN interface on HostU is up `ip link set dev tun0 up` and verify the route configuration. The output on the VPN Server will show packets received through the tunnel, demonstrating that the tunnel is correctly forwarding packets for the private network.
 
   ![tun](images/lab7-14.png)
 
