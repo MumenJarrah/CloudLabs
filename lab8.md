@@ -246,4 +246,50 @@ This will send HTTP requests, and `tcpdump` will capture the packets. The output
 
 
 ### `nmap`
--  To run `nmap`. We need to run the docker container and test some 
+The `nmap` (Network Mapper) command is a powerful tool used for network exploration and security auditing. It allows you to discover hosts, services, and open ports on a network. In this lab, we will use Docker containers to simulate the two hosts. Please download the `Labsetup.zip` file to your VM using the following command:
+```
+
+```
+, unzip it, enter the Labsetup folder, and use the docker-compose.yml file to set up the lab environment. 
+
+Detailed explanation of the content in this file and all the involved Dockerfile can be found from the user manual, which is linked to the website of this lab.
+
+In the following, we list some of the commonly used commands related to Docker and Compose. Since we are going to use these commands very frequently, we have created aliases for them in the .bashrc file (in our provided SEEDUbuntu 20.04 VM).
+
+Build the Docker Container. Use Docker Compose to build the container image. This step prepares the environment for running your web server with the required configurations.
+
+# Build the Docker container
+$ docker-compose build
+
+# OR use the alias
+$ dcbuild
+Start the Docker Container. This command initializes and runs the container based on the configurations specified in the docker-compose.yml file.
+
+# Start the Docker container
+$ docker-compose up
+
+# OR use the alias
+$ dcup
+Stop and Shut Down the Docker Container. When you’re finished or need to reset the environment, shut down the running container to release resources.
+
+# Stop and shut down the Docker container
+$ docker-compose down
+
+# OR use the alias
+$ dcdown
+All the containers will be running in the background. To run commands on a container, we often need to get a shell on that container. We first need to use the "docker ps" command to find out the ID of the container, and then use "docker exec" to start a shell on that container. We have created aliases for them in the .bashrc file.
+
+List Running Docker Containers. Use the alias dockps to view a list of running containers, displaying each container's ID and name in a simplified format.
+
+$ dockps
+Output
+The output will list all running Docker containers, each with its unique ID and assigned name. An example output might look like this:
+
+b1004832e275 hostA-10.9.0.5
+0af4ea7a3e2e hostB-10.9.0.6
+9652715c8e0a hostC-10.9.0.7
+Each line includes the container ID and its corresponding name (in this case, hostA, hostB, and hostC), along with their assigned IP addresses.
+
+Access a Specific Container’s Shell. To open a shell inside a specific container, use the alias docksh followed by the first few characters of the container's ID. For example, to access hostC, use the ID prefix 96 (from the third line in the previous output).
+
+$ docksh 96
