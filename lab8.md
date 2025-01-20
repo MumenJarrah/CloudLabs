@@ -276,6 +276,8 @@ $ docker-compose up
 $ dcup
 ```
 
+![](images/lab8-111-u.png)
+
 **Stop and Shut Down the Docker Container**. When you’re finished or need to reset the environment, shut down the running container to release resources.
 
 ```
@@ -306,8 +308,6 @@ b1004832e275 hostA-10.9.0.5
 9652715c8e0a hostC-10.9.0.7
 ```
 Each line includes the container ID and its corresponding name (in this case, hostA, hostB, and hostC), along with their assigned IP addresses.
-
-![](images/lab8-111-u.png)
 
 **Access a Specific Container’s Shell**. To open a shell inside a specific container, use the alias docksh followed by the first few characters of the container's ID. For example, to access hostC, use the ID prefix 96 (from the third line in the previous output).
 
