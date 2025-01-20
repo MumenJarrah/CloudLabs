@@ -596,30 +596,94 @@ network, the ICMP packets are received by `tunserver.py` through the tunnel.
 
 ## 5 Task 4: Set Up the VPN Server
 
-Aftertunserver.pygets a packet from the tunnel, it needs to feed the packet to the kernel, so the kernel
-can route the packet towards its final destination. This needs to be done through a TUN interface, just like
-what we did in Task 2. Please modifytunserver.py, so it can do the following:
+This task involves modifying the VPN Server program `tunserver.py` so that it can process packets received from the tunnel, feed them to the kernel through a TUN interface, and forward them to their final destination. You will also enable IP forwarding to ensure the server can act as a gateway. This needs to be done through a TUN interface, just like what we did in Task 2. 
 
-- Create a TUN interface and configure it.
-- Get the data from the socket interface; treat the received data as an IP packet.
-- Write the packet to the TUN interface.
-
-Before running the modifiedtunserver.py, we need to enable the IP forwarding. Unless specifi-
+Before running the modified `tunserver.py`, we need to enable the IP forwarding. Unless specifi-
 cally configured, a computer will only act as a host, not as a gateway. VPN Server needs to forward packets
 between the private network and the tunnel, so it needs to function as a gateway. We need to enable the IP
 forwarding for a computer to behave like a gateway. IP forwarding has already been enabled on the router
-container. You can see indocker-compose.ymlthat the router container has the following entry:
+container. You can see in `docker-compose.yml` that the router container has the following entry:
 
 ```
 sysctls:
     - net.ipv4.ip_forward=1
 ```
 
-Testing. If everything is set up properly, we canpingHostVfrom HostU. The ICMP echo request
-packets should eventually arrive at HostVthrough the tunnel. Please show your proof. It should be noted
-that although HostVwill respond to the ICMP packets, the reply will not get back to HostU, because we
+Run the following command to verify the current IP forwarding status:
+
+```
+sysctl net.ipv4.ip_forward
+```
+
+Then, you need to modify `tunserver.py`, so it can do the following:
+
+- Create a TUN interface and configure it.
+- Get the data from the socket interface; treat the received data as an IP packet.
+- Write the packet to the TUN interface.
+
+The updated `tunserver.py` code will be like this:
+
+```
+#!/usr/bin/env python3
+
+import fcntl
+import struct
+import os
+import socket
+from scapy.all import *
+
+TUNSETIFF = 0x400454ca
+IFF_TUN   = 0x0001
+IFF_TAP   = 0x0002
+IFF_NO_PI = 0x1000
+
+# Create the TUN interface
+tun = os.open("/dev/net/tun", os.O_RDWR)
+ifr = struct.pack('16sH', b'tun%d', IFF_TUN | IFF_NO_PI)
+ifname_bytes = fcntl.ioctl(tun, TUNSETIFF, ifr)
+
+# Get the interface name
+ifname = ifname_bytes.decode('UTF-8')[:16].strip("\x00")
+print(f"Interface Name: {ifname}")
+
+# Configure the TUN interface
+os.system(f"ip addr add 192.168.60.1/24 dev {ifname}")
+os.system(f"ip link set dev {ifname} up")
+
+# UDP socket for receiving packets from the client
+IP_A = "0.0.0.0"
+PORT = 9090
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind((IP_A, PORT))
+print(f"Server listening on {IP_A}:{PORT}")
+
+while True:
+    # Receive a packet from the tunnel
+    data, (ip, port) = sock.recvfrom(2048)
+    print(f"Received packet from {ip}:{port}")
+
+    # Parse the UDP payload as an IP packet
+    pkt = IP(data)
+    print(f"Inside Packet: {pkt.src} --> {pkt.dst}")
+
+    # Write the packet to the TUN interface
+    os.write(tun, bytes(pkt))
+    print(f"Packet written to TUN interface: {ifname}")
+```
+
+Then, On the VPN Server, execute:
+
+```
+python3 tunserver.py
+```
+
+**Testing.** If everything is set up properly, we can ping HostV from HostU. The ICMP echo request
+packets should eventually arrive at `HostV` through the tunnel. Please show your proof. It should be noted
+that although HostV will respond to the ICMP packets, the reply will not get back to HostU, because we
 have not set up everything yet. Therefore, for this task, it is sufficient to show (using Wireshark or tcpdump)
 that the ICMP packets have arrived at HostV.
+
+  ![tun](images/lab7-15.png)
 
 
 ## 6 Task 5: Handling Traffic in Both Directions
