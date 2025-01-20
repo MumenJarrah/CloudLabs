@@ -545,7 +545,7 @@ os.system(f"ip addr add 192.168.53.99/24 dev {ifname}")
 os.system(f"ip link set dev {ifname} up")
 
 # Client Configuration
-SERVER_IP = "<VPN_SERVER_IP>"  # Replace with the VPN server's IP address
+SERVER_IP = "10.9.0.11"
 SERVER_PORT = 9090
 
 # Create a UDP socket
@@ -577,7 +577,9 @@ shows how to add an entry to the routing table:
 ```
 
 Please demonstrate that when you ping an IP address in the192.168.60.0/
-network, the ICMP packets are received bytunserver.pythrough the tunnel.
+network, the ICMP packets are received by `tunserver.py` through the tunnel.
+
+  ![tun](images/lab7-14.png)
 
 ## 5 Task 4: Set Up the VPN Server
 
