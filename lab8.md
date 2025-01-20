@@ -246,24 +246,7 @@ This will send HTTP requests, and `tcpdump` will capture the packets. The output
 
 
 ### `nmap`
-The `nmap` (Network Mapper) command is a powerful tool used for network exploration and security auditing. It allows you to discover hosts, services, and open ports on a network. You need to install `nmap` using the following instructions:
-
-- Update System Package Repository:
-  ```
-  sudo apt update
-  ```
-  
-- Install Nmap:
-  ```
-  sudo apt install nmap -y
-  ```
-
-- Verify Installation:
-  ```
-  nmap --version
-  ```
-
-In this lab, we will use Docker containers to simulate the two hosts. Files needed for this section are included in Labsetup.zip, which can be fetched by running the following commands.
+The `nmap` (Network Mapper) command is a powerful tool used for network exploration and security auditing. It allows you to discover hosts, services, and open ports on a network. In this lab, we will use Docker containers to simulate the two hosts. Files needed for this section are included in Labsetup.zip, which can be fetched by running the following commands.
 
 ```
 # Download the lab setup files
@@ -339,9 +322,25 @@ root@9652715c8e0a:/#
 
 #### Note: If a Docker command requires the container ID, you only need to type the first few characters, as long as they are unique among all running containers.
 
-Once inside the containers, you can use the nmap command to perform scans.
+Once inside the containers, you can use the nmap command to perform scans. You need to install `nmap` using the following instructions:
+
+- Update System Package Repository:
+  ```
+  apt update
+  ```
+  
+- Install Nmap:
+  ```
+  apt install nmap -y
+  ```
+
+- Verify Installation:
+  ```
+  nmap --version
+  ```
 
 - From `192.168.60.5`, scan `192.168.60.6` using the following command:
+  
   ```
   nmap 192.168.60.6
   ```
