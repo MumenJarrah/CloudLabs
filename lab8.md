@@ -31,11 +31,13 @@ ifconfig
 
 The output shows crucial data about the network interfaces, like:
 
-- The names of the active network interfaces (e.g., eth0, enp0s3 and lo, the loopback interface).
+- The names of the active network interfaces (e.g., eth0 and lo, the loopback interface).
 - The hardware MAC address.
 - The IP address (inet), netmask, and broadcast address.
 - The MTU (Maximum Transmission Unit) value.
 • Display more details with ifconfig
+
+In the output baove the interface eth0 has the IPv4 address of 10.0.0.4 and IPv6 address of fe80::222::48ff:fe21:1445.
 
 The verbose option (-v) prints a more detailed output. Depending on the system, the outcome is either the same as ifconfig without arguments or slightly more in-depth.
 
@@ -91,7 +93,7 @@ ip -s -s link show
 
 This shows the states on the transmission and reception side, including the number of packets processed and errors experienced.
 
----- Checking the Status of the Connections on a Machine
+## 3. Checking the Status of the Connections on a Machine
 
 ### `netstat`
 
@@ -153,7 +155,7 @@ ss
 
 As with netstat, you can expand the `ss` command with options to filter or customize output.
 
------Checking Network Operations
+## 4. Checking Network Operations
 
 ### `ping`
 
@@ -187,7 +189,9 @@ To check the path to facebook.com, use the following command:
 traceroute www.facebook.com
 ```
 
-----Inspecting the Network Communication
+Some cloud providers do not support traverout in their platform since it can be used by milisouse users to infer network detials.
+
+## 5. Inspecting the Network Communication
 
 ### `tcpdump`
 
@@ -221,29 +225,71 @@ This will send HTTP requests, and `tcpdump` will capture the packets. The output
 
 ![](images/lab8-7.png)
 
+In the output above we can see the packets related to the TCP connection used to send the HTTP Get request. The first four packets are:
+- The first packet is the request to establish a TCP connection. This is indicated by the flag (S). The packet is sent from athe node with the hostname of "lLabvm-1568140.internal.cloudapp.net.41268" to the facebook server "edge-star-mini-shv-01-iad3.facebook.com.http"
+- The second line shows the responce from the facebook server responds (packet flaged (S.)
+- The third message is the third message of the TCP handshake.
+- The forth message has the HTTP GET request.
+
+tcpdump allows for inspecting the connection and the TCP state for packets sent or recieved on the interface. 
+
 ### `Tshark/Wireshark`
-`Wireshark` is another tool used to capture and inspect packets in real-time. It allows users to monitor network traffic, troubleshoot issues, and analyze communication between devices. `Wireshark` provides detailed insights into network protocols such as DNS, HTTP, TCP, and UDP. Its intuitive graphical interface makes it easy to filter, capture, and analyze packets, helping users identify connectivity problems, security vulnerabilities, or performance bottlenecks in networks.
+`Wireshark` is another tool used to capture and inspect packets in real-time. It allows users to monitor network traffic, troubleshoot issues, and analyze communication between devices. `Wireshark` provides detailed insights into network protocols such as DNS, HTTP, TCP, and UDP. It comes with two tools. tshark is a command line tool that allows for scripting and automatig inspection, and wireshark is the same tool with a graphical user interface that allows user driven inspection and exploration of the network traffic. Wireshark comes with a graphical interface to help with filtering, captureing, and analyzing packets, helping users identify connectivity problems, security vulnerabilities, or performance bottlenecks in networks.
 
 - Launch `Wireshark` from your desktop.
 - You will see a list of available network interfaces, choose the interface connected to the internet `eth0`.
-- Double-click the interface to start capturing packets
+- We will inspect the trafic on the "etho" interface. Double-click the interface to start capturing packets
 
   ![](images/lab8-8.png)
   
+- Now we need to generate some traffic on theinterface. We will visit the www.facebook.com site. Use the following command to get the facebook page.
+
+```
+curl www.facebook.com
+```
+
+- Check the Wireshark interface for the captured packets. You will see a long list of packets captured at the interface.
+
+[ADD an IMAGE]
+
 - To filter traffic while capturing or viewing, use the filter bar at the top.
 - There are some common filters you can use like:
   - DNS Traffic: dns
 
      ![](images/lab8-dns.png)
+
+In this output you see that the machine did submit a DNS query to find the IP address of the facebook.com domain.
+Click on one of the packets at the top of the screen. THis will show the packets details in the lower screen.
+
+The first DNS packet contains the request.
+The last DNS packet. No. [FILL THIS] on the screen, shows the DNS respons. 
+
+[Add Image of the responce packet]
+
+The responce indicates that the facebook IP address is [ADDRESS]
     
   - HTTP Traffic: http
 
-     ![](images/lab8-http.png)
+     ![](images/lab8-http.png)   [Change this to select the first GET request]
+
+In this output you see all the HTTP related packet. The outputs shows mutliple HTTP request and responce packets. This is because modern websites may store different objects such as images and videos on different servers and are retrieved through a seperate HTTP request.
+
+- Find the first HTTP request. In our example it is the first HTTP GET request at the top (No. FILL-THIS).
+  The lower screen shows the packet details. It shows all the header of the packets including ethernet, IP, TCP, and HTTP. The HTTP request shows a GET request for www.facebook.com
+
+- Following that request there is a HTTP responce.
+  Find the packet in your output. In out output it is packet no. FILL-THIS
+
+[ADD FIGURE FOR THE RESPONCE]
+  
+  The responce states responce code of 200. Which indicates a succefull processing of the HTTP request.
+  At the end of the responce we can see the bytes of the returned page.
     
 - Also, you can filter the packets using the host name: `www.facebook.com` 
 
     ![](images/lab8-9.png)
 
+## 6. Inspect Network Vulnerability with nmap 
 
 ### `nmap`
 The `nmap` (Network Mapper) command is a powerful tool used for network exploration and security auditing. It allows you to discover hosts, services, and open ports on a network. In this lab, we will use Docker containers to simulate the two hosts. Files needed for this section are included in Labsetup.zip, which can be fetched by running the following commands.
