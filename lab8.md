@@ -413,6 +413,7 @@ The `nmap` output provides an overview of the publicly accessible services on th
 The `nmap` results show that two ports are open:
 
     - Port 80 (HTTP): which is used for standard, unsecured web traffic.
+    
     - Port 443 (HTTPS): which is used for secure, encrypted web traffic over HTTPS. 
     
 <!---
