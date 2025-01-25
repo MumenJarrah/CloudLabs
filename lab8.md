@@ -405,9 +405,12 @@ You need to install `nmap` using the following instructions:
   nmap --version
   ```
 
-The following example shows how `nmap` works. The command `nmap www.facebook.com` was used to scan a public web server to discover accessible services. The scan showed the host was reachable, resolved the domain to an IP address, and revealed open ports 80 (HTTP) and 443 (HTTPS), commonly used for serving web traffic.
+The following example shows how `nmap` works. The command `nmap www.facebook.com` was used to scan a public web server to discover accessible services.
     
   ![](images/lab8-444-u.png)
+
+The `nmap` output provides an overview of the publicly accessible services on the target domain `www.facebook.com`. The scan starts by identifying that the host is online and reachable, confirming connectivity. Then, it shows the domain resolves to the IPv4 address 157.240.22.35, which is the primary target of the scan. Also, there is a reverse DNS (rDNS) lookup of the IP address reveals the hostname "edge-star-mini-shv-01-sjc3.facebook.com", which is a backend server used by Facebook. 
+The scan results show that two ports are open, port 80 (HTTP) and port 443 (HTTPS). Port 80 is used for standard, unsecured web traffic, while Port 443 is used for secure, encrypted web traffic over HTTPS. These open ports indicate that the server is configured to handle web requests.
 
 <!---
     - Scanning a Host Inside a Container.
