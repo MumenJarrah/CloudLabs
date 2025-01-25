@@ -240,11 +240,14 @@ In the output above, we can see the packets involved in establishing a TCP conne
     - In the second packet, the Facebook server responds with a SYN-ACK ([S.]), acknowledging the request and sending its own SYN.
     - In the third packet, the client sends an ACK ([.]), completing the 3-way TCP handshake.
 
+
 - HTTP GET Request:
     - The fourth packet contains the HTTP GET request from the client, requesting the root resource (/) over HTTP 1.1. This marks the start of the actual data exchange over the established TCP connection.
 
+
 - HTTP Response:
     - The server responds with "HTTP/1.1 301 Moved Permanently," indicating a redirection (possibly to an HTTPS version of the site or another domain). This demonstrates the transition from the TCP layer to the HTTP protocol.
+
 
 - Connection closing:
     - Subsequent packets include the graceful termination of the connection using FIN flags ([F.]), where both sides agree to close the connection.
