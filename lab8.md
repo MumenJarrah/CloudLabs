@@ -256,11 +256,11 @@ In the output above, we can see the packets involved in establishing a TCP conne
 
 - Launch `Wireshark` from your desktop.
 - You will see a list of available network interfaces, choose the interface connected to the internet `eth0`.
-- We will inspect the trafic on the "etho" interface. Double-click the interface to start capturing packets
+- We will inspect the traffic on the `eth0` interface. Double-click the interface to start capturing packets
 
   ![](images/lab8-8.png)
   
-- Now we need to generate some traffic on theinterface. We will visit the www.facebook.com site. Use the following command to get the facebook page.
+- Now we need to generate some traffic on the interface. We will visit the `www.facebook.com` site. Use the following command to get the facebook page.
 
 ```
 curl www.facebook.com
@@ -409,9 +409,10 @@ The following example shows how `nmap` works. The command `nmap www.facebook.com
     
   ![](images/lab8-444-u.png)
 
-The `nmap` output provides an overview of the publicly accessible services on the target domain `www.facebook.com`. The scan starts by identifying that the host is online and reachable, confirming connectivity. Then, it shows the domain resolves to the IPv4 address 157.240.22.35, which is the primary target of the scan. Also, there is a reverse DNS (rDNS) lookup of the IP address reveals the hostname "edge-star-mini-shv-01-sjc3.facebook.com", which is a backend server used by Facebook. 
-The scan results show that two ports are open, port 80 (HTTP) and port 443 (HTTPS). Port 80 is used for standard, unsecured web traffic, while Port 443 is used for secure, encrypted web traffic over HTTPS. These open ports indicate that the server is configured to handle web requests.
-
+The `nmap` output provides an overview of the publicly accessible services on the target domain `www.facebook.com`. The scan starts by identifying that the host is online and reachable, confirming connectivity. Then, it shows the domain resolves to the IP address "157.240.22.35", which is the primary target of the scan. Also, there is a reverse DNS (rDNS) lookup of the IP address reveals the hostname "edge-star-mini-shv-01-sjc3.facebook.com", which is a server used by Facebook. 
+The `nmap` results show that two ports are open:
+    - Port 80 (HTTP): which is used for standard, unsecured web traffic 
+    - Port 443 (HTTPS): which is used for secure, encrypted web traffic over HTTPS. 
 <!---
     - Scanning a Host Inside a Container.
       From `192.168.60.11`, scan `192.168.60.5` using the command `nmap 192.168.60.5`, we scanned a local host within the containerized environment to identify open ports and services. The scan revealed that the target host was reachable and had port 23 (Telnet) open, a protocol often used for remote access but considered insecure. This demonstrates how Nmap can be used to explore local networks, identify active services, and understand potential vulnerabilities in a controlled environment.
