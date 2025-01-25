@@ -294,6 +294,7 @@ In this output you see all the HTTP related packet. The outputs shows mutliple H
 ### `nmap`
 The `nmap` (Network Mapper) command is a powerful tool used for network exploration and security auditing. It allows you to discover hosts, services, and open ports on a network. In this lab, we will use Docker containers to simulate the two hosts. Files needed for this section are included in Labsetup.zip, which can be fetched by running the following commands.
 
+<!---
 ```
 # Download the lab setup files
 $ sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/VPN_Tunnel/Labsetup.zip
@@ -367,7 +368,9 @@ root@9652715c8e0a:/#
 
 #### Note: If a Docker command requires the container ID, you only need to type the first few characters, as long as they are unique among all running containers.
 
-Once inside the containers, you can use the nmap command to perform scans. You need to install `nmap` using the following instructions:
+Once inside the containers, you can use the nmap command to perform scans. 
+--->
+You need to install `nmap` using the following instructions:
 
 - Update System Package Repository:
   ```
@@ -384,15 +387,13 @@ Once inside the containers, you can use the nmap command to perform scans. You n
   nmap --version
   ```
 
-These two examples show how Nmap works in different scenarios:
-
-  - Scanning an External Website (www.facebook.com).
-      The command `nmap www.facebook.com` was used to scan a public web server to discover accessible services. The scan showed the host was reachable, resolved the domain to an IP address, and revealed open ports 80 (HTTP) and 443 (HTTPS), commonly used for serving web traffic. This example highlights how Nmap can test external servers for available services while emphasizing the importance of ethical scanning practices.
+This example shows how `nmap` works. The command `nmap www.facebook.com` was used to scan a public web server to discover accessible services. The scan showed the host was reachable, resolved the domain to an IP address, and revealed open ports 80 (HTTP) and 443 (HTTPS), commonly used for serving web traffic. This example highlights how Nmap can test external servers for available services while emphasizing the importance of ethical scanning practices.
     
     ![](images/lab8-444-u.png)
 
-  - Scanning a Host Inside a Container.
+<!---
+    - Scanning a Host Inside a Container.
       From `192.168.60.11`, scan `192.168.60.5` using the command `nmap 192.168.60.5`, we scanned a local host within the containerized environment to identify open ports and services. The scan revealed that the target host was reachable and had port 23 (Telnet) open, a protocol often used for remote access but considered insecure. This demonstrates how Nmap can be used to explore local networks, identify active services, and understand potential vulnerabilities in a controlled environment.
   
     ![](images/lab8-333-u.png)
-  
+  --->
