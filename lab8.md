@@ -225,13 +225,31 @@ This will send HTTP requests, and `tcpdump` will capture the packets. The output
 
 ![](images/lab8-7.png)
 
+<!---
 In the output above we can see the packets related to the TCP connection used to send the HTTP Get request. The first four packets are:
 - The first packet is the request to establish a TCP connection. This is indicated by the flag (S). The packet is sent from athe node with the hostname of "lLabvm-1568140.internal.cloudapp.net.41268" to the facebook server "edge-star-mini-shv-01-iad3.facebook.com.http"
 - The second line shows the responce from the facebook server responds (packet flaged (S.)
 - The third message is the third message of the TCP handshake.
 - The forth message has the HTTP GET request.
+--->
 
-tcpdump allows for inspecting the connection and the TCP state for packets sent or recieved on the interface. 
+In the output above, we can see the packets involved in establishing a TCP connection and sending an HTTP GET request. 
+
+- TCP Handshake:
+    - The first packet is the initial request to establish a TCP connection, indicated by the SYN flag ([S]). It is sent from the node with the hostname "labvm-1568140.internal.cloudapp.net.41268" to the Facebook server "edge-star-mini-shv-01-iad3.facebook.com.http".
+    - In the second packet, the Facebook server responds with a SYN-ACK ([S.]), acknowledging the request and sending its own SYN.
+    - In the third packet, the client sends an ACK ([.]), completing the 3-way TCP handshake.
+
+- HTTP GET Request:
+    - The fourth packet contains the HTTP GET request from the client, requesting the root resource (/) over HTTP 1.1. This marks the start of the actual data exchange over the established TCP connection.
+
+- HTTP Response:
+    - The server responds with "HTTP/1.1 301 Moved Permanently," indicating a redirection (possibly to an HTTPS version of the site or another domain). This demonstrates the transition from the TCP layer to the HTTP protocol.
+
+- Connection closing:
+    - Subsequent packets include the graceful termination of the connection using FIN flags ([F.]), where both sides agree to close the connection.
+
+`tcpdump` allows for inspecting the connection and the TCP state for packets sent or recieved on the interface. 
 
 ### `Tshark/Wireshark`
 `Wireshark` is another tool used to capture and inspect packets in real-time. It allows users to monitor network traffic, troubleshoot issues, and analyze communication between devices. `Wireshark` provides detailed insights into network protocols such as DNS, HTTP, TCP, and UDP. It comes with two tools. tshark is a command line tool that allows for scripting and automatig inspection, and wireshark is the same tool with a graphical user interface that allows user driven inspection and exploration of the network traffic. Wireshark comes with a graphical interface to help with filtering, captureing, and analyzing packets, helping users identify connectivity problems, security vulnerabilities, or performance bottlenecks in networks.
