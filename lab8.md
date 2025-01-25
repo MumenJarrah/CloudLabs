@@ -374,12 +374,12 @@ You need to install `nmap` using the following instructions:
 
 - Update System Package Repository:
   ```
-  apt update
+  sudo apt update
   ```
   
 - Install Nmap:
   ```
-  apt install nmap -y
+  sudo apt install nmap -y
   ```
 
 - Verify Installation:
@@ -387,7 +387,7 @@ You need to install `nmap` using the following instructions:
   nmap --version
   ```
 
-This example shows how `nmap` works. The command `nmap www.facebook.com` was used to scan a public web server to discover accessible services. The scan showed the host was reachable, resolved the domain to an IP address, and revealed open ports 80 (HTTP) and 443 (HTTPS), commonly used for serving web traffic. This example highlights how Nmap can test external servers for available services while emphasizing the importance of ethical scanning practices.
+The following example shows how `nmap` works. The command `nmap www.facebook.com` was used to scan a public web server to discover accessible services. The scan showed the host was reachable, resolved the domain to an IP address, and revealed open ports 80 (HTTP) and 443 (HTTPS), commonly used for serving web traffic.
     
   ![](images/lab8-444-u.png)
 
