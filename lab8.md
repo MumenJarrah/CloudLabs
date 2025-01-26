@@ -265,13 +265,13 @@ In the output above, we can see the packets involved in establishing a TCP conne
   
 - Now we need to generate some traffic on the interface. We will visit the `www.facebook.com` site. Use the following command to get the facebook page.
 
-```
-curl www.facebook.com
-```
+  ```
+  curl www.facebook.com
+  ```
 
 - Check the Wireshark interface for the captured packets. You will see a long list of packets captured at the interface.
 
-  ![](images/lab8-wireshark-2.png)
+  ![](images/lab8-wireshark-1u.png)
 
 - To filter traffic while capturing or viewing, use the filter bar at the top.
 - There are some common filters you can use like:
