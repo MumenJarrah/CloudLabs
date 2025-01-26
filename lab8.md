@@ -283,13 +283,13 @@ In the output above, we can see the packets involved in establishing a TCP conne
     The DNS query (Packet No. 446) asks for the IPv4 address of `www.facebook.com`.
     The DNS response (Packet No. 448) on the screen, shows the DNS response. with the IPv4 address.
     
-      ![](images/lab8-wireshark-dns-111.png)
+    ![](images/lab8-wireshark-dns-111.png)
 
     The response indicates that the facebook IP address is `157.240.229.35`
 
   * HTTP Traffic: http
 
-      ![](images/lab8-http-111.png)
+    ![](images/lab8-http-111.png)
 
 In this output you see all the HTTP related packet. The outputs shows mutliple HTTP request and responce packets. This is because modern websites may store different objects such as images and videos on different servers and are retrieved through a seperate HTTP request.
 
@@ -299,14 +299,14 @@ In this output you see all the HTTP related packet. The outputs shows mutliple H
 - Following that request there is a HTTP responce.
   Find the packet in your output. In out output it is packet no. FILL-THIS
 
-     ![](images/lab8-http-222.png)
+    ![](images/lab8-http-222.png)
   
   The response states response code of 200. Which indicates a succefull processing of the HTTP request.
   At the end of the responce we can see the bytes of the returned page.
     
 - Also, you can filter the packets using the host name: `host.name == "www.facebook.com"` 
 
-     ![](images/lab8-http-333.png)
+    ![](images/lab8-http-333.png)
 
 ## 6. Inspect Network Vulnerability with nmap 
 
