@@ -277,17 +277,15 @@ curl www.facebook.com
 - There are some common filters you can use like:
   * DNS Traffic: dns
 
-     ![](images/lab8-dns.png)
+    Use the filter dns in the filter bar to isolate DNS packets. In the output you will a DNS query that requests the IP address for `www.facebook.com` domain.
+    Click on one of the packets at the top of the screen. This will show the packets details in the lower screen.
+    The first DNS query packet (Packet No. 3308) asks for the IP address of facebook.com.
+    The last DNS packet (Packet No. 3312) on the screen, shows the DNS response.
 
-In this output you see that the machine did submit a DNS query to find the IP address of the `www.facebook.com` domain.
-Click on one of the packets at the top of the screen. This will show the packets details in the lower screen.
+    ![](images/lab8-wireshark-dns.png)
 
-The first DNS packet contains the request.
-The last DNS packet. No. [FILL THIS] on the screen, shows the DNS respons. 
+    The response indicates that the facebook IP address is `157.240.229.35`
 
-[Add Image of the responce packet]
-
-The responce indicates that the facebook IP address is [ADDRESS]
   * HTTP Traffic: http
 
      ![](images/lab8-http.png)   [Change this to select the first GET request]
