@@ -280,8 +280,8 @@ In the output above, we can see the packets involved in establishing a TCP conne
     You can use the filter `dns` in the filter bar to isolate DNS packets. In the output you will a DNS query that requests the IP address for `www.facebook.com` domain and DNS response.
     When a system tries to resolve a domain name, it sends a DNS query to request the corresponding IP address. Modern systems often request both IPv4 (A record) and IPv6 (AAAA record) addresses, resulting in two queries. However, for simplicity, we will focus on the IPv4 response.
     Click on one of the packets at the top of the screen. This will show the packets details in the lower screen.
-    The DNS query (Packet No. 446) asks for the IPv4 address of `www.facebook.com`.
-    The DNS response (Packet No. 448) on the screen, shows the DNS response. with the IPv4 address.
+    The DNS query (Packet No. 431) asks for the IPv4 address of `www.facebook.com`.
+    The DNS response (Packet No. 433) on the screen, shows the DNS response. with the IPv4 address.
     
     ![](images/lab8-wireshark-dns-111.png)
 
@@ -293,16 +293,16 @@ In the output above, we can see the packets involved in establishing a TCP conne
 
 In this output you see all the HTTP related packet. The outputs shows mutliple HTTP request and responce packets. This is because modern websites may store different objects such as images and videos on different servers and are retrieved through a seperate HTTP request.
 
-- Find the first HTTP request. In our example it is the first HTTP GET request at the top (No. FILL-THIS).
+- Find the first HTTP request. In our example it is the first HTTP GET request at the top (No. 438).
   The lower screen shows the packet details. It shows all the header of the packets including ethernet, IP, TCP, and HTTP. The HTTP request shows a GET request for www.facebook.com
 
-- Following that request there is a HTTP responce.
-  Find the packet in your output. In out output it is packet no. FILL-THIS
-
+- Following that request there is a HTTP response.
+  Find the packet in your output. In out output it is packet No. 443
+  
     ![](images/lab8-wk-http-222.png)
   
-  The response states response code of 200. Which indicates a succefull processing of the HTTP request.
-  At the end of the responce we can see the bytes of the returned page.
+  The response states response code of 200. Which indicates a successful processing of the HTTP request.
+  At the end of the response we can see the bytes of the returned page.
     
 - Also, you can filter the packets using the host name: `host.name == "www.facebook.com"` 
 
