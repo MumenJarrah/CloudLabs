@@ -271,7 +271,7 @@ In the output above, we can see the packets involved in establishing a TCP conne
 
 - Check the Wireshark interface for the captured packets. You will see a long list of packets captured at the interface.
 
-  ![](images/lab8-wireshark-111.png)
+    ![](images/lab8-wireshark-111.png)
 
 - To filter traffic while capturing or viewing, use the filter bar at the top.
 - There are some common filters you can use like:
@@ -289,7 +289,7 @@ In the output above, we can see the packets involved in establishing a TCP conne
 
   * HTTP Traffic: http
 
-     ![](images/lab8-http-111.png)
+    ![](images/lab8-http-111.png)
 
     <!---
     [Change this to select the first GET request]
