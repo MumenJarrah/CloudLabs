@@ -271,16 +271,16 @@ curl www.facebook.com
 
 - Check the Wireshark interface for the captured packets. You will see a long list of packets captured at the interface.
 
-[ADD an IMAGE]
+  ![](images/lab8-wireshark.png)
 
 - To filter traffic while capturing or viewing, use the filter bar at the top.
 - There are some common filters you can use like:
-  - DNS Traffic: dns
+  * DNS Traffic: dns
 
      ![](images/lab8-dns.png)
 
-In this output you see that the machine did submit a DNS query to find the IP address of the facebook.com domain.
-Click on one of the packets at the top of the screen. THis will show the packets details in the lower screen.
+In this output you see that the machine did submit a DNS query to find the IP address of the `www.facebook.com` domain.
+Click on one of the packets at the top of the screen. This will show the packets details in the lower screen.
 
 The first DNS packet contains the request.
 The last DNS packet. No. [FILL THIS] on the screen, shows the DNS respons. 
@@ -288,8 +288,7 @@ The last DNS packet. No. [FILL THIS] on the screen, shows the DNS respons.
 [Add Image of the responce packet]
 
 The responce indicates that the facebook IP address is [ADDRESS]
-    
-  - HTTP Traffic: http
+  * HTTP Traffic: http
 
      ![](images/lab8-http.png)   [Change this to select the first GET request]
 
