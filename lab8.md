@@ -271,7 +271,7 @@ In the output above, we can see the packets involved in establishing a TCP conne
 
 - Check the Wireshark interface for the captured packets. You will see a long list of packets captured at the interface.
 
-  ![](images/lab8-wireshark-1u.png)
+  ![](images/lab8-wireshark-111.png)
 
 - To filter traffic while capturing or viewing, use the filter bar at the top.
 - There are some common filters you can use like:
@@ -283,13 +283,17 @@ In the output above, we can see the packets involved in establishing a TCP conne
     The DNS query (Packet No. 446) asks for the IPv4 address of `www.facebook.com`.
     The DNS response (Packet No. 448) on the screen, shows the DNS response. with the IPv4 address.
     
-    ![](images/lab8-wireshark-dns-u1.png)
+    ![](images/lab8-wireshark-dns-111.png)
 
-    The response indicates that the facebook IP address is `157.240.22.35`
+    The response indicates that the facebook IP address is `157.240.229.35`
 
   * HTTP Traffic: http
 
-     ![](images/lab8-http.png)   [Change this to select the first GET request]
+     ![](images/lab8-http-111.png)
+
+    <!---
+    [Change this to select the first GET request]
+--->
 
 In this output you see all the HTTP related packet. The outputs shows mutliple HTTP request and responce packets. This is because modern websites may store different objects such as images and videos on different servers and are retrieved through a seperate HTTP request.
 
@@ -299,9 +303,12 @@ In this output you see all the HTTP related packet. The outputs shows mutliple H
 - Following that request there is a HTTP responce.
   Find the packet in your output. In out output it is packet no. FILL-THIS
 
-[ADD FIGURE FOR THE RESPONCE]
+    ![](images/lab8-http-222.png)
   
-  The responce states responce code of 200. Which indicates a succefull processing of the HTTP request.
+<!---
+[ADD FIGURE FOR THE RESPONCE]
+--->  
+  The response states response code of 200. Which indicates a succefull processing of the HTTP request.
   At the end of the responce we can see the bytes of the returned page.
     
 - Also, you can filter the packets using the host name: `www.facebook.com` 
