@@ -311,9 +311,9 @@ In this output you see all the HTTP related packet. The outputs shows mutliple H
   The response states response code of 200. Which indicates a succefull processing of the HTTP request.
   At the end of the responce we can see the bytes of the returned page.
     
-- Also, you can filter the packets using the host name: `www.facebook.com` 
+- Also, you can filter the packets using the host name: `host.name == "www.facebook.com"` 
 
-    ![](images/lab8-9.png)
+    ![](images/lab8-http-333.png)
 
 ## 6. Inspect Network Vulnerability with nmap 
 
