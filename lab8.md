@@ -277,14 +277,15 @@ In the output above, we can see the packets involved in establishing a TCP conne
 - There are some common filters you can use like:
   * DNS Traffic: dns
 
-    Use the filter dns in the filter bar to isolate DNS packets. In the output you will a DNS query that requests the IP address for `www.facebook.com` domain.
+    You can use the filter `dns` in the filter bar to isolate DNS packets. In the output you will a DNS query that requests the IP address for `www.facebook.com` domain and DNS response.
+    When a system tries to resolve a domain name, it sends a DNS query to request the corresponding IP address. Modern systems often request both IPv4 (A record) and IPv6 (AAAA record) addresses, resulting in two queries. However, for simplicity, we will focus on the IPv4 response.
     Click on one of the packets at the top of the screen. This will show the packets details in the lower screen.
-    The first DNS query packet (Packet No. 3308) asks for the IP address of facebook.com.
-    The last DNS packet (Packet No. 3312) on the screen, shows the DNS response.
+    The DNS query (Packet No. 446) asks for the IPv4 address of `www.facebook.com`.
+    The DNS response (Packet No. 448) on the screen, shows the DNS response. with the IPv4 address.
+    
+    ![](images/lab8-wireshark-dns-1u.png)
 
-    ![](images/lab8-wireshark-dns.png)
-
-    The response indicates that the facebook IP address is `157.240.229.35`
+    The response indicates that the facebook IP address is `157.240.22.35`
 
   * HTTP Traffic: http
 
