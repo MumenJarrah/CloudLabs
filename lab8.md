@@ -271,7 +271,7 @@ curl www.facebook.com
 
 - Check the Wireshark interface for the captured packets. You will see a long list of packets captured at the interface.
 
-  ![](images/lab8-wireshark.png)
+  ![](images/lab8-wireshark-2.png)
 
 - To filter traffic while capturing or viewing, use the filter bar at the top.
 - There are some common filters you can use like:
