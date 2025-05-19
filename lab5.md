@@ -147,7 +147,7 @@ By default, OpenSSL use the configuration file from `/usr/lib/ssl/openssl.cnf`. 
 to make changes to this file, we will copy it into our current directory, and instruct `OpenSSL` to use this
 copy instead.
 
-![](images/lab5-00-u.png)
+ ![](images/lab5-00-u.png)
 
 - Copy the default OpenSSL configuration file using the following command:
 ```
@@ -191,7 +191,7 @@ contains the public-key certificate.
 You can also specify the subject information and password in the command line, so you will not be
 prompted for any additional information. 
 
-![](images/lab5-11-u.png)
+ ![](images/lab5-11-u.png)
 
 In the following command, we use  `-subj` to set the subject
 information and we use `-passout pass:dees` to set the password to `dees`.
